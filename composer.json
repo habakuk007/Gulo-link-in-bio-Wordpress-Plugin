@@ -23,7 +23,8 @@
     "lint:php": "phpcs -p",
     "fix:php": "phpcbf -p",
     "test": "phpunit --configuration phpunit.xml.dist",
-    "test:coverage": "phpunit --configuration phpunit.xml.dist --coverage-text"
+    "test:coverage": "phpunit --configuration phpunit.xml.dist --coverage-text",
+    "package": "git archive --format=zip --prefix=link-in-bio/ HEAD -o link-in-bio.zip && echo 'Built: link-in-bio.zip'"
   },
   "config": {
     "allow-plugins": {
