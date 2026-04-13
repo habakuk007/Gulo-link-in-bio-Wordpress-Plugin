@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<ruleset name="Link in Bio WPCS">
+	<description>WordPress Coding Standards for the Link in Bio plugin.</description>
+
+	<file>.</file>
+
+	<exclude-pattern>vendor/*</exclude-pattern>
+	<exclude-pattern>node_modules/*</exclude-pattern>
+	<exclude-pattern>tests/bootstrap.php</exclude-pattern>
+
+	<!-- WordPress core rules -->
+	<rule ref="WordPress"/>
+	<rule ref="WordPress-Docs"/>
+	<rule ref="WordPress-Extra"/>
+
+	<!-- PHP 7.4+ compatibility -->
+	<rule ref="PHPCompatibility"/>
+	<config name="testVersion" value="7.4-"/>
+
+	<!-- Text domain -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array" value="link-in-bio"/>
+		</properties>
+	</rule>
+
+	<!-- Allowed namespaced hooks (plugin prefix) -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array" value="lib_,LIB_"/>
+		</properties>
+	</rule>
+
+	<!-- Line length: allow longer lines in templates and inline HTML -->
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="120"/>
+			<property name="absoluteLineLimit" value="200"/>
+		</properties>
+	</rule>
+</ruleset>

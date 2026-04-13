@@ -1,0 +1,67 @@
+{
+  // ── Editor defaults ─────────────────────────────────────────────
+  "editor.formatOnSave": false,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": false,
+  "editor.rulers": [120],
+  "editor.wordWrapColumn": 120,
+
+  // ── PHP (Intelephense) ──────────────────────────────────────────
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "intelephense.environment.phpVersion": "7.4.0",
+  "intelephense.stubs": [
+    "wordpress",
+    "Core",
+    "standard",
+    "json",
+    "mbstring",
+    "pcre",
+    "SPL"
+  ],
+  "phpcs.enable": true,
+  "phpcs.standard": "WordPress",
+  "phpcs.executablePath": "./vendor/bin/phpcs",
+
+  // ── JavaScript ──────────────────────────────────────────────────
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false
+  },
+  "eslint.enable": true,
+  "eslint.workingDirectories": ["."],
+
+  // ── CSS ─────────────────────────────────────────────────────────
+  "[css]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false
+  },
+  "css.validate": true,
+  "stylelint.enable": true,
+
+  // ── JSON ─────────────────────────────────────────────────────────
+  "[json]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+
+  // ── Files ────────────────────────────────────────────────────────
+  "files.associations": {
+    "*.php": "php"
+  },
+  "files.exclude": {
+    "vendor/**": true,
+    "node_modules/**": true,
+    ".git/**": false
+  },
+  "search.exclude": {
+    "vendor/**": true,
+    "node_modules/**": true
+  },
+
+  // ── Git ─────────────────────────────────────────────────────────
+  "git.autofetch": true,
+  "git.enableSmartCommit": true
+}

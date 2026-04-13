@@ -1,0 +1,167 @@
+# Copyright (C) 2025 Stefan Wagner
+# This file is distributed under the same license as the Link in Bio plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Link in Bio 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/stefanwagner/wordpress-link-in-bio/issues\n"
+"POT-Creation-Date: 2025-04-13T00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: WP-CLI 2.x\n"
+"X-Domain: link-in-bio\n"
+
+#. Plugin Name of the plugin
+msgid "Link in Bio"
+msgstr ""
+
+#. Description of the plugin
+msgid "A LinkTree-style link page for WordPress. Create a beautiful profile link page with custom links, colors, and branding."
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Link in Bio Settings"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Settings"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Use the shortcode %s to embed your Link in Bio page anywhere."
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Profile"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Name"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Bio / Tagline"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Profile Image URL"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Select Image"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Remove"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Profile image preview"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Appearance"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Background"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Background type"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Gradient"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Solid color"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Gradient Start"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Gradient End"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Background Color"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Profile Text Color"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Link Buttons"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Button Background"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Button Text"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Links"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Drag rows to reorder. Uncheck \"Active\" to hide a link without deleting it."
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Manage links"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Add Link"
+msgstr ""
+
+#: includes/class-lib-admin.php
+msgid "Save Settings"
+msgstr ""
+
+#: includes/class-lib-admin.php assets/js/admin.js
+msgid "Select Profile Image"
+msgstr ""
+
+#: includes/class-lib-admin.php assets/js/admin.js
+msgid "Use this image"
+msgstr ""
+
+#: templates/display.php
+msgid "Skip to links"
+msgstr ""
+
+#: templates/display.php
+msgid "Profile"
+msgstr ""
+
+#: templates/display.php
+msgid "Profile photo of %s"
+msgstr ""
+
+#: templates/display.php
+msgid "Profile links"
+msgstr ""
+
+#: templates/display.php
+msgid "%s (opens in new tab)"
+msgstr ""
+
+#: templates/display.php
+msgid "Powered by %s"
+msgstr ""

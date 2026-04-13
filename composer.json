@@ -1,0 +1,37 @@
+{
+  "name": "stefanwagner/wordpress-link-in-bio",
+  "description": "A LinkTree-style link page WordPress plugin",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Stefan Wagner"
+    }
+  ],
+  "require": {
+    "php": ">=7.4"
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+    "wp-coding-standards/wpcs": "^3.0",
+    "phpcompatibility/php-compatibility": "^9.0",
+    "phpunit/phpunit": "^10.0",
+    "yoast/phpunit-polyfills": "^2.0",
+    "brain/monkey": "^2.6"
+  },
+  "scripts": {
+    "lint:php": "phpcs -p",
+    "fix:php": "phpcbf -p",
+    "test": "phpunit --configuration phpunit.xml.dist",
+    "test:coverage": "phpunit --configuration phpunit.xml.dist --coverage-text"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    },
+    "sort-packages": true
+  },
+  "extra": {
+    "wordpress-install-dir": "vendor/wordpress/wordpress"
+  }
+}

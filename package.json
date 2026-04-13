@@ -1,0 +1,17 @@
+{
+  "name": "wordpress-link-in-bio",
+  "version": "1.0.0",
+  "description": "A LinkTree-style link page WordPress plugin",
+  "private": true,
+  "scripts": {
+    "lint:js": "eslint assets/js/",
+    "lint:css": "stylelint \"assets/css/**/*.css\"",
+    "lint": "npm run lint:js && npm run lint:css"
+  },
+  "devDependencies": {
+    "@wordpress/eslint-plugin": "^21.0.0",
+    "eslint": "^8.0.0",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0"
+  }
+}
