@@ -7,6 +7,9 @@
 	<exclude-pattern>vendor/*</exclude-pattern>
 	<exclude-pattern>node_modules/*</exclude-pattern>
 	<exclude-pattern>tests/bootstrap.php</exclude-pattern>
+	<!-- JS/CSS are linted by ESLint and Stylelint respectively. -->
+	<exclude-pattern>assets/js/*</exclude-pattern>
+	<exclude-pattern>assets/css/*</exclude-pattern>
 
 	<!-- WordPress core rules -->
 	<rule ref="WordPress"/>
@@ -20,14 +23,19 @@
 	<!-- Text domain -->
 	<rule ref="WordPress.WP.I18n">
 		<properties>
-			<property name="text_domain" type="array" value="link-in-bio"/>
+			<property name="text_domain" type="array">
+				<element value="link-in-bio"/>
+			</property>
 		</properties>
 	</rule>
 
 	<!-- Allowed namespaced hooks (plugin prefix) -->
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
-			<property name="prefixes" type="array" value="lib_,LIB_"/>
+			<property name="prefixes" type="array">
+				<element value="lib_"/>
+				<element value="LIB_"/>
+			</property>
 		</properties>
 	</rule>
 

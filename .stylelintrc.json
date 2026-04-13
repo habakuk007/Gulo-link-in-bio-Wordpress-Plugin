@@ -1,0 +1,12 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "comment-empty-line-before": null,
+    "no-descending-specificity": null,
+    "alpha-value-notation": "number",
+    "color-function-notation": "modern",
+    "color-hex-length": "long",
+    "media-feature-range-notation": "prefix"
+  },
+  "ignoreFiles": ["vendor/**", "node_modules/**"]
+}

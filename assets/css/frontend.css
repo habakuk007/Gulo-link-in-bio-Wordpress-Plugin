@@ -28,10 +28,10 @@
 	width: auto;
 	height: auto;
 	padding: 0.5rem 1.25rem;
-	background: #000;
-	color: #fff;
+	background: #000000;
+	color: #ffffff;
 	font-size: 0.9rem;
-	outline: 2px solid #fff;
+	outline: 2px solid #ffffff;
 	outline-offset: 2px;
 	z-index: 9999;
 }

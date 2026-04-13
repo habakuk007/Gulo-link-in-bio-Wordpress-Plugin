@@ -45,11 +45,11 @@ class LIB_Settings {
 	/**
 	 * Retrieves a single setting or all settings, merged with defaults.
 	 *
-	 * @param string $key     Option key. Empty string returns all settings.
-	 * @param mixed  $default Fallback if key not found.
+	 * @param string $key      Option key. Empty string returns all settings.
+	 * @param mixed  $fallback Fallback if key not found.
 	 * @return mixed
 	 */
-	public static function get( string $key = '', $default = null ) {
+	public static function get( string $key = '', $fallback = null ) {
 		$saved    = get_option( self::OPTION_SETTINGS, array() );
 		$settings = wp_parse_args( is_array( $saved ) ? $saved : array(), self::get_defaults() );
 
@@ -57,7 +57,7 @@ class LIB_Settings {
 			return $settings;
 		}
 
-		return isset( $settings[ $key ] ) ? $settings[ $key ] : $default;
+		return isset( $settings[ $key ] ) ? $settings[ $key ] : $fallback;
 	}
 
 	/**

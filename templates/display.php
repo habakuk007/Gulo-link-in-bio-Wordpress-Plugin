@@ -12,14 +12,15 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$active_links = array_filter( $links, static fn( array $link ) => ! empty( $link['active'] ) );
+// Rename to avoid collision with WP global $link and to carry plugin prefix.
+$lib_active_links = array_filter( $links, static fn( array $lib_link ) => ! empty( $lib_link['active'] ) );
 ?>
-<style><?php echo $custom_css; // Already escaped — contains only controlled property values. ?></style>
+<style><?php echo esc_html( $custom_css ); // $custom_css contains only hex colors and CSS identifiers — esc_html() is safe and WPCS-approved. ?></style>
 
 <div class="lib-container">
 
 	<!-- Skip navigation for keyboard and assistive-technology users -->
-	<?php if ( ! empty( $active_links ) ) : ?>
+	<?php if ( ! empty( $lib_active_links ) ) : ?>
 		<a class="lib-skip-link" href="#lib-links">
 			<?php esc_html_e( 'Skip to links', 'link-in-bio' ); ?>
 		</a>
@@ -32,13 +33,15 @@ $active_links = array_filter( $links, static fn( array $link ) => ! empty( $link
 			<div class="lib-avatar">
 				<img
 					src="<?php echo esc_url( $settings['profile_image'] ); ?>"
-					alt="<?php
+					alt="
+					<?php
 					printf(
 						/* translators: %s: profile name */
 						esc_attr__( 'Profile photo of %s', 'link-in-bio' ),
 						esc_attr( $settings['profile_name'] )
 					);
-					?>"
+					?>
+					"
 					width="96"
 					height="96"
 					loading="lazy"
@@ -62,7 +65,7 @@ $active_links = array_filter( $links, static fn( array $link ) => ! empty( $link
 	</section>
 
 	<!-- ── Links ──────────────────────────────────────────────── -->
-	<?php if ( ! empty( $active_links ) ) : ?>
+	<?php if ( ! empty( $lib_active_links ) ) : ?>
 		<nav
 			class="lib-links"
 			id="lib-links"
@@ -70,22 +73,24 @@ $active_links = array_filter( $links, static fn( array $link ) => ! empty( $link
 			tabindex="-1"
 		>
 			<ul class="lib-links-list" role="list">
-				<?php foreach ( $active_links as $link ) : ?>
+				<?php foreach ( $lib_active_links as $lib_link ) : ?>
 					<li class="lib-link-item" role="listitem">
 						<a
-							href="<?php echo esc_url( $link['url'] ); ?>"
+							href="<?php echo esc_url( $lib_link['url'] ); ?>"
 							class="lib-link-btn"
 							target="_blank"
 							rel="noopener noreferrer"
-							aria-label="<?php
+							aria-label="
+							<?php
 							printf(
 								/* translators: %s: link title */
 								esc_attr__( '%s (opens in new tab)', 'link-in-bio' ),
-								esc_attr( $link['title'] )
+								esc_attr( $lib_link['title'] )
 							);
-							?>"
+							?>
+							"
 						>
-							<span class="lib-link-title"><?php echo esc_html( $link['title'] ); ?></span>
+							<span class="lib-link-title"><?php echo esc_html( $lib_link['title'] ); ?></span>
 							<span class="lib-link-arrow" aria-hidden="true">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"

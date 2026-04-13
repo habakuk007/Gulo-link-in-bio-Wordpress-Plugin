@@ -8,26 +8,25 @@
  *  - wp-color-picker initialization
  *  - JSON serialization of links into the hidden field before form submit
  *
- * @package LinkInBio
+ * @param {Function} $ jQuery object.
+ * @package
  */
 
-/* global jQuery, wp, libAdmin */
-
-( function ( $ ) {
+( function( $ ) {
 	'use strict';
 
 	// ── DOM references ──────────────────────────────────────────────
 
-	var $linksList    = $( '#lib-links-list' );
-	var $linksJson    = $( '#lib-links-json' );
-	var $addLinkBtn   = $( '#lib-add-link' );
-	var $uploadBtn    = $( '#lib-upload-image' );
-	var $removeImgBtn = $( '#lib-remove-image' );
-	var $imageField   = $( '#lib-profile-image' );
-	var $imagePreview = $( '#lib-image-preview' );
-	var $bgTypeRadios  = $( '.lib-bg-type-radio' );
-	var $bgGradient   = $( '#lib-bg-gradient' );
-	var $bgSolid      = $( '#lib-bg-solid' );
+	const $linksList = $( '#lib-links-list' );
+	const $linksJson = $( '#lib-links-json' );
+	const $addLinkBtn = $( '#lib-add-link' );
+	const $uploadBtn = $( '#lib-upload-image' );
+	const $removeImgBtn = $( '#lib-remove-image' );
+	const $imageField = $( '#lib-profile-image' );
+	const $imagePreview = $( '#lib-image-preview' );
+	const $bgTypeRadios = $( '.lib-bg-type-radio' );
+	const $bgGradient = $( '#lib-bg-gradient' );
+	const $bgSolid = $( '#lib-bg-solid' );
 
 	// ── Color pickers ───────────────────────────────────────────────
 
@@ -36,7 +35,7 @@
 	// ── Background type toggle ──────────────────────────────────────
 
 	function updateBgVisibility() {
-		var type = $bgTypeRadios.filter( ':checked' ).val();
+		const type = $bgTypeRadios.filter( ':checked' ).val();
 		if ( 'gradient' === type ) {
 			$bgGradient.removeClass( 'hidden' );
 			$bgSolid.addClass( 'hidden' );
@@ -51,9 +50,9 @@
 
 	// ── Media uploader ──────────────────────────────────────────────
 
-	var mediaFrame;
+	let mediaFrame;
 
-	$uploadBtn.on( 'click', function ( e ) {
+	$uploadBtn.on( 'click', function( e ) {
 		e.preventDefault();
 
 		if ( mediaFrame ) {
@@ -62,14 +61,18 @@
 		}
 
 		mediaFrame = wp.media( {
-			title:    libAdmin.mediaTitle,
-			button:   { text: libAdmin.mediaButton },
+			title: libAdmin.mediaTitle,
+			button: { text: libAdmin.mediaButton },
 			multiple: false,
-			library:  { type: 'image' },
+			library: { type: 'image' },
 		} );
 
-		mediaFrame.on( 'select', function () {
-			var attachment = mediaFrame.state().get( 'selection' ).first().toJSON();
+		mediaFrame.on( 'select', function() {
+			const attachment = mediaFrame
+				.state()
+				.get( 'selection' )
+				.first()
+				.toJSON();
 			$imageField.val( attachment.url );
 			$imagePreview.attr( 'src', attachment.url );
 			$imagePreview.closest( '.lib-image-preview-wrap' ).removeClass( 'hidden' );
@@ -79,7 +82,7 @@
 		mediaFrame.open();
 	} );
 
-	$removeImgBtn.on( 'click', function ( e ) {
+	$removeImgBtn.on( 'click', function( e ) {
 		e.preventDefault();
 		$imageField.val( '' );
 		$imagePreview.attr( 'src', '' );
@@ -92,56 +95,56 @@
 	/**
 	 * Builds a link-row jQuery element.
 	 *
-	 * @param {string}  title
-	 * @param {string}  url
-	 * @param {boolean} active
-	 * @return {jQuery}
+	 * @param {string}  title  Link title.
+	 * @param {string}  url    Link URL.
+	 * @param {boolean} active Whether the link is active.
+	 * @return {jQuery} The constructed row element.
 	 */
 	function buildLinkRow( title, url, active ) {
-		var $row = $( '<div>', {
+		const $row = $( '<div>', {
 			class: 'lib-link-row',
-			role:  'listitem',
+			role: 'listitem',
 		} );
 
-		var $handle = $( '<span>', {
-			class:         'lib-drag-handle',
+		const $handle = $( '<span>', {
+			class: 'lib-drag-handle',
 			'aria-hidden': 'true',
-			title:         'Drag to reorder',
-			html:          '&#9776;',
+			title: 'Drag to reorder',
+			html: '&#9776;',
 		} );
 
-		var $fields = $( '<div>', { class: 'lib-link-fields' } );
+		const $fields = $( '<div>', { class: 'lib-link-fields' } );
 
-		var $titleInput = $( '<input>', {
-			type:        'text',
-			class:       'lib-link-title',
+		const $titleInput = $( '<input>', {
+			type: 'text',
+			class: 'lib-link-title',
 			placeholder: 'Link Title',
-			value:       title || '',
+			value: title || '',
 			'aria-label': 'Link title',
 		} );
 
-		var $urlInput = $( '<input>', {
-			type:        'url',
-			class:       'lib-link-url',
+		const $urlInput = $( '<input>', {
+			type: 'url',
+			class: 'lib-link-url',
 			placeholder: 'https://example.com',
-			value:       url || '',
+			value: url || '',
 			'aria-label': 'Link URL',
 		} );
 
-		var $activeLabel = $( '<label>' );
-		var $activeCheck = $( '<input>', {
-			type:    'checkbox',
-			class:   'lib-link-active',
-			checked: ( false !== active ),
+		const $activeLabel = $( '<label>' );
+		const $activeCheck = $( '<input>', {
+			type: 'checkbox',
+			class: 'lib-link-active',
+			checked: false !== active,
 		} );
 		$activeLabel.append( $activeCheck ).append( ' Active' );
 
 		$fields.append( $titleInput, $urlInput, $activeLabel );
 
-		var $removeBtn = $( '<button>', {
-			type:  'button',
+		const $removeBtn = $( '<button>', {
+			type: 'button',
 			class: 'lib-remove-link button button-link-delete',
-			html:  'Remove',
+			html: 'Remove',
 			'aria-label': 'Remove link',
 		} );
 
@@ -152,50 +155,48 @@
 	// ── Render initial links ────────────────────────────────────────
 
 	if ( libAdmin.links && libAdmin.links.length ) {
-		$.each( libAdmin.links, function ( i, link ) {
+		$.each( libAdmin.links, function( i, link ) {
 			$linksList.append( buildLinkRow( link.title, link.url, link.active ) );
 		} );
 	}
 
 	// ── Add link ────────────────────────────────────────────────────
 
-	$addLinkBtn.on( 'click', function () {
-		var $row = buildLinkRow( '', '', true );
+	$addLinkBtn.on( 'click', function() {
+		const $row = buildLinkRow( '', '', true );
 		$linksList.append( $row );
 		$row.find( '.lib-link-title' ).trigger( 'focus' );
 	} );
 
 	// ── Remove link (event delegation) ─────────────────────────────
 
-	$linksList.on( 'click', '.lib-remove-link', function () {
-		var $row = $( this ).closest( '.lib-link-row' );
-		$row.remove();
+	$linksList.on( 'click', '.lib-remove-link', function() {
+		$( this ).closest( '.lib-link-row' ).remove();
 	} );
 
 	// ── Drag-to-sort ────────────────────────────────────────────────
 
 	$linksList.sortable( {
-		handle:      '.lib-drag-handle',
+		handle: '.lib-drag-handle',
 		placeholder: 'lib-link-row ui-sortable-placeholder',
-		tolerance:   'pointer',
-		axis:        'y',
+		tolerance: 'pointer',
+		axis: 'y',
 	} );
 
 	// ── Serialize links to JSON before submit ───────────────────────
 
-	$linksList.closest( 'form' ).on( 'submit', function () {
-		var links = [];
+	$linksList.closest( 'form' ).on( 'submit', function() {
+		const links = [];
 
-		$linksList.find( '.lib-link-row' ).each( function () {
-			var $r = $( this );
+		$linksList.find( '.lib-link-row' ).each( function() {
+			const $r = $( this );
 			links.push( {
-				title:  $r.find( '.lib-link-title' ).val().trim(),
-				url:    $r.find( '.lib-link-url' ).val().trim(),
+				title: $r.find( '.lib-link-title' ).val().trim(),
+				url: $r.find( '.lib-link-url' ).val().trim(),
 				active: $r.find( '.lib-link-active' ).is( ':checked' ),
 			} );
 		} );
 
 		$linksJson.val( JSON.stringify( links ) );
 	} );
-
-} )( jQuery );
+}( jQuery ) );

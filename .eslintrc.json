@@ -1,0 +1,15 @@
+{
+  "extends": ["plugin:@wordpress/eslint-plugin/esnext"],
+  "env": {
+    "browser": true,
+    "jquery": true
+  },
+  "globals": {
+    "wp": "readonly",
+    "libAdmin": "readonly"
+  },
+  "rules": {
+    "no-console": "warn",
+    "prettier/prettier": "off"
+  }
+}

@@ -13,7 +13,7 @@
 .lib-shortcode-tip {
 	margin-top: 0.25rem;
 	font-size: 0.9rem;
-	color: #666;
+	color: #666666;
 }
 
 .lib-shortcode-tip code {
@@ -26,7 +26,7 @@
 /* ── Settings Section ───────────────────────────────────────────── */
 
 .lib-section {
-	background: #fff;
+	background: #ffffff;
 	border: 1px solid #ccd0d4;
 	border-radius: 4px;
 	margin-bottom: 1.5rem;
@@ -37,7 +37,7 @@
 	margin-top: 0;
 	margin-bottom: 1rem;
 	padding-bottom: 0.5rem;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #eeeeee;
 	font-size: 1rem;
 	color: #1d2327;
 }
@@ -55,7 +55,7 @@
 .lib-color-group label {
 	display: block;
 	font-size: 0.8rem;
-	color: #555;
+	color: #555555;
 	margin-bottom: 0.2rem;
 }
 
@@ -97,19 +97,19 @@
 	gap: 0.5rem;
 	padding: 0.625rem 0.75rem;
 	background: #f9f9f9;
-	border: 1px solid #ddd;
+	border: 1px solid #dddddd;
 	border-radius: 4px;
 	margin-bottom: 0.5rem;
 	transition: background 0.15s;
 }
 
 .lib-link-row:focus-within {
-	background: #fff;
+	background: #ffffff;
 	border-color: #007cba;
 }
 
 .lib-drag-handle {
-	color: #aaa;
+	color: #aaaaaa;
 	cursor: grab;
 	padding: 0 0.25rem;
 	font-size: 1.1rem;
@@ -145,7 +145,7 @@
 	align-items: center;
 	gap: 0.3rem;
 	font-size: 0.875rem;
-	color: #555;
+	color: #555555;
 	white-space: nowrap;
 }
 
@@ -169,7 +169,7 @@
 
 .lib-link-row.ui-sortable-helper {
 	box-shadow: 0 4px 12px rgba(0 0 0 / 0.12);
-	background: #fff;
+	background: #ffffff;
 	border-color: #007cba;
 }
 

@@ -15,7 +15,11 @@ defined( 'ABSPATH' ) || exit;
  */
 class LIB_Frontend {
 
-	/** @var bool Whether assets have been enqueued in this request. */
+	/**
+	 * Whether assets have been enqueued in this request.
+	 *
+	 * @var bool
+	 */
 	private bool $assets_enqueued = false;
 
 	/** Constructor — registers hooks. */
@@ -42,10 +46,12 @@ class LIB_Frontend {
 	/**
 	 * Shortcode handler for [link_in_bio].
 	 *
-	 * @param array<string, string>|string $atts Shortcode attributes (unused).
+	 * @param array<string, string>|string $atts Shortcode attributes — reserved for future use.
 	 * @return string Rendered HTML.
 	 */
 	public function render_shortcode( $atts = array() ): string {
+		// Parse shortcode attributes — none defined yet, but normalises the value.
+		$atts = shortcode_atts( array(), $atts, 'link_in_bio' );
 		if ( ! $this->assets_enqueued ) {
 			wp_enqueue_style( 'lib-frontend' );
 			$this->assets_enqueued = true;

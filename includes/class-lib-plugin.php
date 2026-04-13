@@ -15,7 +15,11 @@ defined( 'ABSPATH' ) || exit;
  */
 class LIB_Plugin {
 
-	/** @var LIB_Plugin|null Single instance. */
+	/**
+	 * Single instance.
+	 *
+	 * @var LIB_Plugin|null
+	 */
 	private static ?LIB_Plugin $instance = null;
 
 	/**
