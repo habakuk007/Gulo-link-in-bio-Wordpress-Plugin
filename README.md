@@ -21,10 +21,12 @@ anywhere on your site using the `[link_in_bio]` shortcode.
 ### From source
 
 1. Clone or download this repository into your `wp-content/plugins/` directory:
+
    ```bash
    cd wp-content/plugins/
    git clone https://github.com/stefanwagner/wordpress-link-in-bio.git link-in-bio
    ```
+
 2. In WordPress admin, go to **Plugins → Installed Plugins** and activate **Link in Bio**.
 
 ### As a ZIP
@@ -49,7 +51,7 @@ anywhere on your site using the `[link_in_bio]` shortcode.
 
 Add the shortcode to any page, post, or widget:
 
-```
+```text
 [link_in_bio]
 ```
 
@@ -63,7 +65,7 @@ For the best Linktree look, create a dedicated WordPress page and set its templa
 ## Filters & Hooks
 
 | Hook | Type | Description |
-|------|------|-------------|
+| ---- | ---- | ----------- |
 | `lib_settings` | filter | Modify settings before they are passed to the template |
 | `lib_links` | filter | Modify the links array before rendering |
 | `lib_custom_css` | filter | Modify the inline CSS custom-property string |
@@ -142,7 +144,7 @@ WP_TESTS_DIR=/tmp/wordpress-tests-lib composer run test
 
 ## File Structure
 
-```
+```text
 link-in-bio/
 ├── link-in-bio.php               ← Plugin entry point
 ├── includes/
