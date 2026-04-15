@@ -24,10 +24,11 @@ class LIB_Settings {
 	/**
 	 * Returns default settings values.
 	 *
-	 * @return array<string, string>
+	 * @return array<string, mixed>
 	 */
 	public static function get_defaults(): array {
 		return array(
+			'page_id'            => 0,
 			'profile_name'       => get_bloginfo( 'name' ),
 			'profile_bio'        => get_bloginfo( 'description' ),
 			'profile_image'      => '',
@@ -83,6 +84,10 @@ class LIB_Settings {
 		}
 
 		$output = array();
+
+		if ( isset( $input['page_id'] ) ) {
+			$output['page_id'] = absint( $input['page_id'] );
+		}
 
 		$text_fields = array( 'profile_name', 'profile_bio', 'background_type', 'button_style' );
 		foreach ( $text_fields as $field ) {

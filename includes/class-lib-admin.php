@@ -146,11 +146,39 @@ class LIB_Admin {
 			<?php settings_errors( LIB_Settings::OPTION_SETTINGS ); ?>
 
 			<p class="lib-shortcode-tip">
-				<?php esc_html_e( 'To display your Link in Bio page: create or edit a Page, then choose "Link in Bio" from the Template dropdown in Page Attributes.', 'link-in-bio' ); ?>
+				<?php esc_html_e( 'Create any WordPress Page, then select it below — the plugin will serve the Link in Bio layout for that page automatically.', 'link-in-bio' ); ?>
 			</p>
 
 			<form method="post" action="options.php" novalidate>
 				<?php settings_fields( self::SETTINGS_GROUP ); ?>
+
+				<!-- ── Page ─────────────────────────────────────────── -->
+				<div class="lib-section">
+					<h2 class="lib-section-title"><?php esc_html_e( 'Link in Bio Page', 'link-in-bio' ); ?></h2>
+					<table class="form-table" role="presentation">
+						<tr>
+							<th scope="row">
+								<label for="lib-page-id"><?php esc_html_e( 'Page', 'link-in-bio' ); ?></label>
+							</th>
+							<td>
+								<?php
+								wp_dropdown_pages(
+									array(
+										'name'             => esc_attr( LIB_Settings::OPTION_SETTINGS ) . '[page_id]',
+										'id'               => 'lib-page-id',
+										'selected'         => (int) $s['page_id'],
+										'show_option_none' => esc_html__( '— Select a page —', 'link-in-bio' ),
+										'option_none_value' => '0',
+									)
+								);
+								?>
+								<p class="description">
+									<?php esc_html_e( 'The selected page will display the Link in Bio profile layout, bypassing the active theme.', 'link-in-bio' ); ?>
+								</p>
+							</td>
+						</tr>
+					</table>
+				</div>
 
 				<!-- ── Profile ──────────────────────────────────────── -->
 				<div class="lib-section">

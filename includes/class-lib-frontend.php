@@ -1,6 +1,6 @@
 <?php
 /**
- * Frontend — page template registration and asset enqueueing.
+ * Frontend — page template serving and asset enqueueing.
  *
  * @package LinkInBio
  */
@@ -10,15 +10,11 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Class LIB_Frontend
  *
- * Registers the "Link in Bio" WordPress page template and loads frontend
- * assets only on pages that use it.
+ * Serves the Link in Bio full-page template for whichever WordPress Page
+ * the admin has designated in Settings → Link in Bio, and loads frontend
+ * assets only on that page.
  */
 class LIB_Frontend {
-
-	/**
-	 * Internal template identifier used in post meta and filter callbacks.
-	 */
-	const TEMPLATE_KEY = 'link-in-bio-template';
 
 	/** Constructor — registers hooks. */
 	public function __construct() {
@@ -27,21 +23,7 @@ class LIB_Frontend {
 	}
 
 	/**
-	 * Adds the plugin template to WordPress's page template dropdown.
-	 *
-	 * Registered as a static callback early in LIB_Plugin::__construct() so
-	 * the block editor's REST API preload sees it before init fires.
-	 *
-	 * @param array<string, string> $templates Registered page templates keyed by filename.
-	 * @return array<string, string>
-	 */
-	public static function register_template( array $templates ): array {
-		$templates[ self::TEMPLATE_KEY ] = __( 'Link in Bio', 'link-in-bio' );
-		return $templates;
-	}
-
-	/**
-	 * Serves the plugin template file when a page uses the Link in Bio template.
+	 * Serves the plugin template file when the designated page is viewed.
 	 *
 	 * @param string $template Resolved template path.
 	 * @return string
@@ -55,7 +37,7 @@ class LIB_Frontend {
 
 	/**
 	 * Registers and enqueues frontend assets (stylesheet + inline CSS custom
-	 * properties) only on pages that use the Link in Bio template.
+	 * properties) only on the designated Link in Bio page.
 	 *
 	 * @return void
 	 */
@@ -78,21 +60,19 @@ class LIB_Frontend {
 	}
 
 	/**
-	 * Checks whether the current page uses the Link in Bio template.
+	 * Checks whether the current request is for the designated Link in Bio page.
 	 *
 	 * @return bool
 	 */
 	private function is_lib_page(): bool {
-		if ( ! is_singular( 'page' ) ) {
-			return false;
-		}
-		return self::TEMPLATE_KEY === get_post_meta( get_the_ID(), '_wp_page_template', true );
+		$page_id = (int) LIB_Settings::get( 'page_id' );
+		return $page_id > 0 && is_page( $page_id );
 	}
 
 	/**
 	 * Generates inline CSS custom properties from saved settings.
 	 *
-	 * @param array<string, string> $settings Plugin settings.
+	 * @param array<string, mixed> $settings Plugin settings.
 	 * @return string CSS rule block (no surrounding tags).
 	 */
 	private function build_custom_css( array $settings ): string {
