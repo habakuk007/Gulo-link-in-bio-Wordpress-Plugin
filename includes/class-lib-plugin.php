@@ -80,6 +80,10 @@ class LIB_Plugin {
 		if ( false === get_option( LIB_Settings::OPTION_LINKS ) ) {
 			update_option( LIB_Settings::OPTION_LINKS, wp_json_encode( array() ) );
 		}
+
+		// WordPress caches the page template list per theme. Clear it so our
+		// template appears in the dropdown immediately after activation.
+		wp_cache_delete( 'page_templates-' . md5( get_theme_root() . '/' . get_stylesheet() ), 'themes' );
 	}
 
 	/**

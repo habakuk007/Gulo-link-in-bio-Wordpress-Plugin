@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       Link in Bio
  * Plugin URI:        https://github.com/stefanwagner/wordpress-link-in-bio
- * Description:       A LinkTree-style link page for WordPress. Embed a profile page with the [link_in_bio] shortcode.
- * Version:           1.0.0
+ * Description:       A LinkTree-style link page for WordPress. Configure your profile in Settings → Link in Bio, then assign the page template to any Page.
+ * Version:           1.0.0-alpha.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Stefan Wagner
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LIB_VERSION', '1.0.0' );
+define( 'LIB_VERSION', '1.0.0-alpha.1' );
 define( 'LIB_PLUGIN_FILE', __FILE__ );
 define( 'LIB_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LIB_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
