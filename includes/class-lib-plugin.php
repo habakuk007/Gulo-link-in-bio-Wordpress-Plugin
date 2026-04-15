@@ -36,6 +36,10 @@ class LIB_Plugin {
 
 	/** Constructor — registers hooks. */
 	private function __construct() {
+		// Register the page template immediately (not deferred to init) so the
+		// block editor's REST API preload picks it up on first load.
+		add_filter( 'theme_page_templates', array( 'LIB_Frontend', 'register_template' ) );
+
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 		add_action( 'init', array( $this, 'init' ) );
 	}

@@ -22,7 +22,6 @@ class LIB_Frontend {
 
 	/** Constructor — registers hooks. */
 	public function __construct() {
-		add_filter( 'theme_page_templates', array( $this, 'add_page_template' ) );
 		add_filter( 'template_include', array( $this, 'load_template' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'maybe_enqueue_assets' ) );
 	}
@@ -30,10 +29,13 @@ class LIB_Frontend {
 	/**
 	 * Adds the plugin template to WordPress's page template dropdown.
 	 *
+	 * Registered as a static callback early in LIB_Plugin::__construct() so
+	 * the block editor's REST API preload sees it before init fires.
+	 *
 	 * @param array<string, string> $templates Registered page templates keyed by filename.
 	 * @return array<string, string>
 	 */
-	public function add_page_template( array $templates ): array {
+	public static function register_template( array $templates ): array {
 		$templates[ self::TEMPLATE_KEY ] = __( 'Link in Bio', 'link-in-bio' );
 		return $templates;
 	}
