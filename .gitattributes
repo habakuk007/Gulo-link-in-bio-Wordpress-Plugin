@@ -18,6 +18,7 @@
 # Files and directories excluded from `git archive` (i.e. the release ZIP).
 # Only production plugin files are included; all dev tooling is stripped.
 .claude/            export-ignore
+.mcp.json           export-ignore
 .editorconfig       export-ignore
 .eslintrc.json      export-ignore
 .gitattributes      export-ignore
