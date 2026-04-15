@@ -335,7 +335,34 @@ class LIB_Admin {
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><?php esc_html_e( 'Link Buttons', 'link-in-bio' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Button Style', 'link-in-bio' ); ?></th>
+							<td>
+								<fieldset>
+									<legend class="screen-reader-text"><?php esc_html_e( 'Button style', 'link-in-bio' ); ?></legend>
+									<label>
+										<input
+											type="radio"
+											name="<?php echo esc_attr( LIB_Settings::OPTION_SETTINGS ); ?>[button_style]"
+											value="filled"
+											<?php checked( $s['button_style'], 'filled' ); ?>
+										/>
+										<?php esc_html_e( 'Solid', 'link-in-bio' ); ?>
+									</label>
+									&nbsp;&nbsp;
+									<label>
+										<input
+											type="radio"
+											name="<?php echo esc_attr( LIB_Settings::OPTION_SETTINGS ); ?>[button_style]"
+											value="glass"
+											<?php checked( $s['button_style'], 'glass' ); ?>
+										/>
+										<?php esc_html_e( 'Glass (frosted)', 'link-in-bio' ); ?>
+									</label>
+								</fieldset>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Button Colors', 'link-in-bio' ); ?></th>
 							<td>
 								<div class="lib-color-group">
 									<label for="lib-btn-bg"><?php esc_html_e( 'Button Background', 'link-in-bio' ); ?></label>
@@ -390,6 +417,30 @@ class LIB_Admin {
 						name="<?php echo esc_attr( LIB_Settings::OPTION_LINKS ); ?>"
 						value="<?php echo esc_attr( wp_json_encode( LIB_Settings::get_links() ) ); ?>"
 					/>
+				</div>
+
+				<!-- ── SEO ──────────────────────────────────────────── -->
+				<div class="lib-section">
+					<h2 class="lib-section-title"><?php esc_html_e( 'SEO', 'link-in-bio' ); ?></h2>
+					<table class="form-table" role="presentation">
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Search Engines', 'link-in-bio' ); ?></th>
+							<td>
+								<label>
+									<input
+										type="checkbox"
+										name="<?php echo esc_attr( LIB_Settings::OPTION_SETTINGS ); ?>[seo_noindex]"
+										value="1"
+										<?php checked( $s['seo_noindex'] ); ?>
+									/>
+									<?php esc_html_e( 'Exclude this page from search engines (noindex)', 'link-in-bio' ); ?>
+								</label>
+								<p class="description">
+									<?php esc_html_e( 'Adds a noindex tag to the page. Use this if you prefer the page not to appear in Google or Bing results.', 'link-in-bio' ); ?>
+								</p>
+							</td>
+						</tr>
+					</table>
 				</div>
 
 				<?php submit_button( __( 'Save Settings', 'link-in-bio' ) ); ?>

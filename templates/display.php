@@ -12,8 +12,11 @@
 defined( 'ABSPATH' ) || exit;
 
 $lib_active_links = array_filter( $lib_links, static fn( array $lib_link ) => ! empty( $lib_link['active'] ) );
+
+// CSS class added to container when glass button style is selected.
+$lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-glass' : '';
 ?>
-<div class="lib-container">
+<div class="lib-container<?php echo esc_attr( $lib_container_class ); ?>">
 
 	<!-- Skip navigation for keyboard and assistive-technology users -->
 	<?php if ( ! empty( $lib_active_links ) ) : ?>
@@ -40,7 +43,7 @@ $lib_active_links = array_filter( $lib_links, static fn( array $lib_link ) => ! 
 					"
 					width="96"
 					height="96"
-					loading="lazy"
+					loading="eager"
 					decoding="async"
 				/>
 			</div>
@@ -69,8 +72,15 @@ $lib_active_links = array_filter( $lib_links, static fn( array $lib_link ) => ! 
 			tabindex="-1"
 		>
 			<ul class="lib-links-list" role="list">
-				<?php foreach ( $lib_active_links as $lib_link ) : ?>
-					<li class="lib-link-item" role="listitem">
+				<?php
+				$lib_index = 0;
+				foreach ( $lib_active_links as $lib_link ) :
+					?>
+					<li
+						class="lib-link-item"
+						role="listitem"
+						style="--lib-item-index:<?php echo esc_attr( (string) $lib_index ); ?>"
+					>
 						<a
 							href="<?php echo esc_url( $lib_link['url'] ); ?>"
 							class="lib-link-btn"
@@ -105,7 +115,10 @@ $lib_active_links = array_filter( $lib_links, static fn( array $lib_link ) => ! 
 							</span>
 						</a>
 					</li>
-				<?php endforeach; ?>
+					<?php
+					++$lib_index;
+				endforeach;
+				?>
 			</ul>
 		</nav>
 	<?php endif; ?>

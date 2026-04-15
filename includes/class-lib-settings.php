@@ -40,6 +40,7 @@ class LIB_Settings {
 			'button_bg_color'    => '#ffffff',
 			'button_text_color'  => '#1a1a1a',
 			'profile_text_color' => '#ffffff',
+			'seo_noindex'        => false,
 		);
 	}
 
@@ -88,6 +89,9 @@ class LIB_Settings {
 		if ( isset( $input['page_id'] ) ) {
 			$output['page_id'] = absint( $input['page_id'] );
 		}
+
+		// Checkbox — absent when unchecked, so default is false.
+		$output['seo_noindex'] = ! empty( $input['seo_noindex'] );
 
 		$text_fields = array( 'profile_name', 'profile_bio', 'background_type', 'button_style' );
 		foreach ( $text_fields as $field ) {

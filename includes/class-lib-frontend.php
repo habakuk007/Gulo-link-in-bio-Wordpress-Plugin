@@ -1,6 +1,6 @@
 <?php
 /**
- * Frontend — page template serving and asset enqueueing.
+ * Frontend — page template serving, asset enqueueing, and SEO meta output.
  *
  * @package LinkInBio
  */
@@ -11,8 +11,8 @@ defined( 'ABSPATH' ) || exit;
  * Class LIB_Frontend
  *
  * Serves the Link in Bio full-page template for whichever WordPress Page
- * the admin has designated in Settings → Link in Bio, and loads frontend
- * assets only on that page.
+ * the admin has designated in Settings → Link in Bio, loads frontend
+ * assets, and injects SEO / Open Graph meta tags via wp_head.
  */
 class LIB_Frontend {
 
@@ -20,6 +20,8 @@ class LIB_Frontend {
 	public function __construct() {
 		add_filter( 'template_include', array( $this, 'load_template' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'maybe_enqueue_assets' ) );
+		add_action( 'wp_head', array( $this, 'output_seo_meta' ), 5 );
+		add_filter( 'document_title_parts', array( $this, 'filter_document_title' ) );
 	}
 
 	/**
@@ -57,6 +59,109 @@ class LIB_Frontend {
 			'lib-frontend',
 			$this->build_custom_css( LIB_Settings::get() )
 		);
+	}
+
+	/**
+	 * Outputs SEO and Open Graph meta tags in wp_head, only on the Link in Bio page.
+	 *
+	 * @return void
+	 */
+	public function output_seo_meta(): void {
+		if ( ! $this->is_lib_page() ) {
+			return;
+		}
+
+		$s        = LIB_Settings::get();
+		$page_url = get_permalink( (int) $s['page_id'] );
+
+		// Robots — noindex when opted in.
+		if ( ! empty( $s['seo_noindex'] ) ) {
+			echo '<meta name="robots" content="noindex,follow">' . "\n";
+		}
+
+		// Description.
+		if ( ! empty( $s['profile_bio'] ) ) {
+			echo '<meta name="description" content="' . esc_attr( $s['profile_bio'] ) . '">' . "\n";
+		}
+
+		// Open Graph.
+		echo '<meta property="og:type" content="profile">' . "\n";
+
+		if ( ! empty( $s['profile_name'] ) ) {
+			echo '<meta property="og:title" content="' . esc_attr( $s['profile_name'] ) . '">' . "\n";
+		}
+
+		if ( ! empty( $s['profile_bio'] ) ) {
+			echo '<meta property="og:description" content="' . esc_attr( $s['profile_bio'] ) . '">' . "\n";
+		}
+
+		if ( ! empty( $s['profile_image'] ) ) {
+			echo '<meta property="og:image" content="' . esc_url( $s['profile_image'] ) . '">' . "\n";
+		}
+
+		if ( $page_url ) {
+			echo '<meta property="og:url" content="' . esc_url( $page_url ) . '">' . "\n";
+			echo '<link rel="canonical" href="' . esc_url( $page_url ) . '">' . "\n";
+		}
+
+		// Twitter / X card.
+		$twitter_card = ! empty( $s['profile_image'] ) ? 'summary_large_image' : 'summary';
+		echo '<meta name="twitter:card" content="' . esc_attr( $twitter_card ) . '">' . "\n";
+
+		if ( ! empty( $s['profile_name'] ) ) {
+			echo '<meta name="twitter:title" content="' . esc_attr( $s['profile_name'] ) . '">' . "\n";
+		}
+
+		if ( ! empty( $s['profile_bio'] ) ) {
+			echo '<meta name="twitter:description" content="' . esc_attr( $s['profile_bio'] ) . '">' . "\n";
+		}
+
+		if ( ! empty( $s['profile_image'] ) ) {
+			echo '<meta name="twitter:image" content="' . esc_url( $s['profile_image'] ) . '">' . "\n";
+		}
+
+		// JSON-LD — Schema.org Person.
+		$ld = array(
+			'@context' => 'https://schema.org',
+			'@type'    => 'Person',
+		);
+
+		if ( ! empty( $s['profile_name'] ) ) {
+			$ld['name'] = $s['profile_name'];
+		}
+
+		if ( ! empty( $s['profile_image'] ) ) {
+			$ld['image'] = $s['profile_image'];
+		}
+
+		if ( $page_url ) {
+			$ld['url'] = $page_url;
+		}
+
+		if ( ! empty( $s['profile_bio'] ) ) {
+			$ld['description'] = $s['profile_bio'];
+		}
+
+		echo '<script type="application/ld+json">' . wp_json_encode( $ld ) . '</script>' . "\n";
+	}
+
+	/**
+	 * Sets the browser <title> to the profile name on the Link in Bio page.
+	 *
+	 * @param array<string, string> $parts Title parts.
+	 * @return array<string, string>
+	 */
+	public function filter_document_title( array $parts ): array {
+		if ( ! $this->is_lib_page() ) {
+			return $parts;
+		}
+
+		$name = LIB_Settings::get( 'profile_name' );
+		if ( $name ) {
+			$parts['title'] = $name;
+		}
+
+		return $parts;
 	}
 
 	/**
