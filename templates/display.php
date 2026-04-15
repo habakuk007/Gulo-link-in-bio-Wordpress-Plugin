@@ -1,22 +1,18 @@
 <?php
 /**
- * Frontend display template for the [link_in_bio] shortcode.
+ * Frontend display partial — profile, links, and footer.
  *
- * Variables available from LIB_Frontend::render_shortcode():
- *   $settings   array   Plugin settings (profile, colors, etc.)
- *   $links      array   Active link items [{title, url, active}]
- *   $custom_css string  Inline CSS custom-property overrides
+ * Included from templates/page-link-in-bio.php, which sets:
+ *   $lib_settings   array   Plugin settings (profile, colors, etc.)
+ *   $lib_links      array   All link items [{title, url, active}]
  *
  * @package LinkInBio
  */
 
 defined( 'ABSPATH' ) || exit;
 
-// Rename to avoid collision with WP global $link and to carry plugin prefix.
-$lib_active_links = array_filter( $links, static fn( array $lib_link ) => ! empty( $lib_link['active'] ) );
+$lib_active_links = array_filter( $lib_links, static fn( array $lib_link ) => ! empty( $lib_link['active'] ) );
 ?>
-<style><?php echo esc_html( $custom_css ); // $custom_css contains only hex colors and CSS identifiers — esc_html() is safe and WPCS-approved. ?></style>
-
 <div class="lib-container">
 
 	<!-- Skip navigation for keyboard and assistive-technology users -->
@@ -29,16 +25,16 @@ $lib_active_links = array_filter( $links, static fn( array $lib_link ) => ! empt
 	<!-- ── Profile ────────────────────────────────────────────── -->
 	<section class="lib-profile" aria-label="<?php esc_attr_e( 'Profile', 'link-in-bio' ); ?>">
 
-		<?php if ( ! empty( $settings['profile_image'] ) ) : ?>
+		<?php if ( ! empty( $lib_settings['profile_image'] ) ) : ?>
 			<div class="lib-avatar">
 				<img
-					src="<?php echo esc_url( $settings['profile_image'] ); ?>"
+					src="<?php echo esc_url( $lib_settings['profile_image'] ); ?>"
 					alt="
 					<?php
 					printf(
 						/* translators: %s: profile name */
 						esc_attr__( 'Profile photo of %s', 'link-in-bio' ),
-						esc_attr( $settings['profile_name'] )
+						esc_attr( $lib_settings['profile_name'] )
 					);
 					?>
 					"
@@ -50,15 +46,15 @@ $lib_active_links = array_filter( $links, static fn( array $lib_link ) => ! empt
 			</div>
 		<?php endif; ?>
 
-		<?php if ( ! empty( $settings['profile_name'] ) ) : ?>
+		<?php if ( ! empty( $lib_settings['profile_name'] ) ) : ?>
 			<h1 class="lib-name">
-				<?php echo esc_html( $settings['profile_name'] ); ?>
+				<?php echo esc_html( $lib_settings['profile_name'] ); ?>
 			</h1>
 		<?php endif; ?>
 
-		<?php if ( ! empty( $settings['profile_bio'] ) ) : ?>
+		<?php if ( ! empty( $lib_settings['profile_bio'] ) ) : ?>
 			<p class="lib-bio">
-				<?php echo esc_html( $settings['profile_bio'] ); ?>
+				<?php echo esc_html( $lib_settings['profile_bio'] ); ?>
 			</p>
 		<?php endif; ?>
 

@@ -4,7 +4,7 @@
 
 A **WordPress plugin** that provides a Linktree-style profile link page.  
 Users go to **Settings → Link in Bio** in wp-admin to configure their profile, colors, and links.  
-The result is embedded anywhere on the site with the `[link_in_bio]` shortcode.
+The result is displayed by creating a WordPress Page and selecting **Link in Bio** from the Template dropdown.
 
 ## File Map
 
@@ -13,8 +13,9 @@ link-in-bio.php                   Plugin header + bootstrap (constants, requires
 includes/class-lib-plugin.php     Singleton boot class; activate/deactivate statics
 includes/class-lib-settings.php   Settings helper: get(), get_links(), sanitize callbacks
 includes/class-lib-admin.php      Admin menu, Settings API registration, page render
-includes/class-lib-frontend.php   [link_in_bio] shortcode + lazy asset registration
-templates/display.php             Accessible Linktree-style HTML (profile + nav + footer)
+includes/class-lib-frontend.php   Page template registration + lazy asset enqueueing
+templates/page-link-in-bio.php    Full HTML page (DOCTYPE → wp_footer); sets $lib_settings/$lib_links
+templates/display.php             Accessible Linktree-style HTML partial (profile + nav + footer)
 assets/css/frontend.css           Linktree-inspired CSS (custom properties for theming)
 assets/css/admin.css              Admin settings page styles
 assets/js/admin.js                Links repeater, WP media uploader, color pickers
@@ -51,14 +52,14 @@ Settings keys in `lib_settings`:
 - **Text domain**: `link-in-bio` in every i18n call
 - **Escape outputs**: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`
 - **Sanitize inputs**: `sanitize_text_field()`, `sanitize_hex_color()`, `esc_url_raw()`
-- **No inline JS/CSS** — except the pre-escaped CSS custom-property block in `templates/display.php`
+- **No inline JS/CSS** — CSS custom properties are injected via `wp_add_inline_style()` in `LIB_Frontend`
 - **Nonce + capability** for any write action (Settings API handles this via `settings_fields()`)
-- **Assets** — register first, enqueue lazily (only when shortcode fires)
+- **Assets** — registered and enqueued lazily in `maybe_enqueue_assets()` (only on the template page)
 - **PHP 7.4+** — avoid features that require PHP 8.x unless explicitly asked
 
 ## Accessibility Requirements
 
-- Skip link (`#lib-links`) must remain the first focusable element in the shortcode output
+- Skip link (`#lib-links`) must remain the first focusable element in the template output
 - `<h1>` for profile name, `<nav>` with `aria-label` for links, `<section>` for profile
 - All link buttons must have `:focus-visible` styles with minimum 3:1 contrast
 - External links (`target="_blank"`) must announce "(opens in new tab)" via `aria-label`
@@ -93,7 +94,7 @@ npm run lint:css
 ## What NOT to Change Without Asking
 
 - The option names `lib_settings` / `lib_links` — changing them loses saved data
-- The shortcode tag `link_in_bio` — it would break existing pages
+- `LIB_Frontend::TEMPLATE_KEY = 'link-in-bio-template'` — changing it breaks pages already assigned the template
 - The prefix `LIB_` / `lib_` — collision-avoidance contract
 - The `sanitize_*` callbacks in `LIB_Settings` — they protect data integrity
 

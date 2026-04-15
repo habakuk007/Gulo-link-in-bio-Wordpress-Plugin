@@ -1,6 +1,6 @@
 <?php
 /**
- * Frontend — shortcode registration and asset enqueueing.
+ * Frontend — page template registration and asset enqueueing.
  *
  * @package LinkInBio
  */
@@ -10,67 +10,88 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Class LIB_Frontend
  *
- * Registers the [link_in_bio] shortcode and loads frontend assets
- * only when the shortcode is actually used on a page.
+ * Registers the "Link in Bio" WordPress page template and loads frontend
+ * assets only on pages that use it.
  */
 class LIB_Frontend {
 
 	/**
-	 * Whether assets have been enqueued in this request.
-	 *
-	 * @var bool
+	 * Internal template identifier used in post meta and filter callbacks.
 	 */
-	private bool $assets_enqueued = false;
+	const TEMPLATE_KEY = 'link-in-bio-template';
 
 	/** Constructor — registers hooks. */
 	public function __construct() {
-		add_shortcode( 'link_in_bio', array( $this, 'render_shortcode' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'register_assets' ) );
+		add_filter( 'theme_page_templates', array( $this, 'add_page_template' ) );
+		add_filter( 'template_include', array( $this, 'load_template' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'maybe_enqueue_assets' ) );
 	}
 
 	/**
-	 * Registers (but does not enqueue) frontend assets.
-	 * The stylesheet is enqueued lazily inside the shortcode.
+	 * Adds the plugin template to WordPress's page template dropdown.
+	 *
+	 * @param array<string, string> $templates Registered page templates keyed by filename.
+	 * @return array<string, string>
+	 */
+	public function add_page_template( array $templates ): array {
+		$templates[ self::TEMPLATE_KEY ] = __( 'Link in Bio', 'link-in-bio' );
+		return $templates;
+	}
+
+	/**
+	 * Serves the plugin template file when a page uses the Link in Bio template.
+	 *
+	 * @param string $template Resolved template path.
+	 * @return string
+	 */
+	public function load_template( string $template ): string {
+		if ( $this->is_lib_page() ) {
+			return LIB_PLUGIN_DIR . 'templates/page-link-in-bio.php';
+		}
+		return $template;
+	}
+
+	/**
+	 * Registers and enqueues frontend assets (stylesheet + inline CSS custom
+	 * properties) only on pages that use the Link in Bio template.
 	 *
 	 * @return void
 	 */
-	public function register_assets(): void {
-		wp_register_style(
+	public function maybe_enqueue_assets(): void {
+		if ( ! $this->is_lib_page() ) {
+			return;
+		}
+
+		wp_enqueue_style(
 			'lib-frontend',
 			LIB_PLUGIN_URL . 'assets/css/frontend.css',
 			array(),
 			LIB_VERSION
 		);
+
+		wp_add_inline_style(
+			'lib-frontend',
+			$this->build_custom_css( LIB_Settings::get() )
+		);
 	}
 
 	/**
-	 * Shortcode handler for [link_in_bio].
+	 * Checks whether the current page uses the Link in Bio template.
 	 *
-	 * @param array<string, string>|string $atts Shortcode attributes — reserved for future use.
-	 * @return string Rendered HTML.
+	 * @return bool
 	 */
-	public function render_shortcode( $atts = array() ): string {
-		// Parse shortcode attributes — none defined yet, but normalises the value.
-		$atts = shortcode_atts( array(), $atts, 'link_in_bio' );
-		if ( ! $this->assets_enqueued ) {
-			wp_enqueue_style( 'lib-frontend' );
-			$this->assets_enqueued = true;
+	private function is_lib_page(): bool {
+		if ( ! is_singular( 'page' ) ) {
+			return false;
 		}
-
-		$settings   = LIB_Settings::get();
-		$links      = LIB_Settings::get_links();
-		$custom_css = $this->build_custom_css( $settings );
-
-		ob_start();
-		include LIB_PLUGIN_DIR . 'templates/display.php';
-		return ob_get_clean();
+		return self::TEMPLATE_KEY === get_post_meta( get_the_ID(), '_wp_page_template', true );
 	}
 
 	/**
 	 * Generates inline CSS custom properties from saved settings.
 	 *
 	 * @param array<string, string> $settings Plugin settings.
-	 * @return string Inline <style> block content (no tags).
+	 * @return string CSS rule block (no surrounding tags).
 	 */
 	private function build_custom_css( array $settings ): string {
 		if ( 'gradient' === $settings['background_type'] ) {

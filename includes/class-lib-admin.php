@@ -146,13 +146,7 @@ class LIB_Admin {
 			<?php settings_errors( LIB_Settings::OPTION_SETTINGS ); ?>
 
 			<p class="lib-shortcode-tip">
-				<?php
-				printf(
-					/* translators: %s: shortcode */
-					esc_html__( 'Use the shortcode %s to embed your Link in Bio page anywhere.', 'link-in-bio' ),
-					'<code>[link_in_bio]</code>'
-				);
-				?>
+				<?php esc_html_e( 'To display your Link in Bio page: create or edit a Page, then choose "Link in Bio" from the Template dropdown in Page Attributes.', 'link-in-bio' ); ?>
 			</p>
 
 			<form method="post" action="options.php" novalidate>

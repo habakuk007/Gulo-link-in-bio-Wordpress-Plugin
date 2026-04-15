@@ -8,6 +8,14 @@
  * @package LinkInBio
  */
 
+/* ── Page template reset ────────────────────────────────────────── */
+
+body.lib-page {
+	margin: 0;
+	padding: 0;
+	background: none;
+}
+
 /* ── Skip Link ──────────────────────────────────────────────────── */
 
 .lib-skip-link {

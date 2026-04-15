@@ -1,7 +1,7 @@
 # Link in Bio — WordPress Plugin
 
-A Linktree-style profile link page for WordPress. Embed a beautiful, accessible "link in bio" page
-anywhere on your site using the `[link_in_bio]` shortcode.
+A Linktree-style profile link page for WordPress. Create a dedicated page, select the
+**Link in Bio** page template, and your profile page is live — no shortcodes, no page builders.
 
 ---
 
@@ -12,7 +12,7 @@ anywhere on your site using the `[link_in_bio]` shortcode.
 - **Theming** — solid or gradient background, custom button & text colors
 - **Accessible** — WCAG 2.2 AA compliant: skip link, semantic landmarks, visible focus, `prefers-reduced-motion`
 - **i18n ready** — all strings wrapped in WordPress translation functions
-- **No page builders needed** — one shortcode, works in any theme
+- **Standalone page template** — bypasses the active theme, no page builders or extra plugins needed
 
 ---
 
@@ -49,43 +49,27 @@ anywhere on your site using the `[link_in_bio]` shortcode.
 
 ## Usage
 
-Add the shortcode to any page, post, or widget:
+1. Go to **Pages → Add New** and give the page a title (e.g. "Links").
+2. In the **Page Attributes** panel (classic editor) or the **Template** dropdown in the sidebar
+   (block editor), select **Link in Bio**.
+3. Publish the page.
 
-```text
-[link_in_bio]
-```
-
-### Full-page layout (recommended)
-
-For the best Linktree look, create a dedicated WordPress page and set its template to **Full Width**
-(if your theme supports it) or use a theme/plugin that allows hiding the header/footer.
+The plugin serves a fully self-contained HTML page that bypasses your active theme entirely,
+so the Linktree-style layout looks the same regardless of which theme is installed.
 
 ---
 
-## Filters & Hooks
+## Programmatic usage
 
-| Hook | Type | Description |
-| ---- | ---- | ----------- |
-| `lib_settings` | filter | Modify settings before they are passed to the template |
-| `lib_links` | filter | Modify the links array before rendering |
-| `lib_custom_css` | filter | Modify the inline CSS custom-property string |
-
-Example — add a custom link programmatically:
+Settings and links are stored as WordPress options and can be set via `update_option()`:
 
 ```php
-add_filter( 'lib_links', function ( array $links ): array {
-    $links[] = [
-        'title'  => 'My Custom Link',
-        'url'    => 'https://example.com',
-        'active' => true,
-    ];
-    return $links;
-} );
+// Override settings programmatically
+update_option( 'lib_settings', array_merge(
+    get_option( 'lib_settings', array() ),
+    array( 'profile_name' => 'My Brand' )
+) );
 ```
-
-> **Note:** The hooks above are planned for a future version. Currently settings are read directly
-> from WordPress options. The `lib_settings` and `lib_links` options can be set programmatically
-> via `update_option()` if needed.
 
 ---
 
@@ -151,9 +135,10 @@ link-in-bio/
 │   ├── class-lib-plugin.php      ← Bootstrap & lifecycle
 │   ├── class-lib-settings.php    ← Options helper & sanitizers
 │   ├── class-lib-admin.php       ← Admin settings page
-│   └── class-lib-frontend.php    ← Shortcode & assets
+│   └── class-lib-frontend.php    ← Page template registration & assets
 ├── templates/
-│   └── display.php               ← Frontend HTML template
+│   ├── page-link-in-bio.php      ← Full HTML page (DOCTYPE → wp_footer)
+│   └── display.php               ← Profile + links + footer partial
 ├── assets/
 │   ├── css/frontend.css          ← Frontend styles
 │   ├── css/admin.css             ← Admin styles
