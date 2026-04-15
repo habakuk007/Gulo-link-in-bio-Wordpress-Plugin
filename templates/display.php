@@ -125,6 +125,27 @@ $lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-gla
 
 	<!-- ── Footer ─────────────────────────────────────────────── -->
 	<footer class="lib-footer">
+
+		<?php if ( ! empty( $lib_settings['imprint_url'] ) || ! empty( $lib_settings['privacy_url'] ) ) : ?>
+			<p class="lib-footer-text lib-footer-legal">
+				<?php if ( ! empty( $lib_settings['imprint_url'] ) ) : ?>
+					<a
+						href="<?php echo esc_url( $lib_settings['imprint_url'] ); ?>"
+						class="lib-footer-link"
+					><?php esc_html_e( 'Imprint', 'link-in-bio' ); ?></a>
+				<?php endif; ?>
+				<?php if ( ! empty( $lib_settings['imprint_url'] ) && ! empty( $lib_settings['privacy_url'] ) ) : ?>
+					<span aria-hidden="true"> · </span>
+				<?php endif; ?>
+				<?php if ( ! empty( $lib_settings['privacy_url'] ) ) : ?>
+					<a
+						href="<?php echo esc_url( $lib_settings['privacy_url'] ); ?>"
+						class="lib-footer-link"
+					><?php esc_html_e( 'Privacy Policy', 'link-in-bio' ); ?></a>
+				<?php endif; ?>
+			</p>
+		<?php endif; ?>
+
 		<p class="lib-footer-text">
 			<?php
 			printf(

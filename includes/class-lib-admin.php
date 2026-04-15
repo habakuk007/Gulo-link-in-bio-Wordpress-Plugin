@@ -419,6 +419,48 @@ class LIB_Admin {
 					/>
 				</div>
 
+				<!-- ── Legal ───────────────────────────────────────────── -->
+				<div class="lib-section">
+					<h2 class="lib-section-title"><?php esc_html_e( 'Legal', 'link-in-bio' ); ?></h2>
+					<p class="description">
+						<?php esc_html_e( 'Optional links shown in the page footer above "Powered by". Leave blank to hide.', 'link-in-bio' ); ?>
+					</p>
+					<table class="form-table" role="presentation">
+						<tr>
+							<th scope="row">
+								<label for="lib-imprint-url"><?php esc_html_e( 'Imprint URL (Impressum)', 'link-in-bio' ); ?></label>
+							</th>
+							<td>
+								<input
+									type="url"
+									id="lib-imprint-url"
+									name="<?php echo esc_attr( LIB_Settings::OPTION_SETTINGS ); ?>[imprint_url]"
+									value="<?php echo esc_url( $s['imprint_url'] ); ?>"
+									class="regular-text"
+									placeholder="https://"
+									autocomplete="off"
+								/>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<label for="lib-privacy-url"><?php esc_html_e( 'Privacy Policy URL (Datenschutzerklärung)', 'link-in-bio' ); ?></label>
+							</th>
+							<td>
+								<input
+									type="url"
+									id="lib-privacy-url"
+									name="<?php echo esc_attr( LIB_Settings::OPTION_SETTINGS ); ?>[privacy_url]"
+									value="<?php echo esc_url( $s['privacy_url'] ); ?>"
+									class="regular-text"
+									placeholder="https://"
+									autocomplete="off"
+								/>
+							</td>
+						</tr>
+					</table>
+				</div>
+
 				<!-- ── SEO ──────────────────────────────────────────── -->
 				<div class="lib-section">
 					<h2 class="lib-section-title"><?php esc_html_e( 'SEO', 'link-in-bio' ); ?></h2>

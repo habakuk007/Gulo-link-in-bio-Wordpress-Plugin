@@ -298,6 +298,10 @@ body.lib-page {
 	opacity: 0.4;
 }
 
+.lib-footer-legal {
+	margin-bottom: 0.35rem;
+}
+
 .lib-footer-link {
 	color: inherit;
 	text-decoration: none;

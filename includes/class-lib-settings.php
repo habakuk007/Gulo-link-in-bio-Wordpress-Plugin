@@ -41,6 +41,8 @@ class LIB_Settings {
 			'button_text_color'  => '#1a1a1a',
 			'profile_text_color' => '#ffffff',
 			'seo_noindex'        => false,
+			'imprint_url'        => '',
+			'privacy_url'        => '',
 		);
 	}
 
@@ -102,6 +104,13 @@ class LIB_Settings {
 
 		if ( isset( $input['profile_image'] ) ) {
 			$output['profile_image'] = esc_url_raw( trim( $input['profile_image'] ) );
+		}
+
+		$url_fields = array( 'imprint_url', 'privacy_url' );
+		foreach ( $url_fields as $field ) {
+			if ( isset( $input[ $field ] ) ) {
+				$output[ $field ] = esc_url_raw( trim( $input[ $field ] ) );
+			}
 		}
 
 		$color_fields = array(
