@@ -3,13 +3,16 @@
 ## What This Project Is
 
 A **WordPress plugin** that provides a Linktree-style profile link page.  
-Users go to **Settings → Link in Bio** in wp-admin to configure their profile, colors, and links.  
+Users go to **Link in Bio** (top-level admin menu, position 81) to configure their profile, colors, and links.  
+Both Administrators and Editors can access the settings page via the custom `lib_manage_settings` capability.  
 The result is displayed by creating a WordPress Page and selecting **Link in Bio** from the Template dropdown.
 
 ## File Map
 
 ```
 link-in-bio.php                   Plugin header + bootstrap (constants, requires, hooks)
+uninstall.php                     Runs on plugin deletion: removes options + capability
+readme.txt                        WordPress.org directory listing (required for submission)
 includes/class-lib-plugin.php     Singleton boot class; activate/deactivate statics
 includes/class-lib-settings.php   Settings helper: get(), get_links(), sanitize callbacks
 includes/class-lib-admin.php      Admin menu, Settings API registration, page render
@@ -44,17 +47,19 @@ package.json                      JS dev dependencies (ESLint, Stylelint)
 Settings keys in `lib_settings`:
 `profile_name`, `profile_bio`, `profile_image`, `background_type`, `background_color`,
 `gradient_start`, `gradient_end`, `button_style`, `button_bg_color`, `button_text_color`,
-`profile_text_color`
+`profile_text_color`, `page_id`, `seo_noindex`
 
 ## Coding Rules
 
 - **Prefix**: classes `LIB_`, options `lib_`, JS globals `libAdmin.*`
 - **Text domain**: `link-in-bio` in every i18n call
+- **Capability**: `lib_manage_settings` for all permission checks in this plugin — never `manage_options`
 - **Escape outputs**: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`
 - **Sanitize inputs**: `sanitize_text_field()`, `sanitize_hex_color()`, `esc_url_raw()`
 - **No inline JS/CSS** — CSS custom properties are injected via `wp_add_inline_style()` in `LIB_Frontend`
 - **Nonce + capability** for any write action (Settings API handles this via `settings_fields()`)
 - **Assets** — registered and enqueued lazily in `maybe_enqueue_assets()` (only on the template page)
+- **Cache** — `LIB_Admin::purge_page_cache()` is called automatically on `update_option_lib_settings`; it clears WP object cache + 6 known caching plugins
 - **PHP 7.4+** — avoid features that require PHP 8.x unless explicitly asked
 
 ## Accessibility Requirements
@@ -89,6 +94,12 @@ npm run lint:js
 
 # Lint CSS
 npm run lint:css
+
+# Re-extract translatable strings to POT (requires WP-CLI)
+composer run make:pot
+
+# Compile all PO files to MO binaries (requires WP-CLI)
+composer run make:mo
 ```
 
 ## What NOT to Change Without Asking
@@ -97,6 +108,7 @@ npm run lint:css
 - `LIB_Frontend::TEMPLATE_KEY = 'link-in-bio-template'` — changing it breaks pages already assigned the template
 - The prefix `LIB_` / `lib_` — collision-avoidance contract
 - The `sanitize_*` callbacks in `LIB_Settings` — they protect data integrity
+- The capability slug `lib_manage_settings` — it is stored in the WordPress roles table; renaming it silently locks out Editors
 
 ## Instruction Files Referenced
 

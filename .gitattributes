@@ -26,8 +26,10 @@
 .github/            export-ignore
 .stylelintrc.json   export-ignore
 .vscode/            export-ignore
+.wordpress-org/     export-ignore
 bin/                export-ignore
 CLAUDE.md           export-ignore
+CONTRIBUTING.md     export-ignore
 composer.json       export-ignore
 composer.lock       export-ignore
 package.json        export-ignore

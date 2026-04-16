@@ -66,6 +66,13 @@ class LIB_Plugin {
 		$role = get_role( 'administrator' );
 		if ( $role instanceof WP_Role && ! $role->has_cap( 'lib_manage_settings' ) ) {
 			self::grant_settings_capability();
+
+			// Also update the current user's in-memory capability object so that
+			// this same request benefits from the newly granted cap without a reload.
+			$current_user = wp_get_current_user();
+			if ( $current_user instanceof WP_User && $current_user->exists() ) {
+				$current_user->add_cap( 'lib_manage_settings' );
+			}
 		}
 
 		new LIB_Frontend();

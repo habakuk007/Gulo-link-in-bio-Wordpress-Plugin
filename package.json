@@ -1,9 +1,10 @@
 {
   "name": "wordpress-link-in-bio",
-  "version": "1.0.0-alpha.8",
+  "version": "1.0.0-alpha.9",
   "description": "A LinkTree-style link page WordPress plugin",
   "private": true,
   "scripts": {
+    "build:zip": "bash bin/build-zip.sh",
     "lint:js": "eslint assets/js/",
     "lint:css": "stylelint \"assets/css/**/*.css\"",
     "lint": "npm run lint:js && npm run lint:css"

@@ -85,7 +85,7 @@ class LIB_Admin {
 	 * @return void
 	 */
 	public function enqueue_assets( string $hook ): void {
-		if ( 'settings_page_' . self::PAGE_SLUG !== $hook ) {
+		if ( 'toplevel_page_' . self::PAGE_SLUG !== $hook ) {
 			return;
 		}
 
