@@ -1,18 +1,20 @@
+# Translation of Link in Bio in German (Deutsch)
 # Copyright (C) 2026 Stefan Wagner
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
 "Project-Id-Version: Link in Bio 1.0.0-alpha.7\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/link-in-bio\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Report-Msgid-Bugs-To: https://github.com/stefanwagner/wordpress-link-in-bio/issues\n"
+"POT-Creation-Date: 2026-04-16T10:14:36+00:00\n"
+"PO-Revision-Date: 2026-04-16T00:00:00+00:00\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: German (Deutsch)\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-16T10:14:36+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: link-in-bio\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Claude Code\n"
 
 #. Plugin Name of the plugin
 #: link-in-bio.php
@@ -29,7 +31,7 @@ msgstr ""
 #. Description of the plugin
 #: link-in-bio.php
 msgid "A LinkTree-style link page for WordPress. Configure your profile in Settings → Link in Bio, then assign the page template to any Page."
-msgstr ""
+msgstr "Eine LinkTree-ähnliche Linkseite für WordPress. Konfigurieren Sie Ihr Profil unter Einstellungen → Link in Bio und weisen Sie dann einer Seite das Seiten-Template zu."
 
 #. Author of the plugin
 #: link-in-bio.php
@@ -38,228 +40,228 @@ msgstr ""
 
 #: includes/class-lib-admin.php:46
 msgid "Link in Bio Settings"
-msgstr ""
+msgstr "Link in Bio Einstellungen"
 
 #: includes/class-lib-admin.php:115
 msgid "Select Profile Image"
-msgstr ""
+msgstr "Profilbild auswählen"
 
 #: includes/class-lib-admin.php:116
 msgid "Use this image"
-msgstr ""
+msgstr "Dieses Bild verwenden"
 
 #: includes/class-lib-admin.php:117
 msgid "Remove this link?"
-msgstr ""
+msgstr "Diesen Link entfernen?"
 
 #: includes/class-lib-admin.php:133
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: includes/class-lib-admin.php:146
 msgid "You do not have permission to access this page."
-msgstr ""
+msgstr "Sie haben keine Berechtigung, auf diese Seite zuzugreifen."
 
 #: includes/class-lib-admin.php:157
 msgid "Create any WordPress Page, then select it below — the plugin will serve the Link in Bio layout for that page automatically."
-msgstr ""
+msgstr "Erstellen Sie eine beliebige WordPress-Seite und wählen Sie sie unten aus – das Plugin zeigt das Link in Bio Layout für diese Seite automatisch an."
 
 #: includes/class-lib-admin.php:165
 msgid "Link in Bio Page"
-msgstr ""
+msgstr "Link in Bio Seite"
 
 #: includes/class-lib-admin.php:169
 msgid "Page"
-msgstr ""
+msgstr "Seite"
 
 #: includes/class-lib-admin.php:178
 msgid "— Select a page —"
-msgstr ""
+msgstr "— Seite auswählen —"
 
 #: includes/class-lib-admin.php:184
 msgid "The selected page will display the Link in Bio profile layout, bypassing the active theme."
-msgstr ""
+msgstr "Die ausgewählte Seite zeigt das Link in Bio Profil-Layout an und umgeht das aktive Theme."
 
 #: includes/class-lib-admin.php:193
 #: templates/display.php:29
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: includes/class-lib-admin.php:197
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: includes/class-lib-admin.php:212
 msgid "Bio / Tagline"
-msgstr ""
+msgstr "Bio / Slogan"
 
 #: includes/class-lib-admin.php:225
 msgid "Profile Image URL"
-msgstr ""
+msgstr "Profilbild-URL"
 
 #: includes/class-lib-admin.php:238
 msgid "Select Image"
-msgstr ""
+msgstr "Bild auswählen"
 
 #: includes/class-lib-admin.php:241
 msgid "Remove"
-msgstr ""
+msgstr "Entfernen"
 
 #: includes/class-lib-admin.php:249
 #: includes/class-lib-admin.php:256
 msgid "Profile image preview"
-msgstr ""
+msgstr "Vorschau des Profilbilds"
 
 #: includes/class-lib-admin.php:266
 msgid "Appearance"
-msgstr ""
+msgstr "Darstellung"
 
 #: includes/class-lib-admin.php:269
 msgid "Background"
-msgstr ""
+msgstr "Hintergrund"
 
 #: includes/class-lib-admin.php:272
 msgid "Background type"
-msgstr ""
+msgstr "Hintergrundtyp"
 
 #: includes/class-lib-admin.php:281
 msgid "Gradient"
-msgstr ""
+msgstr "Verlauf"
 
 #: includes/class-lib-admin.php:292
 msgid "Solid color"
-msgstr ""
+msgstr "Volltonfarbe"
 
 #: includes/class-lib-admin.php:297
 msgid "Gradient Start"
-msgstr ""
+msgstr "Verlaufsbeginn"
 
 #: includes/class-lib-admin.php:306
 msgid "Gradient End"
-msgstr ""
+msgstr "Verlaufsende"
 
 #: includes/class-lib-admin.php:318
 msgid "Background Color"
-msgstr ""
+msgstr "Hintergrundfarbe"
 
 #: includes/class-lib-admin.php:332
 msgid "Profile Text Color"
-msgstr ""
+msgstr "Profiltextfarbe"
 
 #: includes/class-lib-admin.php:346
 msgid "Button Style"
-msgstr ""
+msgstr "Schaltflächenstil"
 
 #: includes/class-lib-admin.php:349
 msgid "Button style"
-msgstr ""
+msgstr "Schaltflächenstil"
 
 #: includes/class-lib-admin.php:357
 msgid "Solid"
-msgstr ""
+msgstr "Ausgefüllt"
 
 #: includes/class-lib-admin.php:367
 msgid "Glass (frosted)"
-msgstr ""
+msgstr "Glas (mattiert)"
 
 #: includes/class-lib-admin.php:373
 msgid "Button Colors"
-msgstr ""
+msgstr "Schaltflächenfarben"
 
 #: includes/class-lib-admin.php:376
 msgid "Button Background"
-msgstr ""
+msgstr "Schaltflächenhintergrund"
 
 #: includes/class-lib-admin.php:385
 msgid "Button Text"
-msgstr ""
+msgstr "Schaltflächentext"
 
 #: includes/class-lib-admin.php:402
 msgid "Links"
-msgstr ""
+msgstr "Links"
 
 #: includes/class-lib-admin.php:404
 msgid "Drag rows to reorder. Uncheck \"Active\" to hide a link without deleting it."
-msgstr ""
+msgstr "Zeilen zum Neuanordnen ziehen. „Aktiv" deaktivieren, um einen Link zu verbergen, ohne ihn zu löschen."
 
 #: includes/class-lib-admin.php:411
 msgid "Manage links"
-msgstr ""
+msgstr "Links verwalten"
 
 #: includes/class-lib-admin.php:418
 msgid "Add Link"
-msgstr ""
+msgstr "Link hinzufügen"
 
 #: includes/class-lib-admin.php:432
 msgid "Legal"
-msgstr ""
+msgstr "Rechtliches"
 
 #: includes/class-lib-admin.php:434
 msgid "Optional links shown in the page footer above \"Powered by\". Leave blank to hide."
-msgstr ""
+msgstr "Optionale Links im Seitenfooter über „Bereitgestellt von". Leer lassen, um sie auszublenden."
 
 #: includes/class-lib-admin.php:439
 msgid "Imprint URL (Impressum)"
-msgstr ""
+msgstr "Impressum-URL"
 
 #: includes/class-lib-admin.php:455
 msgid "Privacy Policy URL (Datenschutzerklärung)"
-msgstr ""
+msgstr "Datenschutzerklärung-URL"
 
 #: includes/class-lib-admin.php:474
 msgid "SEO"
-msgstr ""
+msgstr "SEO"
 
 #: includes/class-lib-admin.php:477
 msgid "Search Engines"
-msgstr ""
+msgstr "Suchmaschinen"
 
 #: includes/class-lib-admin.php:486
 msgid "Exclude this page from search engines (noindex)"
-msgstr ""
+msgstr "Diese Seite von Suchmaschinen ausschließen (noindex)"
 
 #: includes/class-lib-admin.php:489
 msgid "Adds a noindex tag to the page. Use this if you prefer the page not to appear in Google or Bing results."
-msgstr ""
+msgstr "Fügt der Seite ein noindex-Tag hinzu. Verwenden Sie dies, wenn die Seite nicht in Google- oder Bing-Ergebnissen erscheinen soll."
 
 #: includes/class-lib-admin.php:496
 msgid "Save Settings"
-msgstr ""
+msgstr "Einstellungen speichern"
 
 #: includes/class-lib-frontend.php:280
 msgid "Edit Link in Bio"
-msgstr ""
+msgstr "Link in Bio bearbeiten"
 
 #: templates/display.php:24
 msgid "Skip to links"
-msgstr ""
+msgstr "Zu den Links springen"
 
 #. translators: %s: profile name
 #: templates/display.php:39
 #, php-format
 msgid "Profile photo of %s"
-msgstr ""
+msgstr "Profilfoto von %s"
 
 #: templates/display.php:71
 msgid "Profile links"
-msgstr ""
+msgstr "Profillinks"
 
 #. translators: %s: link title
 #: templates/display.php:93
 #, php-format
 msgid "%s (opens in new tab)"
-msgstr ""
+msgstr "%s (öffnet in neuem Tab)"
 
 #: templates/display.php:135
 msgid "Imprint"
-msgstr ""
+msgstr "Impressum"
 
 #: templates/display.php:144
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Datenschutzerklärung"
 
 #. translators: %s: site name as a link
 #: templates/display.php:153
 #, php-format
 msgid "Powered by %s"
-msgstr ""
+msgstr "Bereitgestellt von %s"

@@ -24,7 +24,9 @@
     "fix:php": "phpcbf -p",
     "test": "phpunit --configuration phpunit.xml.dist",
     "test:coverage": "phpunit --configuration phpunit.xml.dist --coverage-text",
-    "package": "git archive --format=zip --prefix=link-in-bio/ HEAD -o link-in-bio.zip && echo 'Built: link-in-bio.zip'"
+    "package": "git archive --format=zip --prefix=link-in-bio/ HEAD -o link-in-bio.zip && echo 'Built: link-in-bio.zip'",
+    "make:pot": "wp i18n make-pot . languages/link-in-bio.pot --slug=link-in-bio --domain=link-in-bio --exclude=vendor,node_modules,tests --package-name=\"Link in Bio\"",
+    "make:mo": "wp i18n make-mo languages/"
   },
   "config": {
     "allow-plugins": {
