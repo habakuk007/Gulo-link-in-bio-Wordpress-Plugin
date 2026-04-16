@@ -23,6 +23,9 @@ class LIB_Frontend {
 		add_action( 'wp_head', array( $this, 'output_seo_meta' ), 5 );
 		add_filter( 'document_title_parts', array( $this, 'filter_document_title' ) );
 
+		// Admin bar shortcut to settings — shown to admins and editors on the lib page.
+		add_action( 'admin_bar_menu', array( $this, 'add_admin_bar_node' ), 100 );
+
 		// Yoast SEO — override its output on the lib page instead of emitting
 		// duplicate tags. Hooks are registered unconditionally; each callback
 		// is a no-op when not on the lib page.
@@ -255,6 +258,29 @@ class LIB_Frontend {
 		}
 
 		return $parts;
+	}
+
+	/**
+	 * Adds an "Edit Link in Bio" shortcut to the WordPress admin bar.
+	 *
+	 * Only shown when viewing the Link in Bio page and the current user has the
+	 * lib_manage_settings capability (administrators and editors).
+	 *
+	 * @param WP_Admin_Bar $wp_admin_bar Admin bar instance.
+	 * @return void
+	 */
+	public function add_admin_bar_node( WP_Admin_Bar $wp_admin_bar ): void {
+		if ( ! $this->is_lib_page() || ! current_user_can( 'lib_manage_settings' ) ) {
+			return;
+		}
+
+		$wp_admin_bar->add_node(
+			array(
+				'id'    => 'lib-settings',
+				'title' => __( 'Edit Link in Bio', 'link-in-bio' ),
+				'href'  => admin_url( 'admin.php?page=link-in-bio' ),
+			)
+		);
 	}
 
 	/**

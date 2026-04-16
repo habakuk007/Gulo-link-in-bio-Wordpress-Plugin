@@ -34,17 +34,22 @@ class LIB_Admin {
 	}
 
 	/**
-	 * Adds the plugin settings page under the Settings menu.
+	 * Adds the plugin settings page as a top-level admin menu item.
+	 *
+	 * Using a top-level page (rather than a sub-page of Settings) allows editors,
+	 * who do not have manage_options, to access it via the lib_manage_settings cap.
 	 *
 	 * @return void
 	 */
 	public function add_menu(): void {
-		add_options_page(
+		add_menu_page(
 			__( 'Link in Bio Settings', 'link-in-bio' ),
 			__( 'Link in Bio', 'link-in-bio' ),
-			'manage_options',
+			'lib_manage_settings',
 			self::PAGE_SLUG,
-			array( $this, 'render_page' )
+			array( $this, 'render_page' ),
+			'dashicons-admin-links',
+			81
 		);
 	}
 
@@ -124,7 +129,7 @@ class LIB_Admin {
 	public function add_action_links( array $links ): array {
 		$settings_link = sprintf(
 			'<a href="%s">%s</a>',
-			esc_url( admin_url( 'options-general.php?page=' . self::PAGE_SLUG ) ),
+			esc_url( admin_url( 'admin.php?page=' . self::PAGE_SLUG ) ),
 			esc_html__( 'Settings', 'link-in-bio' )
 		);
 		array_unshift( $links, $settings_link );
@@ -137,7 +142,7 @@ class LIB_Admin {
 	 * @return void
 	 */
 	public function render_page(): void {
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! current_user_can( 'lib_manage_settings' ) ) {
 			wp_die( esc_html__( 'You do not have permission to access this page.', 'link-in-bio' ) );
 		}
 

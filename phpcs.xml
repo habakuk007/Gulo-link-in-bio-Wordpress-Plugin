@@ -29,6 +29,15 @@
 		</properties>
 	</rule>
 
+	<!-- Custom capabilities registered by this plugin -->
+	<rule ref="WordPress.WP.Capabilities">
+		<properties>
+			<property name="custom_capabilities" type="array">
+				<element value="lib_manage_settings"/>
+			</property>
+		</properties>
+	</rule>
+
 	<!-- Allowed namespaced hooks (plugin prefix) -->
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
