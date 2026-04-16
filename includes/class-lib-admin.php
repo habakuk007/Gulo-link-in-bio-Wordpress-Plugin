@@ -28,6 +28,9 @@ class LIB_Admin {
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 		add_filter( 'plugin_action_links_' . LIB_PLUGIN_BASENAME, array( $this, 'add_action_links' ) );
+
+		// Purge page cache after settings are saved.
+		add_action( 'update_option_' . LIB_Settings::OPTION_SETTINGS, array( $this, 'purge_page_cache' ), 10, 2 );
 	}
 
 	/**
@@ -489,5 +492,74 @@ class LIB_Admin {
 			</form>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Purges the Link in Bio page from all known caching layers when settings are saved.
+	 *
+	 * Fires on the update_option_lib_settings action so that changes to the profile,
+	 * links, colors, or designated page are visible immediately without a manual flush.
+	 * Handles both old and new page IDs so that re-assigning the page also clears
+	 * the previously designated one.
+	 *
+	 * @param mixed $old_value Previous option value (array or false when not yet set).
+	 * @param mixed $new_value New option value (array).
+	 * @return void
+	 */
+	public function purge_page_cache( $old_value, $new_value ): void {
+		$ids = array_unique(
+			array_filter(
+				array(
+					isset( $old_value['page_id'] ) ? (int) $old_value['page_id'] : 0,
+					isset( $new_value['page_id'] ) ? (int) $new_value['page_id'] : 0,
+				)
+			)
+		);
+
+		foreach ( $ids as $page_id ) {
+			$this->purge_single_page( $page_id );
+		}
+	}
+
+	/**
+	 * Clears all known caching layers for a single WordPress page.
+	 *
+	 * Covers: WordPress object cache, WP Super Cache, WP Rocket, W3 Total Cache,
+	 * WP Fastest Cache, LiteSpeed Cache, and Cache Enabler.
+	 *
+	 * @param int $page_id WordPress post/page ID.
+	 * @return void
+	 */
+	private function purge_single_page( int $page_id ): void {
+		// WordPress core object cache.
+		clean_post_cache( $page_id );
+
+		// WP Super Cache.
+		if ( function_exists( 'wpsc_delete_post_cache' ) ) {
+			wpsc_delete_post_cache( $page_id );
+		}
+
+		// WP Rocket.
+		if ( function_exists( 'rocket_clean_post' ) ) {
+			rocket_clean_post( $page_id );
+		}
+
+		// W3 Total Cache.
+		if ( function_exists( 'w3tc_flush_post' ) ) {
+			w3tc_flush_post( $page_id );
+		}
+
+		// WP Fastest Cache.
+		if ( function_exists( 'wpfc_clear_post_cache_by_id' ) ) {
+			wpfc_clear_post_cache_by_id( $page_id );
+		}
+
+		// LiteSpeed Cache (event-driven API).
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+		do_action( 'litespeed_purge_post', $page_id );
+
+		// Cache Enabler.
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+		do_action( 'cache_enabler_clear_page_cache_by_post', $page_id );
 	}
 }

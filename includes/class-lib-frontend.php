@@ -22,6 +22,16 @@ class LIB_Frontend {
 		add_action( 'wp_enqueue_scripts', array( $this, 'maybe_enqueue_assets' ) );
 		add_action( 'wp_head', array( $this, 'output_seo_meta' ), 5 );
 		add_filter( 'document_title_parts', array( $this, 'filter_document_title' ) );
+
+		// Yoast SEO — override its output on the lib page instead of emitting
+		// duplicate tags. Hooks are registered unconditionally; each callback
+		// is a no-op when not on the lib page.
+		if ( defined( 'WPSEO_VERSION' ) ) {
+			add_filter( 'wpseo_title', array( $this, 'filter_yoast_title' ) );
+			add_filter( 'wpseo_opengraph_type', array( $this, 'filter_yoast_og_type' ) );
+			add_filter( 'wpseo_opengraph_title', array( $this, 'filter_yoast_og_title' ) );
+			add_filter( 'wpseo_robots', array( $this, 'filter_yoast_robots' ) );
+		}
 	}
 
 	/**
@@ -64,6 +74,11 @@ class LIB_Frontend {
 	/**
 	 * Outputs SEO and Open Graph meta tags in wp_head, only on the Link in Bio page.
 	 *
+	 * When Yoast SEO is active it already emits canonical, og:type, og:title,
+	 * og:url, and Twitter card tags (all corrected via the wpseo_* filters above).
+	 * We skip those to avoid duplicate tags and only add what Yoast omits:
+	 * og:description, og:image, and the JSON-LD Person schema.
+	 *
 	 * @return void
 	 */
 	public function output_seo_meta(): void {
@@ -71,56 +86,69 @@ class LIB_Frontend {
 			return;
 		}
 
-		$s        = LIB_Settings::get();
-		$page_url = get_permalink( (int) $s['page_id'] );
+		$s            = LIB_Settings::get();
+		$page_url     = get_permalink( (int) $s['page_id'] );
+		$yoast_active = defined( 'WPSEO_VERSION' );
 
-		// Robots — noindex when opted in.
-		if ( ! empty( $s['seo_noindex'] ) ) {
+		// Robots — noindex when opted in. Yoast handles this via filter_yoast_robots()
+		// when active, so only emit the tag when Yoast is absent.
+		if ( ! $yoast_active && ! empty( $s['seo_noindex'] ) ) {
 			echo '<meta name="robots" content="noindex,follow">' . "\n";
 		}
 
-		// Description.
+		// Description — Yoast only outputs this when a per-post Yoast meta desc is
+		// saved, which won't be set for the lib page. Safe to always emit.
 		if ( ! empty( $s['profile_bio'] ) ) {
 			echo '<meta name="description" content="' . esc_attr( $s['profile_bio'] ) . '">' . "\n";
 		}
 
-		// Open Graph.
-		echo '<meta property="og:type" content="profile">' . "\n";
+		// Open Graph core tags — emitted by Yoast and corrected via its filters;
+		// skip them here to prevent duplicates.
+		if ( ! $yoast_active ) {
+			echo '<meta property="og:type" content="profile">' . "\n";
 
-		if ( ! empty( $s['profile_name'] ) ) {
-			echo '<meta property="og:title" content="' . esc_attr( $s['profile_name'] ) . '">' . "\n";
+			if ( ! empty( $s['profile_name'] ) ) {
+				echo '<meta property="og:title" content="' . esc_attr( $s['profile_name'] ) . '">' . "\n";
+			}
+
+			if ( $page_url ) {
+				echo '<meta property="og:url" content="' . esc_url( $page_url ) . '">' . "\n";
+				echo '<link rel="canonical" href="' . esc_url( $page_url ) . '">' . "\n";
+			}
 		}
 
+		// og:description — Yoast does not output this for pages without a Yoast
+		// meta desc entry, so always emit it.
 		if ( ! empty( $s['profile_bio'] ) ) {
 			echo '<meta property="og:description" content="' . esc_attr( $s['profile_bio'] ) . '">' . "\n";
 		}
 
+		// og:image — Yoast only outputs this when the page has a featured image.
+		// The profile image comes from plugin settings, not the post thumbnail.
 		if ( ! empty( $s['profile_image'] ) ) {
 			echo '<meta property="og:image" content="' . esc_url( $s['profile_image'] ) . '">' . "\n";
 		}
 
-		if ( $page_url ) {
-			echo '<meta property="og:url" content="' . esc_url( $page_url ) . '">' . "\n";
-			echo '<link rel="canonical" href="' . esc_url( $page_url ) . '">' . "\n";
+		// Twitter / X card — emitted and corrected by Yoast; skip when active.
+		if ( ! $yoast_active ) {
+			$twitter_card = ! empty( $s['profile_image'] ) ? 'summary_large_image' : 'summary';
+			echo '<meta name="twitter:card" content="' . esc_attr( $twitter_card ) . '">' . "\n";
+
+			if ( ! empty( $s['profile_name'] ) ) {
+				echo '<meta name="twitter:title" content="' . esc_attr( $s['profile_name'] ) . '">' . "\n";
+			}
+
+			if ( ! empty( $s['profile_bio'] ) ) {
+				echo '<meta name="twitter:description" content="' . esc_attr( $s['profile_bio'] ) . '">' . "\n";
+			}
+
+			if ( ! empty( $s['profile_image'] ) ) {
+				echo '<meta name="twitter:image" content="' . esc_url( $s['profile_image'] ) . '">' . "\n";
+			}
 		}
 
-		// Twitter / X card.
-		$twitter_card = ! empty( $s['profile_image'] ) ? 'summary_large_image' : 'summary';
-		echo '<meta name="twitter:card" content="' . esc_attr( $twitter_card ) . '">' . "\n";
-
-		if ( ! empty( $s['profile_name'] ) ) {
-			echo '<meta name="twitter:title" content="' . esc_attr( $s['profile_name'] ) . '">' . "\n";
-		}
-
-		if ( ! empty( $s['profile_bio'] ) ) {
-			echo '<meta name="twitter:description" content="' . esc_attr( $s['profile_bio'] ) . '">' . "\n";
-		}
-
-		if ( ! empty( $s['profile_image'] ) ) {
-			echo '<meta name="twitter:image" content="' . esc_url( $s['profile_image'] ) . '">' . "\n";
-		}
-
-		// JSON-LD — Schema.org Person.
+		// JSON-LD — Schema.org Person. Yoast's own schema does not include a
+		// Person type with profile image, so always emit this block.
 		$ld = array(
 			'@context' => 'https://schema.org',
 			'@type'    => 'Person',
@@ -143,6 +171,71 @@ class LIB_Frontend {
 		}
 
 		echo '<script type="application/ld+json">' . wp_json_encode( $ld ) . '</script>' . "\n";
+	}
+
+	/**
+	 * Overrides the Yoast SEO <title> with the profile name on the lib page.
+	 *
+	 * @param string $title Yoast-formatted title string.
+	 * @return string
+	 */
+	public function filter_yoast_title( string $title ): string {
+		if ( ! $this->is_lib_page() ) {
+			return $title;
+		}
+
+		$name = LIB_Settings::get( 'profile_name' );
+
+		if ( ! $name ) {
+			return $title;
+		}
+
+		return $name . ' - ' . get_bloginfo( 'name' );
+	}
+
+	/**
+	 * Overrides Yoast's og:type to "profile" on the lib page.
+	 *
+	 * @param string $type Open Graph type value.
+	 * @return string
+	 */
+	public function filter_yoast_og_type( string $type ): string {
+		return $this->is_lib_page() ? 'profile' : $type;
+	}
+
+	/**
+	 * Overrides Yoast's og:title with the profile name on the lib page.
+	 *
+	 * @param string $title Open Graph title value.
+	 * @return string
+	 */
+	public function filter_yoast_og_title( string $title ): string {
+		if ( ! $this->is_lib_page() ) {
+			return $title;
+		}
+
+		$name = LIB_Settings::get( 'profile_name' );
+
+		return $name ? $name : $title;
+	}
+
+	/**
+	 * Enforces noindex on the lib page when the admin has opted in via settings.
+	 *
+	 * @param string $robots Yoast robots directive string (e.g. "index, follow, …").
+	 * @return string
+	 */
+	public function filter_yoast_robots( string $robots ): string {
+		if ( ! $this->is_lib_page() || empty( LIB_Settings::get( 'seo_noindex' ) ) ) {
+			return $robots;
+		}
+
+		// Replace "index" with "noindex" only when not already noindex.
+		if ( false === strpos( $robots, 'noindex' ) ) {
+			$robots = str_replace( 'index', 'noindex', $robots );
+		}
+
+		return $robots;
 	}
 
 	/**
