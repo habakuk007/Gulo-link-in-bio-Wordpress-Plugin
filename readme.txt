@@ -3,7 +3,7 @@ Contributors: habakuk
 Tags: link in bio, linktree, links, profile, social links
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 1.0.0-alpha.11
+Stable tag: 1.0.0-alpha.12
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -115,6 +115,11 @@ On [GitHub Issues](https://github.com/habakuk007/Wordpress-LinkInBio-Template/is
 
 == Changelog ==
 
+= 1.0.0-alpha.12 =
+* Renamed plugin from "Link in Bio" to "Bio Links" — required by WordPress.org (name conflict with existing plugin)
+* All user-visible strings, admin menu, settings page, and documentation updated to "Bio Links"
+* Slug, text domain, option keys, and capability name unchanged — no data migration needed
+
 = 1.0.0-alpha.11 =
 * Fixed removed `load_plugin_textdomain()` call — WordPress auto-loads translations since 4.6
 * Fixed "Tested up to" bumped to 6.9
@@ -170,6 +175,9 @@ On [GitHub Issues](https://github.com/habakuk007/Wordpress-LinkInBio-Template/is
 * WPCS-clean codebase, PHP 7.4 compatible
 
 == Upgrade Notice ==
+
+= 1.0.0-alpha.12 =
+The plugin has been renamed to "Bio Links". No settings or data are affected — everything continues to work as before.
 
 = 1.0.0-alpha.11 =
 Maintenance release: WordPress.org compliance fixes and build tooling improvements. No functional changes.
