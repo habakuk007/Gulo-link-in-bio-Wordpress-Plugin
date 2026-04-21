@@ -1,6 +1,6 @@
 {
   "name": "wordpress-link-in-bio",
-  "version": "1.0.0-alpha.12",
+  "version": "0.0.1",
   "description": "A link-in-bio page WordPress plugin",
   "private": true,
   "scripts": {
