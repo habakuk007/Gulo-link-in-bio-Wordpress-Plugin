@@ -1,12 +1,13 @@
 <?php
 /**
  * Plugin Name:       Link in Bio
- * Plugin URI:        https://github.com/stefanwagner/wordpress-link-in-bio
- * Description:       A LinkTree-style link page for WordPress. Go to Link in Bio in the admin menu to configure your profile, then assign the page template to any Page.
- * Version:           1.0.0-alpha.9
+ * Plugin URI:        https://github.com/habakuk007/Wordpress-LinkInBio-Template
+ * Description:       A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Configure your profile in the Link in Bio admin menu, then assign the page template to any Page.
+ * Version:           1.0.0-alpha.10
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Stefan Wagner
+ * Author URI:        https://trumpkin.de/
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       link-in-bio
@@ -17,7 +18,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LIB_VERSION', '1.0.0-alpha.9' );
+define( 'LIB_VERSION', '1.0.0-alpha.10' );
 define( 'LIB_PLUGIN_FILE', __FILE__ );
 define( 'LIB_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LIB_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

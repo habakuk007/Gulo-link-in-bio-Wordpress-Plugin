@@ -140,6 +140,9 @@ class LIB_Settings {
 	 * @return string Sanitized JSON string.
 	 */
 	public static function sanitize_links( $input ): string {
+		if ( ! is_string( $input ) ) {
+			return wp_json_encode( array() );
+		}
 		$links = json_decode( $input, true );
 
 		if ( ! is_array( $links ) ) {

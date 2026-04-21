@@ -2,21 +2,20 @@
 <phpunit
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
-	bootstrap="tests/bootstrap.php"
+	bootstrap="tests/unit/bootstrap.php"
 	colors="true"
 	displayDetailsOnTestsThatTriggerDeprecations="true"
 	displayDetailsOnTestsThatTriggerErrors="true"
 >
 	<testsuites>
-		<testsuite name="Integration">
-			<directory suffix=".php">tests/integration/</directory>
+		<testsuite name="Unit">
+			<file>tests/unit/Test_LIB_Settings.php</file>
 		</testsuite>
 	</testsuites>
 
 	<source>
 		<include>
 			<directory suffix=".php">includes/</directory>
-			<file>link-in-bio.php</file>
 		</include>
 	</source>
 </phpunit>

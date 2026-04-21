@@ -10,6 +10,9 @@ dist/
 /wordpress/
 /tmp/
 
+# ── wp-env (Docker-based test environment) ───────────────────────────
+.wp-env/
+
 # ── Composer ─────────────────────────────────────────────────────────
 composer.lock
 

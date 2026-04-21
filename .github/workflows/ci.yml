@@ -63,7 +63,33 @@ jobs:
       - name: Lint CSS
         run: npm run lint:css
 
-  # ── PHPUnit ──────────────────────────────────────────────────────
+  # ── PHPUnit Unit Tests (no DB, no WP env) ───────────────────────
+  phpunit-unit:
+    name: Unit Tests (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ['8.1', '8.2', '8.3']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Run unit tests
+        run: composer run test:unit
+
+  # ── PHPUnit Integration Tests ────────────────────────────────────
   phpunit:
     name: PHPUnit (WP ${{ matrix.wp }}, PHP ${{ matrix.php }})
     runs-on: ubuntu-latest

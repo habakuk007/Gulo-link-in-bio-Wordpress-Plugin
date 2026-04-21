@@ -184,3 +184,67 @@ require $_tests_dir . '/includes/bootstrap.php';
 - ✅ Tests added/updated for new behaviors.  
 - ✅ Code passes PHPCS (WPCS) and ESLint where applicable.  
 - ✅ Avoid direct DB concatenation; always prepare queries.
+- ✅ All bundled third-party libraries and assets are GPL-compatible.
+- ✅ No obfuscated or minified-with-name-mangling code; build sources included or linked.
+- ✅ No feature-gating or functionality restricted behind payment/upgrade.
+- ✅ Any external HTTP request is gated behind explicit user opt-in.
+- ✅ No third-party CDNs for non-font assets; use WP-bundled libraries (jQuery, etc.).
+- ✅ No `<iframe>` elements on admin pages.
+- ✅ Admin notices and dashboard widgets are dismissible.
+- ✅ "Powered by" / credit links are opt-in and hidden by default.
+
+## 13) WordPress.org Directory Compliance
+
+### Licensing (Guideline 1)
+All files distributed with the plugin — including bundled JavaScript libraries, images, fonts, and PHP dependencies — must use the GPL v2 or later, or a [GPL-compatible license](https://www.gnu.org/licenses/license-list.html). Verify the license of any third-party library before including it.
+
+### Human-Readable Code (Guideline 4)
+- Never obfuscate code or use minification that mangles variable/function names.
+- If you use a build step (e.g. webpack, esbuild), include the unminified source files in the plugin, or link to a public development repository (e.g. GitHub) in `readme.txt`.
+- Compiled/minified production assets are fine as long as the source is accessible.
+
+### No Trialware (Guideline 5)
+- Do not restrict or disable any plugin functionality that is then unlocked by payment.
+- Trial periods that silently disable features are prohibited.
+- All features visible in the plugin must work without purchasing an upgrade.
+
+### External HTTP Requests & User Tracking (Guideline 7)
+- Plugins must **not** contact external servers without explicit user consent (opt-in).
+- Prohibited without opt-in: automated telemetry, analytics pings, remote asset loading for tracking, passing user data to third parties.
+- If a feature requires external communication, expose an explicit settings toggle; default it to **off**.
+
+```php
+// Example: gate any outbound call behind a user-enabled option
+if ( get_option( 'myplugin_enable_telemetry' ) ) {
+    wp_remote_post( 'https://example.com/telemetry', [ 'body' => $data ] );
+}
+```
+
+### External Assets & Bundled Libraries (Guidelines 8 + 13)
+- **Use WordPress-bundled libraries** (jQuery, Backbone, Underscore, SimplePie, etc.) instead of bundling your own copy. Register them with the handle WordPress already defines.
+- Do **not** load assets from third-party CDNs (jsDelivr, cdnjs, unpkg, etc.) except for web fonts. Self-host or use the WP-bundled version.
+- Do **not** serve plugin updates or install additional plugins/themes from non-WordPress.org servers.
+- Do **not** use `<iframe>` elements on admin/settings pages.
+
+### Admin UI Conduct (Guideline 11)
+- Upgrade prompts and upsell notices must be **contextual** (settings page only) and **minimal**.
+- Sitewide admin notices must be **dismissible** — provide a nonce-protected dismiss action.
+- Dashboard widgets added by the plugin must be removable via the standard Screen Options panel.
+- Do not add advertising banners in the WordPress admin.
+
+```php
+// Dismissible notice pattern
+add_action( 'admin_notices', 'myplugin_maybe_show_notice' );
+function myplugin_maybe_show_notice() {
+    if ( get_option( 'myplugin_notice_dismissed' ) ) {
+        return;
+    }
+    echo '<div class="notice notice-info is-dismissible" id="myplugin-notice">';
+    echo '<p>' . esc_html__( 'Notice text.', 'my-plugin' ) . '</p>';
+    echo '</div>';
+}
+```
+
+### Attribution & Credit Links (Guideline 10)
+- Any "Powered by [Plugin Name]" or credit link rendered on the front end must be **opt-in** and **hidden by default**.
+- Provide a clear, labeled toggle in settings; never require credits to unlock functionality.

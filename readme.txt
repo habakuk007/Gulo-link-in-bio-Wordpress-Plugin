@@ -1,18 +1,19 @@
 === Link in Bio ===
-Contributors: stefanwagner
+Contributors: habakuk
 Tags: link in bio, linktree, links, profile, social links
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: trunk
+Stable tag: 1.0.0-alpha.10
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Donate link: https://trumpkin.de/donate
 
-A Linktree-style profile link page for WordPress. Assign the Link in Bio template to any Page — no shortcodes, no page builders.
+A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Assign the Link in Bio template to any Page — no shortcodes, no page builders.
 
 == Description ==
 
-**Link in Bio** turns a WordPress Page into a fully self-contained Linktree-style profile page — without touching your active theme. Ideal for social media bios, creator profiles, and landing pages that collect all your important links in one place.
+**Link in Bio** turns a WordPress Page into a fully self-contained link-in-bio page — without touching your active theme. It is a self-hosted alternative to Linktree. Ideal for social media bios, creator profiles, and landing pages that collect all your important links in one place.
 
 = How it works =
 
@@ -20,7 +21,7 @@ A Linktree-style profile link page for WordPress. Assign the Link in Bio templat
 2. Go to **Link in Bio** in the admin menu and configure your profile.
 3. Create any WordPress Page, select it in the settings, then publish it.
 
-The plugin serves a standalone HTML page (bypasses the active theme entirely), so your Linktree-style layout looks identical no matter which theme is installed.
+The plugin serves a standalone HTML page (bypasses the active theme entirely), so your link-in-bio page looks identical no matter which theme is installed.
 
 = Features =
 
@@ -47,7 +48,7 @@ The plugin serves a standalone HTML page (bypasses the active theme entirely), s
 
 = Manual installation =
 
-1. Download the ZIP from the [plugin page](https://wordpress.org/plugins/link-in-bio/) or [GitHub releases](https://github.com/stefanwagner/wordpress-link-in-bio/releases).
+1. Download the ZIP from the [plugin page](https://wordpress.org/plugins/link-in-bio/) or [GitHub releases](https://github.com/habakuk007/Wordpress-LinkInBio-Template/releases).
 2. Go to **Plugins → Add New → Upload Plugin**.
 3. Upload the ZIP and click **Install Now**, then **Activate**.
 
@@ -102,7 +103,7 @@ Or use a plugin like [Loco Translate](https://wordpress.org/plugins/loco-transla
 
 = Where can I report a bug or request a feature? =
 
-On [GitHub Issues](https://github.com/stefanwagner/wordpress-link-in-bio/issues).
+On [GitHub Issues](https://github.com/habakuk007/Wordpress-LinkInBio-Template/issues).
 
 == Screenshots ==
 
@@ -113,6 +114,19 @@ On [GitHub Issues](https://github.com/stefanwagner/wordpress-link-in-bio/issues)
 5. The live frontend profile page on a mobile screen.
 
 == Changelog ==
+
+= 1.0.0-alpha.10 =
+* Added `LICENSE` file (GPL-2.0-or-later)
+* Added "Buy me a coffee" donation link on the settings page
+* Added split PHPUnit test suite: unit tests (Brain\Monkey, no WP env) + integration tests
+* Added 32 unit tests for `LIB_Settings` covering all sanitize methods
+* Added `.wp-env.json` for Docker-based integration testing
+* Fixed `sanitize_links()` to guard against `null` input (PHP 8.5 deprecation)
+* Fixed WordPress.org plugin guidelines compliance: GPL headers, WP-bundled libs, dismissible notices, attribution, no trialware
+* Fixed trademark: replaced "Linktree-style" with "link-in-bio page" throughout; README and readme.txt retain a clear "alternative to Linktree" reference
+* Updated author URI, Plugin URI, and contributor username to correct values
+* Updated all translation files with corrected plugin description and repository URLs
+* Updated CI workflow with dedicated unit-test job (PHP 8.1–8.3, no database required)
 
 = 1.0.0-alpha.9 =
 * Added `uninstall.php` — removes plugin options and capability on plugin deletion
@@ -148,6 +162,9 @@ On [GitHub Issues](https://github.com/stefanwagner/wordpress-link-in-bio/issues)
 * WPCS-clean codebase, PHP 7.4 compatible
 
 == Upgrade Notice ==
+
+= 1.0.0-alpha.10 =
+Compliance and quality release. No functional changes for end users. Developers: unit tests can now be run locally without a WordPress environment via `composer run test:unit`.
 
 = 1.0.0-alpha.9 =
 Maintenance release: documentation and WordPress.org submission files only. No functional changes.

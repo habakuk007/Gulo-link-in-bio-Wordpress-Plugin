@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Link in Bio 1.0.0-alpha.7\n"
-"Report-Msgid-Bugs-To: https://github.com/stefanwagner/wordpress-link-in-bio/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/habakuk007/Wordpress-LinkInBio-Template/issues\n"
 "POT-Creation-Date: 2026-04-16T10:14:36+00:00\n"
 "PO-Revision-Date: 2026-04-16T00:00:00+00:00\n"
 "Last-Translator: Automatically generated\n"
@@ -25,13 +25,13 @@ msgstr ""
 
 #. Plugin URI of the plugin
 #: link-in-bio.php
-msgid "https://github.com/stefanwagner/wordpress-link-in-bio"
+msgid "https://github.com/habakuk007/Wordpress-LinkInBio-Template"
 msgstr ""
 
 #. Description of the plugin
 #: link-in-bio.php
-msgid "A LinkTree-style link page for WordPress. Configure your profile in Settings → Link in Bio, then assign the page template to any Page."
-msgstr "Eine LinkTree-ähnliche Linkseite für WordPress. Konfigurieren Sie Ihr Profil unter Einstellungen → Link in Bio und weisen Sie dann einer Seite das Seiten-Template zu."
+msgid "A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Configure your profile in the Link in Bio admin menu, then assign the page template to any Page."
+msgstr "Eine Link-in-Bio-Seite für WordPress – eine selbst gehostete Alternative zu Linktree. Konfigurieren Sie Ihr Profil im Link-in-Bio-Adminmenü und weisen Sie dann einer Seite das Seitentemplate zu."
 
 #. Author of the plugin
 #: link-in-bio.php

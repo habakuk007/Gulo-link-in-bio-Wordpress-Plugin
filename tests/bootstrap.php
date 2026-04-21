@@ -10,9 +10,16 @@
 
 $_tests_dir = getenv( 'WP_TESTS_DIR' ) ?: '/tmp/wordpress-tests-lib';
 
+// Fallback: wp-env (Docker) mounts the test suite here.
 if ( ! file_exists( $_tests_dir . '/includes/functions.php' ) ) {
-	echo 'ERROR: WordPress test suite not found at ' . $_tests_dir . PHP_EOL;
-	echo 'Set WP_TESTS_DIR to the path of the WordPress test library.' . PHP_EOL;
+	$_tests_dir = '/wordpress-phpunit';
+}
+
+if ( ! file_exists( $_tests_dir . '/includes/functions.php' ) ) {
+	echo 'ERROR: WordPress test suite not found.' . PHP_EOL;
+	echo 'Options:' . PHP_EOL;
+	echo '  1. Set WP_TESTS_DIR and run: bash bin/install-wp-tests.sh <db> <user> <pass>' . PHP_EOL;
+	echo '  2. Install Docker and run: npx @wordpress/env start' . PHP_EOL;
 	exit( 1 );
 }
 

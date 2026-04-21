@@ -184,3 +184,22 @@
 .hidden {
 	display: none !important;
 }
+
+/* ── Donate ─────────────────────────────────────────────────────── */
+
+.lib-donate {
+	margin-top: 0.5rem;
+	font-size: 0.8rem;
+	color: #aaaaaa;
+}
+
+.lib-donate a {
+	color: #aaaaaa;
+	text-decoration: none;
+}
+
+.lib-donate a:hover,
+.lib-donate a:focus {
+	color: #555555;
+	text-decoration: underline;
+}

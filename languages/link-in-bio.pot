@@ -23,12 +23,12 @@ msgstr ""
 
 #. Plugin URI of the plugin
 #: link-in-bio.php
-msgid "https://github.com/stefanwagner/wordpress-link-in-bio"
+msgid "https://github.com/habakuk007/Wordpress-LinkInBio-Template"
 msgstr ""
 
 #. Description of the plugin
 #: link-in-bio.php
-msgid "A LinkTree-style link page for WordPress. Configure your profile in Settings → Link in Bio, then assign the page template to any Page."
+msgid "A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Configure your profile in the Link in Bio admin menu, then assign the page template to any Page."
 msgstr ""
 
 #. Author of the plugin

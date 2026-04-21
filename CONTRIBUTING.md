@@ -51,18 +51,39 @@ See `CLAUDE.md` for the full rules reference.
 
 ## Tests
 
-PHPUnit unit tests live in `tests/`. Run them against a real WordPress test suite:
+Tests are split into two suites:
+
+### Unit tests (`tests/unit/`)
+
+Use [Brain\Monkey](https://brain-wp.github.io/BrainMonkey/) to stub WordPress functions. No database or WordPress installation required — run them anywhere:
 
 ```bash
-# One-time setup (adjust DB credentials)
-bash bin/install-wp-tests.sh wordpress_test root '' localhost latest
+composer run test:unit
+```
 
-# Run suite
+- Test file naming: `Test_ClassName.php` containing `class Test_ClassName extends TestCase`.
+- Every new public method in `includes/` should have corresponding unit test coverage.
+- WordPress functions must be stubbed with `Functions\when()` or `Functions\expect()`.
+
+### Integration tests (`tests/integration/`)
+
+Require a real WordPress environment and database. Two options:
+
+**Option A — local MySQL:**
+
+```bash
+bash bin/install-wp-tests.sh wordpress_test root '' localhost latest
 WP_TESTS_DIR=/tmp/wordpress-tests-lib composer run test
 ```
 
-- Every new public method in `includes/` should have a corresponding test.
-- Tests must not mock the database — use the actual WordPress test suite database.
+**Option B — Docker via wp-env (requires Docker Desktop):**
+
+```bash
+npx @wordpress/env start
+composer run test
+```
+
+Integration tests run automatically in CI on every push via the `phpunit` GitHub Actions job.
 
 ---
 
@@ -129,7 +150,7 @@ PRs that introduce new options must:
    - `readme.txt` — `Stable tag:` header (use a plain version number, e.g. `1.0.0`)
 2. Add a `== Changelog ==` entry in `readme.txt`.
 3. Add an `== Upgrade Notice ==` entry if the update needs user action.
-4. Run all linters and tests (`composer run lint:php`, `npm run lint:js`, `npm run lint:css`).
+4. Run all linters and tests (`composer run lint:php`, `composer run test:unit`, `npm run lint:js`, `npm run lint:css`).
 5. Run `composer run make:pot` and update PO files if strings changed.
 6. Run `composer run make:mo` to recompile MO files.
 7. Commit with message: `chore: release X.Y.Z`

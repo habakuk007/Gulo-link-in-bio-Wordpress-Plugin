@@ -2,7 +2,7 @@
 
 ## What This Project Is
 
-A **WordPress plugin** that provides a Linktree-style profile link page.  
+A **WordPress plugin** that provides a link-in-bio page — a self-hosted alternative to Linktree.  
 Users go to **Link in Bio** (top-level admin menu, position 81) to configure their profile, colors, and links.  
 Both Administrators and Editors can access the settings page via the custom `lib_manage_settings` capability.  
 The result is displayed by creating a WordPress Page and selecting **Link in Bio** from the Template dropdown.
@@ -18,14 +18,18 @@ includes/class-lib-settings.php   Settings helper: get(), get_links(), sanitize 
 includes/class-lib-admin.php      Admin menu, Settings API registration, page render
 includes/class-lib-frontend.php   Page template registration + lazy asset enqueueing
 templates/page-link-in-bio.php    Full HTML page (DOCTYPE → wp_footer); sets $lib_settings/$lib_links
-templates/display.php             Accessible Linktree-style HTML partial (profile + nav + footer)
-assets/css/frontend.css           Linktree-inspired CSS (custom properties for theming)
+templates/display.php             Accessible link-in-bio HTML partial (profile + nav + footer)
+assets/css/frontend.css           Link-in-bio CSS (custom properties for theming)
 assets/css/admin.css              Admin settings page styles
 assets/js/admin.js                Links repeater, WP media uploader, color pickers
-tests/bootstrap.php               PHPUnit bootstrap (WP test suite)
-tests/class-test-lib-settings.php Unit tests for LIB_Settings
+tests/bootstrap.php               PHPUnit bootstrap for integration tests (needs WP env)
+tests/unit/bootstrap.php          PHPUnit bootstrap for unit tests (Brain\Monkey, no WP needed)
+tests/unit/Test_LIB_Settings.php  Unit tests for LIB_Settings (32 tests, Brain\Monkey)
+tests/integration/class-test-lib-plugin.php  Integration tests (WP_UnitTestCase)
 phpcs.xml                         PHPCS / WPCS configuration
-phpunit.xml.dist                  PHPUnit configuration
+phpunit.xml.dist                  PHPUnit config — integration tests (tests/integration/)
+phpunit.unit.xml                  PHPUnit config — unit tests (tests/unit/)
+.wp-env.json                      wp-env config for Docker-based integration tests
 composer.json                     PHP dev dependencies (WPCS, PHPUnit, PHPCompatibility)
 package.json                      JS dev dependencies (ESLint, Stylelint)
 .editorconfig                     Editor settings (tabs, UTF-8, LF)
@@ -83,7 +87,10 @@ composer run lint:php
 # Fix PHP style
 composer run fix:php
 
-# Run tests (needs WP_TESTS_DIR)
+# Run unit tests (Brain\Monkey — no WordPress environment needed)
+composer run test:unit
+
+# Run integration tests (needs WP_TESTS_DIR set up via bin/install-wp-tests.sh)
 WP_TESTS_DIR=/tmp/wordpress-tests-lib composer run test
 
 # JS/CSS dev dependencies

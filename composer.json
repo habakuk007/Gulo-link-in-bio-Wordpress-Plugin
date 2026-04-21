@@ -1,13 +1,20 @@
 {
-  "name": "stefanwagner/wordpress-link-in-bio",
-  "description": "A LinkTree-style link page WordPress plugin",
+  "name": "habakuk007/wordpress-link-in-bio",
+  "description": "A link-in-bio page WordPress plugin",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
   "authors": [
     {
-      "name": "Stefan Wagner"
+      "name": "Stefan Wagner",
+      "homepage": "https://trumpkin.de/"
     }
   ],
+  "autoload-dev": {
+    "classmap": [
+      "tests/unit/",
+      "tests/integration/"
+    ]
+  },
   "require": {
     "php": ">=7.4"
   },
@@ -23,6 +30,7 @@
     "lint:php": "phpcs -p",
     "fix:php": "phpcbf -p",
     "test": "phpunit --configuration phpunit.xml.dist",
+    "test:unit": "phpunit --configuration phpunit.unit.xml",
     "test:coverage": "phpunit --configuration phpunit.xml.dist --coverage-text",
     "package": "git archive --format=zip --prefix=link-in-bio/ HEAD -o link-in-bio.zip && echo 'Built: link-in-bio.zip'",
     "make:pot": "wp i18n make-pot . languages/link-in-bio.pot --slug=link-in-bio --domain=link-in-bio --exclude=vendor,node_modules,tests --package-name=\"Link in Bio\"",

@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Link in Bio** is a WordPress plugin that provides a Linktree-style profile link page.
+**Link in Bio** is a WordPress plugin that provides a link-in-bio page — a self-hosted alternative to Linktree.
 Users configure a profile (name, bio, avatar), appearance (colors, gradients), and a list of
 links via the **Link in Bio** menu in wp-admin (top-level menu, accessible to Administrators
 and Editors). The profile is displayed by creating a WordPress Page and assigning the
@@ -31,7 +31,7 @@ templates/
   page-link-in-bio.php       ← Full standalone HTML page (DOCTYPE → wp_footer)
   display.php                ← Accessible profile + links + footer partial
 assets/
-  css/frontend.css           ← Linktree-style frontend design (CSS custom props)
+  css/frontend.css           ← Link-in-bio page frontend design (CSS custom props)
   css/admin.css              ← Admin settings page styles
   js/admin.js                ← Links repeater, media uploader, color pickers
 languages/

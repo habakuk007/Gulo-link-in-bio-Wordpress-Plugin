@@ -495,6 +495,15 @@ class LIB_Admin {
 
 				<?php submit_button( __( 'Save Settings', 'link-in-bio' ) ); ?>
 			</form>
+
+			<p class="lib-donate">
+				<a
+					href="<?php echo esc_url( 'https://trumpkin.de/donate' ); ?>"
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="<?php esc_attr_e( 'Buy me a coffee (opens in new tab)', 'link-in-bio' ); ?>"
+				><?php esc_html_e( 'Buy me a coffee', 'link-in-bio' ); ?></a>
+			</p>
 		</div>
 		<?php
 	}

@@ -1,7 +1,7 @@
 # Link in Bio — WordPress Plugin
 
-A Linktree-style profile link page for WordPress. Create a dedicated page, select the
-**Link in Bio** page template, and your profile page is live — no shortcodes, no page builders.
+A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Create a dedicated page,
+select the **Link in Bio** page template, and your profile page is live — no shortcodes, no page builders.
 
 ---
 
@@ -24,14 +24,14 @@ A Linktree-style profile link page for WordPress. Create a dedicated page, selec
 
    ```bash
    cd wp-content/plugins/
-   git clone https://github.com/stefanwagner/wordpress-link-in-bio.git link-in-bio
+   git clone https://github.com/habakuk007/Wordpress-LinkInBio-Template.git link-in-bio
    ```
 
 2. In WordPress admin, go to **Plugins → Installed Plugins** and activate **Link in Bio**.
 
 ### As a ZIP
 
-1. [Download the latest release](https://github.com/stefanwagner/wordpress-link-in-bio/releases)
+1. [Download the latest release](https://github.com/habakuk007/Wordpress-LinkInBio-Template/releases)
 2. Go to **Plugins → Add New → Upload Plugin** and upload the ZIP.
 3. Activate the plugin.
 
@@ -55,7 +55,7 @@ A Linktree-style profile link page for WordPress. Create a dedicated page, selec
 3. Publish the page.
 
 The plugin serves a fully self-contained HTML page that bypasses your active theme entirely,
-so the Linktree-style layout looks the same regardless of which theme is installed.
+so your link-in-bio page looks the same regardless of which theme is installed.
 
 ---
 
@@ -148,7 +148,7 @@ emitting competing HTML tags:
 
 ```bash
 # Clone
-git clone https://github.com/stefanwagner/wordpress-link-in-bio.git
+git clone https://github.com/habakuk007/Wordpress-LinkInBio-Template.git
 cd wordpress-link-in-bio
 
 # PHP dependencies (WPCS, PHPUnit, etc.)
@@ -176,14 +176,33 @@ npm run lint:css
 
 ### Tests
 
-PHPUnit integration tests require the WordPress test suite:
+The test suite is split into **unit tests** (fast, no WordPress needed) and **integration tests** (require a real WP environment).
+
+#### Unit tests — run locally right now
+
+```bash
+composer run test:unit
+```
+
+Unit tests use [Brain\Monkey](https://brain-wp.github.io/BrainMonkey/) to stub WordPress functions. No database, no WP install required.
+
+#### Integration tests — require a WordPress environment
+
+**Option A — local MySQL:**
 
 ```bash
 # One-time setup (adjust DB credentials)
 bash bin/install-wp-tests.sh wordpress_test root '' localhost latest
 
-# Run tests
+# Run suite
 WP_TESTS_DIR=/tmp/wordpress-tests-lib composer run test
+```
+
+**Option B — Docker via wp-env:**
+
+```bash
+npx @wordpress/env start
+composer run test
 ```
 
 ### Translations
@@ -237,8 +256,12 @@ link-in-bio/
 │   ├── link-in-bio-uk.po         ← Ukrainian (source)
 │   └── link-in-bio-uk.mo         ← Ukrainian (compiled)
 ├── tests/
-│   ├── bootstrap.php
-│   └── class-test-lib-settings.php
+│   ├── bootstrap.php                 ← Integration test bootstrap (WP env)
+│   ├── unit/
+│   │   ├── bootstrap.php             ← Unit test bootstrap (Brain\Monkey)
+│   │   └── Test_LIB_Settings.php     ← Unit tests for LIB_Settings
+│   └── integration/
+│       └── class-test-lib-plugin.php ← Integration tests (WP_UnitTestCase)
 ├── .github/
 │   ├── copilot-instructions.md
 │   ├── instructions/             ← Copilot domain rules (WP, CSS, a11y)
@@ -251,7 +274,9 @@ link-in-bio/
 ├── composer.json
 ├── package.json
 ├── phpcs.xml
-├── phpunit.xml.dist
+├── phpunit.xml.dist              ← PHPUnit config (integration tests)
+├── phpunit.unit.xml              ← PHPUnit config (unit tests)
+├── .wp-env.json                  ← wp-env / Docker config
 └── .editorconfig
 ```
 

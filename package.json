@@ -1,7 +1,7 @@
 {
   "name": "wordpress-link-in-bio",
-  "version": "1.0.0-alpha.9",
-  "description": "A LinkTree-style link page WordPress plugin",
+  "version": "1.0.0-alpha.10",
+  "description": "A link-in-bio page WordPress plugin",
   "private": true,
   "scripts": {
     "build:zip": "bash bin/build-zip.sh",

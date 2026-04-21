@@ -1,0 +1,10 @@
+{
+  "plugins": ["."],
+  "env": {
+    "tests": {
+      "mappings": {
+        "wp-content/plugins/link-in-bio": "."
+      }
+    }
+  }
+}
