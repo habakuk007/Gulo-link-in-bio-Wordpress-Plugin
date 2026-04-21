@@ -10,7 +10,7 @@
  * Author URI:        https://trumpkin.de/
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       link-in-bio
+ * Text Domain:       simple-bio-links
  * Domain Path:       /languages
  *
  * @package LinkInBio

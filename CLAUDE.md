@@ -56,7 +56,7 @@ Settings keys in `lib_settings`:
 ## Coding Rules
 
 - **Prefix**: classes `LIB_`, options `lib_`, JS globals `libAdmin.*`
-- **Text domain**: `link-in-bio` in every i18n call
+- **Text domain**: `simple-bio-links` in every i18n call
 - **Capability**: `lib_manage_settings` for all permission checks in this plugin — never `manage_options`
 - **Escape outputs**: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`
 - **Sanitize inputs**: `sanitize_text_field()`, `sanitize_hex_color()`, `esc_url_raw()`

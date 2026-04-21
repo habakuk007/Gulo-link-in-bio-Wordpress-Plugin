@@ -43,8 +43,8 @@ class LIB_Admin {
 	 */
 	public function add_menu(): void {
 		add_menu_page(
-			__( 'Simple Bio Links Settings', 'link-in-bio' ),
-			__( 'Simple Bio Links', 'link-in-bio' ),
+			__( 'Simple Bio Links Settings', 'simple-bio-links' ),
+			__( 'Simple Bio Links', 'simple-bio-links' ),
 			'lib_manage_settings',
 			self::PAGE_SLUG,
 			array( $this, 'render_page' ),
@@ -112,9 +112,9 @@ class LIB_Admin {
 			'libAdmin',
 			array(
 				'links'         => LIB_Settings::get_links(),
-				'mediaTitle'    => __( 'Select Profile Image', 'link-in-bio' ),
-				'mediaButton'   => __( 'Use this image', 'link-in-bio' ),
-				'removeConfirm' => __( 'Remove this link?', 'link-in-bio' ),
+				'mediaTitle'    => __( 'Select Profile Image', 'simple-bio-links' ),
+				'mediaButton'   => __( 'Use this image', 'simple-bio-links' ),
+				'removeConfirm' => __( 'Remove this link?', 'simple-bio-links' ),
 				'nonce'         => wp_create_nonce( 'lib-admin' ),
 			)
 		);
@@ -130,7 +130,7 @@ class LIB_Admin {
 		$settings_link = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( admin_url( 'admin.php?page=' . self::PAGE_SLUG ) ),
-			esc_html__( 'Settings', 'link-in-bio' )
+			esc_html__( 'Settings', 'simple-bio-links' )
 		);
 		array_unshift( $links, $settings_link );
 		return $links;
@@ -143,18 +143,18 @@ class LIB_Admin {
 	 */
 	public function render_page(): void {
 		if ( ! current_user_can( 'lib_manage_settings' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'link-in-bio' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'simple-bio-links' ) );
 		}
 
 		$s = LIB_Settings::get();
 		?>
 		<div class="wrap lib-admin-wrap">
-			<h1><?php esc_html_e( 'Simple Bio Links', 'link-in-bio' ); ?></h1>
+			<h1><?php esc_html_e( 'Simple Bio Links', 'simple-bio-links' ); ?></h1>
 
 			<?php settings_errors( LIB_Settings::OPTION_SETTINGS ); ?>
 
 			<p class="lib-shortcode-tip">
-				<?php esc_html_e( 'Create any WordPress Page, then select it below — the plugin will serve the Simple Bio Links layout for that page automatically.', 'link-in-bio' ); ?>
+				<?php esc_html_e( 'Create any WordPress Page, then select it below — the plugin will serve the Simple Bio Links layout for that page automatically.', 'simple-bio-links' ); ?>
 			</p>
 
 			<form method="post" action="options.php" novalidate>
@@ -162,11 +162,11 @@ class LIB_Admin {
 
 				<!-- ── Page ─────────────────────────────────────────── -->
 				<div class="lib-section">
-					<h2 class="lib-section-title"><?php esc_html_e( 'Simple Bio Links Page', 'link-in-bio' ); ?></h2>
+					<h2 class="lib-section-title"><?php esc_html_e( 'Simple Bio Links Page', 'simple-bio-links' ); ?></h2>
 					<table class="form-table" role="presentation">
 						<tr>
 							<th scope="row">
-								<label for="lib-page-id"><?php esc_html_e( 'Page', 'link-in-bio' ); ?></label>
+								<label for="lib-page-id"><?php esc_html_e( 'Page', 'simple-bio-links' ); ?></label>
 							</th>
 							<td>
 								<?php
@@ -175,13 +175,13 @@ class LIB_Admin {
 										'name'             => esc_attr( LIB_Settings::OPTION_SETTINGS ) . '[page_id]',
 										'id'               => 'lib-page-id',
 										'selected'         => (int) $s['page_id'],
-										'show_option_none' => esc_html__( '— Select a page —', 'link-in-bio' ),
+										'show_option_none' => esc_html__( '— Select a page —', 'simple-bio-links' ),
 										'option_none_value' => '0',
 									)
 								);
 								?>
 								<p class="description">
-									<?php esc_html_e( 'The selected page will display the Simple Bio Links profile layout, bypassing the active theme.', 'link-in-bio' ); ?>
+									<?php esc_html_e( 'The selected page will display the Simple Bio Links profile layout, bypassing the active theme.', 'simple-bio-links' ); ?>
 								</p>
 							</td>
 						</tr>
@@ -190,11 +190,11 @@ class LIB_Admin {
 
 				<!-- ── Profile ──────────────────────────────────────── -->
 				<div class="lib-section">
-					<h2 class="lib-section-title"><?php esc_html_e( 'Profile', 'link-in-bio' ); ?></h2>
+					<h2 class="lib-section-title"><?php esc_html_e( 'Profile', 'simple-bio-links' ); ?></h2>
 					<table class="form-table" role="presentation">
 						<tr>
 							<th scope="row">
-								<label for="lib-profile-name"><?php esc_html_e( 'Name', 'link-in-bio' ); ?></label>
+								<label for="lib-profile-name"><?php esc_html_e( 'Name', 'simple-bio-links' ); ?></label>
 							</th>
 							<td>
 								<input
@@ -209,7 +209,7 @@ class LIB_Admin {
 						</tr>
 						<tr>
 							<th scope="row">
-								<label for="lib-profile-bio"><?php esc_html_e( 'Bio / Tagline', 'link-in-bio' ); ?></label>
+								<label for="lib-profile-bio"><?php esc_html_e( 'Bio / Tagline', 'simple-bio-links' ); ?></label>
 							</th>
 							<td>
 								<textarea
@@ -222,7 +222,7 @@ class LIB_Admin {
 						</tr>
 						<tr>
 							<th scope="row">
-								<label for="lib-profile-image"><?php esc_html_e( 'Profile Image URL', 'link-in-bio' ); ?></label>
+								<label for="lib-profile-image"><?php esc_html_e( 'Profile Image URL', 'simple-bio-links' ); ?></label>
 							</th>
 							<td>
 								<div class="lib-image-field">
@@ -235,10 +235,10 @@ class LIB_Admin {
 										autocomplete="off"
 									/>
 									<button type="button" id="lib-upload-image" class="button">
-										<?php esc_html_e( 'Select Image', 'link-in-bio' ); ?>
+										<?php esc_html_e( 'Select Image', 'simple-bio-links' ); ?>
 									</button>
 									<button type="button" id="lib-remove-image" class="button button-link-delete<?php echo empty( $s['profile_image'] ) ? ' hidden' : ''; ?>">
-										<?php esc_html_e( 'Remove', 'link-in-bio' ); ?>
+										<?php esc_html_e( 'Remove', 'simple-bio-links' ); ?>
 									</button>
 								</div>
 								<?php if ( ! empty( $s['profile_image'] ) ) : ?>
@@ -246,14 +246,14 @@ class LIB_Admin {
 										<img
 											id="lib-image-preview"
 											src="<?php echo esc_url( $s['profile_image'] ); ?>"
-											alt="<?php esc_attr_e( 'Profile image preview', 'link-in-bio' ); ?>"
+											alt="<?php esc_attr_e( 'Profile image preview', 'simple-bio-links' ); ?>"
 											width="80"
 											height="80"
 										/>
 									</div>
 								<?php else : ?>
 									<div class="lib-image-preview-wrap hidden">
-										<img id="lib-image-preview" src="" alt="<?php esc_attr_e( 'Profile image preview', 'link-in-bio' ); ?>" width="80" height="80" />
+										<img id="lib-image-preview" src="" alt="<?php esc_attr_e( 'Profile image preview', 'simple-bio-links' ); ?>" width="80" height="80" />
 									</div>
 								<?php endif; ?>
 							</td>
@@ -263,13 +263,13 @@ class LIB_Admin {
 
 				<!-- ── Appearance ───────────────────────────────────── -->
 				<div class="lib-section">
-					<h2 class="lib-section-title"><?php esc_html_e( 'Appearance', 'link-in-bio' ); ?></h2>
+					<h2 class="lib-section-title"><?php esc_html_e( 'Appearance', 'simple-bio-links' ); ?></h2>
 					<table class="form-table" role="presentation">
 						<tr>
-							<th scope="row"><?php esc_html_e( 'Background', 'link-in-bio' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Background', 'simple-bio-links' ); ?></th>
 							<td>
 								<fieldset>
-									<legend class="screen-reader-text"><?php esc_html_e( 'Background type', 'link-in-bio' ); ?></legend>
+									<legend class="screen-reader-text"><?php esc_html_e( 'Background type', 'simple-bio-links' ); ?></legend>
 									<label>
 										<input
 											type="radio"
@@ -278,7 +278,7 @@ class LIB_Admin {
 											<?php checked( $s['background_type'], 'gradient' ); ?>
 											class="lib-bg-type-radio"
 										/>
-										<?php esc_html_e( 'Gradient', 'link-in-bio' ); ?>
+										<?php esc_html_e( 'Gradient', 'simple-bio-links' ); ?>
 									</label>
 									&nbsp;&nbsp;
 									<label>
@@ -289,12 +289,12 @@ class LIB_Admin {
 											<?php checked( $s['background_type'], 'solid' ); ?>
 											class="lib-bg-type-radio"
 										/>
-										<?php esc_html_e( 'Solid color', 'link-in-bio' ); ?>
+										<?php esc_html_e( 'Solid color', 'simple-bio-links' ); ?>
 									</label>
 								</fieldset>
 
 								<div id="lib-bg-gradient" class="lib-color-group<?php echo 'solid' === $s['background_type'] ? ' hidden' : ''; ?>">
-									<label for="lib-gradient-start"><?php esc_html_e( 'Gradient Start', 'link-in-bio' ); ?></label>
+									<label for="lib-gradient-start"><?php esc_html_e( 'Gradient Start', 'simple-bio-links' ); ?></label>
 									<input
 										type="text"
 										id="lib-gradient-start"
@@ -303,7 +303,7 @@ class LIB_Admin {
 										class="lib-color-picker"
 										data-default-color="#1a1a2e"
 									/>
-									<label for="lib-gradient-end"><?php esc_html_e( 'Gradient End', 'link-in-bio' ); ?></label>
+									<label for="lib-gradient-end"><?php esc_html_e( 'Gradient End', 'simple-bio-links' ); ?></label>
 									<input
 										type="text"
 										id="lib-gradient-end"
@@ -315,7 +315,7 @@ class LIB_Admin {
 								</div>
 
 								<div id="lib-bg-solid" class="lib-color-group<?php echo 'gradient' === $s['background_type'] ? ' hidden' : ''; ?>">
-									<label for="lib-bg-color"><?php esc_html_e( 'Background Color', 'link-in-bio' ); ?></label>
+									<label for="lib-bg-color"><?php esc_html_e( 'Background Color', 'simple-bio-links' ); ?></label>
 									<input
 										type="text"
 										id="lib-bg-color"
@@ -329,7 +329,7 @@ class LIB_Admin {
 						</tr>
 						<tr>
 							<th scope="row">
-								<label for="lib-text-color"><?php esc_html_e( 'Profile Text Color', 'link-in-bio' ); ?></label>
+								<label for="lib-text-color"><?php esc_html_e( 'Profile Text Color', 'simple-bio-links' ); ?></label>
 							</th>
 							<td>
 								<input
@@ -343,10 +343,10 @@ class LIB_Admin {
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><?php esc_html_e( 'Button Style', 'link-in-bio' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Button Style', 'simple-bio-links' ); ?></th>
 							<td>
 								<fieldset>
-									<legend class="screen-reader-text"><?php esc_html_e( 'Button style', 'link-in-bio' ); ?></legend>
+									<legend class="screen-reader-text"><?php esc_html_e( 'Button style', 'simple-bio-links' ); ?></legend>
 									<label>
 										<input
 											type="radio"
@@ -354,7 +354,7 @@ class LIB_Admin {
 											value="filled"
 											<?php checked( $s['button_style'], 'filled' ); ?>
 										/>
-										<?php esc_html_e( 'Solid', 'link-in-bio' ); ?>
+										<?php esc_html_e( 'Solid', 'simple-bio-links' ); ?>
 									</label>
 									&nbsp;&nbsp;
 									<label>
@@ -364,16 +364,16 @@ class LIB_Admin {
 											value="glass"
 											<?php checked( $s['button_style'], 'glass' ); ?>
 										/>
-										<?php esc_html_e( 'Glass (frosted)', 'link-in-bio' ); ?>
+										<?php esc_html_e( 'Glass (frosted)', 'simple-bio-links' ); ?>
 									</label>
 								</fieldset>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><?php esc_html_e( 'Button Colors', 'link-in-bio' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Button Colors', 'simple-bio-links' ); ?></th>
 							<td>
 								<div class="lib-color-group">
-									<label for="lib-btn-bg"><?php esc_html_e( 'Button Background', 'link-in-bio' ); ?></label>
+									<label for="lib-btn-bg"><?php esc_html_e( 'Button Background', 'simple-bio-links' ); ?></label>
 									<input
 										type="text"
 										id="lib-btn-bg"
@@ -382,7 +382,7 @@ class LIB_Admin {
 										class="lib-color-picker"
 										data-default-color="#ffffff"
 									/>
-									<label for="lib-btn-text"><?php esc_html_e( 'Button Text', 'link-in-bio' ); ?></label>
+									<label for="lib-btn-text"><?php esc_html_e( 'Button Text', 'simple-bio-links' ); ?></label>
 									<input
 										type="text"
 										id="lib-btn-text"
@@ -399,23 +399,23 @@ class LIB_Admin {
 
 				<!-- ── Links ────────────────────────────────────────── -->
 				<div class="lib-section">
-					<h2 class="lib-section-title"><?php esc_html_e( 'Links', 'link-in-bio' ); ?></h2>
+					<h2 class="lib-section-title"><?php esc_html_e( 'Links', 'simple-bio-links' ); ?></h2>
 					<p class="description">
-						<?php esc_html_e( 'Drag rows to reorder. Uncheck "Active" to hide a link without deleting it.', 'link-in-bio' ); ?>
+						<?php esc_html_e( 'Drag rows to reorder. Uncheck "Active" to hide a link without deleting it.', 'simple-bio-links' ); ?>
 					</p>
 
 					<div
 						id="lib-links-list"
 						class="lib-links-list"
 						role="list"
-						aria-label="<?php esc_attr_e( 'Manage links', 'link-in-bio' ); ?>"
+						aria-label="<?php esc_attr_e( 'Manage links', 'simple-bio-links' ); ?>"
 					>
 						<!-- Populated by admin.js from libAdmin.links -->
 					</div>
 
 					<button type="button" id="lib-add-link" class="button button-secondary lib-add-link-btn">
 						<span aria-hidden="true">+</span>
-						<?php esc_html_e( 'Add Link', 'link-in-bio' ); ?>
+						<?php esc_html_e( 'Add Link', 'simple-bio-links' ); ?>
 					</button>
 
 					<!-- Hidden input: JS serializes link rows to JSON here before submit -->
@@ -429,14 +429,14 @@ class LIB_Admin {
 
 				<!-- ── Legal ───────────────────────────────────────────── -->
 				<div class="lib-section">
-					<h2 class="lib-section-title"><?php esc_html_e( 'Legal', 'link-in-bio' ); ?></h2>
+					<h2 class="lib-section-title"><?php esc_html_e( 'Legal', 'simple-bio-links' ); ?></h2>
 					<p class="description">
-						<?php esc_html_e( 'Optional links shown in the page footer above "Powered by". Leave blank to hide.', 'link-in-bio' ); ?>
+						<?php esc_html_e( 'Optional links shown in the page footer above "Powered by". Leave blank to hide.', 'simple-bio-links' ); ?>
 					</p>
 					<table class="form-table" role="presentation">
 						<tr>
 							<th scope="row">
-								<label for="lib-imprint-url"><?php esc_html_e( 'Imprint URL (Impressum)', 'link-in-bio' ); ?></label>
+								<label for="lib-imprint-url"><?php esc_html_e( 'Imprint URL (Impressum)', 'simple-bio-links' ); ?></label>
 							</th>
 							<td>
 								<input
@@ -452,7 +452,7 @@ class LIB_Admin {
 						</tr>
 						<tr>
 							<th scope="row">
-								<label for="lib-privacy-url"><?php esc_html_e( 'Privacy Policy URL (Datenschutzerklärung)', 'link-in-bio' ); ?></label>
+								<label for="lib-privacy-url"><?php esc_html_e( 'Privacy Policy URL (Datenschutzerklärung)', 'simple-bio-links' ); ?></label>
 							</th>
 							<td>
 								<input
@@ -471,10 +471,10 @@ class LIB_Admin {
 
 				<!-- ── SEO ──────────────────────────────────────────── -->
 				<div class="lib-section">
-					<h2 class="lib-section-title"><?php esc_html_e( 'SEO', 'link-in-bio' ); ?></h2>
+					<h2 class="lib-section-title"><?php esc_html_e( 'SEO', 'simple-bio-links' ); ?></h2>
 					<table class="form-table" role="presentation">
 						<tr>
-							<th scope="row"><?php esc_html_e( 'Search Engines', 'link-in-bio' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Search Engines', 'simple-bio-links' ); ?></th>
 							<td>
 								<label>
 									<input
@@ -483,17 +483,17 @@ class LIB_Admin {
 										value="1"
 										<?php checked( $s['seo_noindex'] ); ?>
 									/>
-									<?php esc_html_e( 'Exclude this page from search engines (noindex)', 'link-in-bio' ); ?>
+									<?php esc_html_e( 'Exclude this page from search engines (noindex)', 'simple-bio-links' ); ?>
 								</label>
 								<p class="description">
-									<?php esc_html_e( 'Adds a noindex tag to the page. Use this if you prefer the page not to appear in Google or Bing results.', 'link-in-bio' ); ?>
+									<?php esc_html_e( 'Adds a noindex tag to the page. Use this if you prefer the page not to appear in Google or Bing results.', 'simple-bio-links' ); ?>
 								</p>
 							</td>
 						</tr>
 					</table>
 				</div>
 
-				<?php submit_button( __( 'Save Settings', 'link-in-bio' ) ); ?>
+				<?php submit_button( __( 'Save Settings', 'simple-bio-links' ) ); ?>
 			</form>
 
 			<p class="lib-donate">
@@ -501,8 +501,8 @@ class LIB_Admin {
 					href="<?php echo esc_url( 'https://trumpkin.de/donate' ); ?>"
 					target="_blank"
 					rel="noopener noreferrer"
-					aria-label="<?php esc_attr_e( 'Buy me a coffee (opens in new tab)', 'link-in-bio' ); ?>"
-				><?php esc_html_e( 'Buy me a coffee', 'link-in-bio' ); ?></a>
+					aria-label="<?php esc_attr_e( 'Buy me a coffee (opens in new tab)', 'simple-bio-links' ); ?>"
+				><?php esc_html_e( 'Buy me a coffee', 'simple-bio-links' ); ?></a>
 			</p>
 		</div>
 		<?php

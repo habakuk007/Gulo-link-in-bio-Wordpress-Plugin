@@ -21,12 +21,12 @@ $lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-gla
 	<!-- Skip navigation for keyboard and assistive-technology users -->
 	<?php if ( ! empty( $lib_active_links ) ) : ?>
 		<a class="lib-skip-link" href="#lib-links">
-			<?php esc_html_e( 'Skip to links', 'link-in-bio' ); ?>
+			<?php esc_html_e( 'Skip to links', 'simple-bio-links' ); ?>
 		</a>
 	<?php endif; ?>
 
 	<!-- ── Profile ────────────────────────────────────────────── -->
-	<section class="lib-profile" aria-label="<?php esc_attr_e( 'Profile', 'link-in-bio' ); ?>">
+	<section class="lib-profile" aria-label="<?php esc_attr_e( 'Profile', 'simple-bio-links' ); ?>">
 
 		<?php if ( ! empty( $lib_settings['profile_image'] ) ) : ?>
 			<div class="lib-avatar">
@@ -36,7 +36,7 @@ $lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-gla
 					<?php
 					printf(
 						/* translators: %s: profile name */
-						esc_attr__( 'Profile photo of %s', 'link-in-bio' ),
+						esc_attr__( 'Profile photo of %s', 'simple-bio-links' ),
 						esc_attr( $lib_settings['profile_name'] )
 					);
 					?>
@@ -68,7 +68,7 @@ $lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-gla
 		<nav
 			class="lib-links"
 			id="lib-links"
-			aria-label="<?php esc_attr_e( 'Profile links', 'link-in-bio' ); ?>"
+			aria-label="<?php esc_attr_e( 'Profile links', 'simple-bio-links' ); ?>"
 			tabindex="-1"
 		>
 			<ul class="lib-links-list" role="list">
@@ -90,7 +90,7 @@ $lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-gla
 							<?php
 							printf(
 								/* translators: %s: link title */
-								esc_attr__( '%s (opens in new tab)', 'link-in-bio' ),
+								esc_attr__( '%s (opens in new tab)', 'simple-bio-links' ),
 								esc_attr( $lib_link['title'] )
 							);
 							?>
@@ -132,7 +132,7 @@ $lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-gla
 					<a
 						href="<?php echo esc_url( $lib_settings['imprint_url'] ); ?>"
 						class="lib-footer-link"
-					><?php esc_html_e( 'Imprint', 'link-in-bio' ); ?></a>
+					><?php esc_html_e( 'Imprint', 'simple-bio-links' ); ?></a>
 				<?php endif; ?>
 				<?php if ( ! empty( $lib_settings['imprint_url'] ) && ! empty( $lib_settings['privacy_url'] ) ) : ?>
 					<span aria-hidden="true"> · </span>
@@ -141,7 +141,7 @@ $lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-gla
 					<a
 						href="<?php echo esc_url( $lib_settings['privacy_url'] ); ?>"
 						class="lib-footer-link"
-					><?php esc_html_e( 'Privacy Policy', 'link-in-bio' ); ?></a>
+					><?php esc_html_e( 'Privacy Policy', 'simple-bio-links' ); ?></a>
 				<?php endif; ?>
 			</p>
 		<?php endif; ?>
@@ -150,7 +150,7 @@ $lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-gla
 			<?php
 			printf(
 				/* translators: %s: site name as a link */
-				esc_html__( 'Powered by %s', 'link-in-bio' ),
+				esc_html__( 'Powered by %s', 'simple-bio-links' ),
 				sprintf(
 					'<a href="%s" class="lib-footer-link">%s</a>',
 					esc_url( home_url( '/' ) ),

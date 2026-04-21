@@ -48,7 +48,7 @@ tests/
 ## Key Conventions
 
 - **Prefix**: All PHP classes use `LIB_` prefix; options use `lib_` prefix.
-- **Text domain**: `link-in-bio` — always use this in i18n functions.
+- **Text domain**: `simple-bio-links` — always use this in i18n functions.
 - **Settings API**: Two options — `lib_settings` (array) and `lib_links` (JSON string).
 - **Capability**: `lib_manage_settings` — custom cap granted to Administrators and Editors on activation. Use this (not `manage_options`) for all capability checks in this plugin.
 - **Escape on output**: Use `esc_html()`, `esc_attr()`, `esc_url()` everywhere.

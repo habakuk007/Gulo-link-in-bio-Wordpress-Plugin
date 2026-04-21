@@ -277,7 +277,7 @@ class LIB_Frontend {
 		$wp_admin_bar->add_node(
 			array(
 				'id'    => 'lib-settings',
-				'title' => __( 'Edit Simple Bio Links', 'link-in-bio' ),
+				'title' => __( 'Edit Simple Bio Links', 'simple-bio-links' ),
 				'href'  => admin_url( 'admin.php?page=link-in-bio' ),
 			)
 		);

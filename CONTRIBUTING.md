@@ -38,7 +38,7 @@ npm run lint:css
 ### Key conventions
 
 - **Prefix**: Classes `LIB_`, WordPress options `lib_`, JS globals `libAdmin.*`
-- **Text domain**: `link-in-bio` in every i18n call
+- **Text domain**: `simple-bio-links` in every i18n call
 - **Capability**: Use `lib_manage_settings` (not `manage_options`) for all permission checks
 - **Escape on output**: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`
 - **Sanitize on input**: `sanitize_text_field()`, `sanitize_hex_color()`, `esc_url_raw()`
@@ -89,7 +89,7 @@ Integration tests run automatically in CI on every push via the `phpunit` GitHub
 
 ## Translations
 
-Translatable strings use `esc_html__()`, `__()`, `esc_attr_e()`, etc. with the domain `link-in-bio`.
+Translatable strings use `esc_html__()`, `__()`, `esc_attr_e()`, etc. with the domain `simple-bio-links`.
 
 After adding or changing user-visible strings:
 
@@ -97,7 +97,7 @@ After adding or changing user-visible strings:
 # Re-extract strings
 composer run make:pot
 
-# Edit the relevant .po file (e.g. languages/link-in-bio-de_DE.po) in Poedit or a text editor
+# Edit the relevant .po file (e.g. languages/simple-bio-links-de_DE.po) in Poedit or a text editor
 
 # Recompile all .po → .mo
 composer run make:mo
@@ -188,7 +188,7 @@ Before the automated deploy can work, the plugin must be manually submitted for 
 
 - [ ] `readme.txt` is valid (check at [wordpress.org/plugins/developers/readme-validator/](https://wordpress.org/plugins/developers/readme-validator/))
 - [ ] `Stable tag` in `readme.txt` matches the version in `link-in-bio.php`
-- [ ] All strings use `link-in-bio` text domain
+- [ ] All strings use `simple-bio-links` text domain
 - [ ] No calls to external services without user consent
 - [ ] No obfuscated code, no minified code without source
 - [ ] Plugin uses WordPress's bundled libraries (jQuery, etc.) — does not bundle its own

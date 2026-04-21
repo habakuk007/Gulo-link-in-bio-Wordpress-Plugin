@@ -208,12 +208,12 @@ composer run test
 ### Translations
 
 The plugin ships with German (`de_DE`), French (`fr_FR`), Spanish (`es_ES`), and Ukrainian (`uk`)
-translations. All strings are wrapped in WordPress i18n functions with the text domain `link-in-bio`.
+translations. All strings are wrapped in WordPress i18n functions with the text domain `simple-bio-links`.
 
 To add or update translations:
 
 ```bash
-# 1. Re-extract strings from source → languages/link-in-bio.pot
+# 1. Re-extract strings from source → languages/simple-bio-links.pot
 composer run make:pot
 
 # 2. Edit the relevant .po file (e.g. in Poedit or a text editor)
@@ -246,9 +246,9 @@ link-in-bio/
 │   ├── css/admin.css             ← Admin styles
 │   └── js/admin.js               ← Admin JS (links repeater, media, colors)
 ├── languages/
-│   ├── link-in-bio.pot           ← Translation template
-│   ├── link-in-bio-de_DE.po      ← German (source)
-│   ├── link-in-bio-de_DE.mo      ← German (compiled)
+│   ├── simple-bio-links.pot           ← Translation template
+│   ├── simple-bio-links-de_DE.po      ← German (source)
+│   ├── simple-bio-links-de_DE.mo      ← German (compiled)
 │   ├── link-in-bio-fr_FR.po      ← French (source)
 │   ├── link-in-bio-fr_FR.mo      ← French (compiled)
 │   ├── link-in-bio-es_ES.po      ← Spanish (source)
@@ -290,7 +290,7 @@ correct page. Alternatively confirm that the page's Template (Page Attributes) i
 **Simple Bio Links** in the block editor.
 
 **Translations are not loading.**
-Check that MO files exist in `languages/` (`link-in-bio-{locale}.mo`). If you added or changed
+Check that MO files exist in `languages/` (`simple-bio-links-{locale}.mo`). If you added or changed
 PO files, run `composer run make:mo` to recompile them. Ensure the WordPress site language
 matches the locale (e.g., `de_DE`).
 
