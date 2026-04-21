@@ -39,3 +39,8 @@ clover.xml
 # ── VS Code workspace state (keep extensions.json and settings.json) ─
 .vscode/*.code-workspace
 .claude/settings.local.json
+
+# Playwright MCP
+.playwright-mcp/
+*.png
+*.jpg
