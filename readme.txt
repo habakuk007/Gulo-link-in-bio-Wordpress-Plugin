@@ -3,7 +3,7 @@ Contributors: habakuk
 Tags: link in bio, linktree, links, profile, social links
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 1.0.0-alpha.10
+Stable tag: 1.0.0-alpha.11
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -115,6 +115,14 @@ On [GitHub Issues](https://github.com/habakuk007/Wordpress-LinkInBio-Template/is
 
 == Changelog ==
 
+= 1.0.0-alpha.11 =
+* Fixed removed `load_plugin_textdomain()` call — WordPress auto-loads translations since 4.6
+* Fixed "Tested up to" bumped to 6.9
+* Fixed short description trimmed to ≤150 characters (readme.txt validator)
+* Fixed excluded `phpunit.unit.xml` and `.wp-env.json` from release ZIP
+* Build release ZIP now named `link-in-bio-{version}.zip` (includes version in filename)
+* Build replaced bash build script with PHP to avoid WSL conflicts on Windows
+
 = 1.0.0-alpha.10 =
 * Added `LICENSE` file (GPL-2.0-or-later)
 * Added "Buy me a coffee" donation link on the settings page
@@ -162,6 +170,9 @@ On [GitHub Issues](https://github.com/habakuk007/Wordpress-LinkInBio-Template/is
 * WPCS-clean codebase, PHP 7.4 compatible
 
 == Upgrade Notice ==
+
+= 1.0.0-alpha.11 =
+Maintenance release: WordPress.org compliance fixes and build tooling improvements. No functional changes.
 
 = 1.0.0-alpha.10 =
 Compliance and quality release. No functional changes for end users. Developers: unit tests can now be run locally without a WordPress environment via `composer run test:unit`.

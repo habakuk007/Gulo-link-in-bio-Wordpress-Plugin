@@ -3,7 +3,7 @@
  * Plugin Name:       Link in Bio
  * Plugin URI:        https://github.com/habakuk007/Wordpress-LinkInBio-Template
  * Description:       A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Configure your profile in the Link in Bio admin menu, then assign the page template to any Page.
- * Version:           1.0.0-alpha.10
+ * Version:           1.0.0-alpha.11
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Stefan Wagner
@@ -18,7 +18,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LIB_VERSION', '1.0.0-alpha.10' );
+define( 'LIB_VERSION', '1.0.0-alpha.11' );
 define( 'LIB_PLUGIN_FILE', __FILE__ );
 define( 'LIB_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LIB_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
