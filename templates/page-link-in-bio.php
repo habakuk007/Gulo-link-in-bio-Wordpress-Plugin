@@ -1,9 +1,9 @@
 <?php
 /**
- * Link in Bio — full-page site template.
+ * Bio Links — full-page site template.
  *
  * Selected from the Page Attributes panel in the Block Editor or Classic Editor.
- * Bypasses the active theme entirely and renders the Link in Bio profile page.
+ * Bypasses the active theme entirely and renders the Bio Links profile page.
  *
  * @package LinkInBio
  */

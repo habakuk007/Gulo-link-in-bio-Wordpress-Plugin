@@ -1,4 +1,4 @@
-=== Link in Bio ===
+=== Bio Links ===
 Contributors: habakuk
 Tags: link in bio, linktree, links, profile, social links
 Requires at least: 6.0
@@ -13,12 +13,12 @@ A link-in-bio page for WordPress — a self-hosted Linktree alternative. Assign 
 
 == Description ==
 
-**Link in Bio** turns a WordPress Page into a fully self-contained link-in-bio page — without touching your active theme. It is a self-hosted alternative to Linktree. Ideal for social media bios, creator profiles, and landing pages that collect all your important links in one place.
+**Bio Links** turns a WordPress Page into a fully self-contained link-in-bio page — without touching your active theme. It is a self-hosted alternative to Linktree. Ideal for social media bios, creator profiles, and landing pages that collect all your important links in one place.
 
 = How it works =
 
 1. Install and activate the plugin.
-2. Go to **Link in Bio** in the admin menu and configure your profile.
+2. Go to **Bio Links** in the admin menu and configure your profile.
 3. Create any WordPress Page, select it in the settings, then publish it.
 
 The plugin serves a standalone HTML page (bypasses the active theme entirely), so your link-in-bio page looks identical no matter which theme is installed.
@@ -33,7 +33,7 @@ The plugin serves a standalone HTML page (bypasses the active theme entirely), s
 * **Yoast SEO compatible** — integrates via Yoast's own filters to avoid duplicate meta tags
 * **Cache aware** — automatically purges the page cache on save (WP Super Cache, WP Rocket, W3 Total Cache, WP Fastest Cache, LiteSpeed Cache, Cache Enabler)
 * **Editor access** — Administrators and Editors can manage the settings via a custom capability
-* **Admin bar shortcut** — logged-in users with access see an "Edit Link in Bio" link directly on the frontend page
+* **Admin bar shortcut** — logged-in users with access see an "Edit Bio Links" link directly on the frontend page
 * **Fully accessible** — WCAG 2.2 AA: skip link, semantic landmarks, visible focus, `prefers-reduced-motion`
 * **Translated** — ships with German (`de_DE`), French (`fr_FR`), Spanish (`es_ES`), and Ukrainian (`uk`) translations
 * **No tracking, no ads, no upsells** — 100% free and open source (GPL-2.0-or-later)
@@ -43,7 +43,7 @@ The plugin serves a standalone HTML page (bypasses the active theme entirely), s
 = From the WordPress Plugin Directory =
 
 1. Go to **Plugins → Add New**.
-2. Search for **Link in Bio**.
+2. Search for **Bio Links**.
 3. Click **Install Now**, then **Activate**.
 
 = Manual installation =
@@ -54,23 +54,23 @@ The plugin serves a standalone HTML page (bypasses the active theme entirely), s
 
 = First setup =
 
-1. In the admin menu, click **Link in Bio**.
+1. In the admin menu, click **Bio Links**.
 2. Set your **Name**, **Bio**, and **Profile Image**.
 3. Choose a **Background** (gradient or solid color) and **Button Style**.
-4. Under **Link in Bio Page**, select the WordPress Page that should show the profile.
+4. Under **Bio Links Page**, select the WordPress Page that should show the profile.
 5. Add your **Links** (title + URL). Drag rows to reorder.
 6. Click **Save Settings**.
-7. Visit the selected page — it will display the Link in Bio layout.
+7. Visit the selected page — it will display the Bio Links layout.
 
 == Frequently Asked Questions ==
 
 = Does this replace my theme? =
 
-No. The plugin only affects the single WordPress Page you designate in settings. All other pages continue to use your active theme normally. The Link in Bio page is served as a completely standalone HTML document.
+No. The plugin only affects the single WordPress Page you designate in settings. All other pages continue to use your active theme normally. The Bio Links page is served as a completely standalone HTML document.
 
 = Can I use it on more than one page? =
 
-Currently the plugin supports one Link in Bio page at a time. Select the page under **Link in Bio → Link in Bio Page** in the settings.
+Currently the plugin supports one Bio Links page at a time. Select the page under **Bio Links → Bio Links Page** in the settings.
 
 = Which user roles can edit the settings? =
 
@@ -82,7 +82,7 @@ Yes. When Yoast SEO is active, the plugin hooks into Yoast's own filters (`wpseo
 
 = Does it work with caching plugins? =
 
-Yes. Whenever settings are saved, the plugin automatically purges the Link in Bio page from the following caches: WP Super Cache, WP Rocket, W3 Total Cache, WP Fastest Cache, LiteSpeed Cache, and Cache Enabler. It also calls `clean_post_cache()` for WordPress's built-in object cache. If you use a different caching plugin, purge the page manually after saving settings.
+Yes. Whenever settings are saved, the plugin automatically purges the Bio Links page from the following caches: WP Super Cache, WP Rocket, W3 Total Cache, WP Fastest Cache, LiteSpeed Cache, and Cache Enabler. It also calls `clean_post_cache()` for WordPress's built-in object cache. If you use a different caching plugin, purge the page manually after saving settings.
 
 = Does it work with Matomo / other analytics? =
 
@@ -107,7 +107,7 @@ On [GitHub Issues](https://github.com/habakuk007/Wordpress-LinkInBio-Template/is
 
 == Screenshots ==
 
-1. The Link in Bio settings page — Profile and Page selection section.
+1. The Bio Links settings page — Profile and Page selection section.
 2. The Appearance settings — background type, gradient/solid color pickers, and button style.
 3. The Links manager — drag-to-reorder rows with active toggle and URL fields.
 4. The live frontend profile page as seen by a visitor (desktop view).
@@ -150,7 +150,7 @@ On [GitHub Issues](https://github.com/habakuk007/Wordpress-LinkInBio-Template/is
 * Added Yoast SEO integration via `wpseo_title`, `wpseo_opengraph_type`, `wpseo_opengraph_title`, `wpseo_robots` filters
 * Added automatic page cache purging on settings save (6 caching plugins supported)
 * Added Editor role access to settings via `lib_manage_settings` custom capability
-* Added "Edit Link in Bio" admin bar shortcut for logged-in Editors and Administrators
+* Added "Edit Bio Links" admin bar shortcut for logged-in Editors and Administrators
 * Added `seo_noindex` option to exclude the page from search engines
 * Added Legal section for Imprint and Privacy Policy footer links
 * Moved admin menu from Settings submenu to top-level (position 81) so Editors can access it
@@ -181,7 +181,7 @@ Compliance and quality release. No functional changes for end users. Developers:
 Maintenance release: documentation and WordPress.org submission files only. No functional changes.
 
 = 1.0.0-alpha.8 =
-This release adds Editor access to the settings and moves the admin menu from Settings → Link in Bio to a top-level "Link in Bio" menu item. Bookmark updates may be needed. Cache is now purged automatically on save.
+This release adds Editor access to the settings and moves the admin menu from Settings → Bio Links to a top-level "Bio Links" menu item. Bookmark updates may be needed. Cache is now purged automatically on save.
 
 = 1.0.0-alpha.7 =
-The shortcode `[link_in_bio]` has been replaced by a page template. After upgrading, open the previously used page, set its Template to "Link in Bio", and save. The shortcode will no longer render the profile.
+The shortcode `[link_in_bio]` has been replaced by a page template. After upgrading, open the previously used page, set its Template to "Bio Links", and save. The shortcode will no longer render the profile.

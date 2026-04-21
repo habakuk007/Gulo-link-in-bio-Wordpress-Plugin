@@ -1,7 +1,7 @@
-# Link in Bio — WordPress Plugin
+# Bio Links — WordPress Plugin
 
 A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Create a dedicated page,
-select the **Link in Bio** page template, and your profile page is live — no shortcodes, no page builders.
+select the **Bio Links** page template, and your profile page is live — no shortcodes, no page builders.
 
 ---
 
@@ -27,7 +27,7 @@ select the **Link in Bio** page template, and your profile page is live — no s
    git clone https://github.com/habakuk007/Wordpress-LinkInBio-Template.git link-in-bio
    ```
 
-2. In WordPress admin, go to **Plugins → Installed Plugins** and activate **Link in Bio**.
+2. In WordPress admin, go to **Plugins → Installed Plugins** and activate **Bio Links**.
 
 ### As a ZIP
 
@@ -39,7 +39,7 @@ select the **Link in Bio** page template, and your profile page is live — no s
 
 ## Configuration
 
-1. Go to **Link in Bio** in the WordPress admin menu (top-level item, below Settings).
+1. Go to **Bio Links** in the WordPress admin menu (top-level item, below Settings).
 2. Fill in your **Profile** details (name, bio, avatar image).
 3. Set your **Appearance** (background gradient or solid color, button and text colors).
 4. Add your **Links** — title, URL, and active toggle. Drag rows to reorder.
@@ -51,7 +51,7 @@ select the **Link in Bio** page template, and your profile page is live — no s
 
 1. Go to **Pages → Add New** and give the page a title (e.g. "Links").
 2. In the **Page Attributes** panel (classic editor) or the **Template** dropdown in the sidebar
-   (block editor), select **Link in Bio**.
+   (block editor), select **Bio Links**.
 3. Publish the page.
 
 The plugin serves a fully self-contained HTML page that bypasses your active theme entirely,
@@ -72,8 +72,8 @@ The plugin registers a custom WordPress capability: `lib_manage_settings`.
 The capability is granted automatically when the plugin is activated. It persists in the
 WordPress roles table — removing it requires deactivating the plugin (which removes it cleanly).
 
-When an Administrator or Editor views the Link in Bio page on the frontend, an
-**Edit Link in Bio** shortcut appears in the WordPress admin bar.
+When an Administrator or Editor views the Bio Links page on the frontend, an
+**Edit Bio Links** shortcut appears in the WordPress admin bar.
 
 ---
 
@@ -284,10 +284,10 @@ link-in-bio/
 
 ## Troubleshooting
 
-**The Link in Bio page shows the theme instead of the plugin layout.**
-Go to **Link in Bio** in wp-admin, scroll to the **Link in Bio Page** section, and select the
+**The Bio Links page shows the theme instead of the plugin layout.**
+Go to **Bio Links** in wp-admin, scroll to the **Bio Links Page** section, and select the
 correct page. Alternatively confirm that the page's Template (Page Attributes) is set to
-**Link in Bio** in the block editor.
+**Bio Links** in the block editor.
 
 **Translations are not loading.**
 Check that MO files exist in `languages/` (`link-in-bio-{locale}.mo`). If you added or changed
@@ -305,7 +305,7 @@ purging for WP Super Cache, WP Rocket, W3 Total Cache, WP Fastest Cache, LiteSpe
 Cache Enabler. If your caching plugin is not listed, purge it manually or hook into
 `update_option_lib_settings`.
 
-**Yoast SEO shows wrong title or OG tags for the Link in Bio page.**
+**Yoast SEO shows wrong title or OG tags for the Bio Links page.**
 Ensure you are running version 1.0.0-alpha.7 or later. The plugin hooks into Yoast's own filters
 (`wpseo_title`, `wpseo_opengraph_type`, `wpseo_opengraph_title`, `wpseo_robots`) to avoid
 duplicate meta tags.

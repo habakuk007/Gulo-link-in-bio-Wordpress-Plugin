@@ -1,4 +1,4 @@
-# Contributing to Link in Bio
+# Contributing to Bio Links
 
 ## Development Setup
 
@@ -43,7 +43,7 @@ npm run lint:css
 - **Escape on output**: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`
 - **Sanitize on input**: `sanitize_text_field()`, `sanitize_hex_color()`, `esc_url_raw()`
 - **No inline JS/CSS** — CSS custom properties are injected via `wp_add_inline_style()`
-- **Assets** — enqueued lazily, only when the Link in Bio page template is active
+- **Assets** — enqueued lazily, only when the Bio Links page template is active
 
 See `CLAUDE.md` for the full rules reference.
 

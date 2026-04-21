@@ -10,8 +10,8 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Class LIB_Frontend
  *
- * Serves the Link in Bio full-page template for whichever WordPress Page
- * the admin has designated in Settings → Link in Bio, loads frontend
+ * Serves the Bio Links full-page template for whichever WordPress Page
+ * the admin has designated in Settings → Bio Links, loads frontend
  * assets, and injects SEO / Open Graph meta tags via wp_head.
  */
 class LIB_Frontend {
@@ -52,7 +52,7 @@ class LIB_Frontend {
 
 	/**
 	 * Registers and enqueues frontend assets (stylesheet + inline CSS custom
-	 * properties) only on the designated Link in Bio page.
+	 * properties) only on the designated Bio Links page.
 	 *
 	 * @return void
 	 */
@@ -75,7 +75,7 @@ class LIB_Frontend {
 	}
 
 	/**
-	 * Outputs SEO and Open Graph meta tags in wp_head, only on the Link in Bio page.
+	 * Outputs SEO and Open Graph meta tags in wp_head, only on the Bio Links page.
 	 *
 	 * When Yoast SEO is active it already emits canonical, og:type, og:title,
 	 * og:url, and Twitter card tags (all corrected via the wpseo_* filters above).
@@ -242,7 +242,7 @@ class LIB_Frontend {
 	}
 
 	/**
-	 * Sets the browser <title> to the profile name on the Link in Bio page.
+	 * Sets the browser <title> to the profile name on the Bio Links page.
 	 *
 	 * @param array<string, string> $parts Title parts.
 	 * @return array<string, string>
@@ -261,9 +261,9 @@ class LIB_Frontend {
 	}
 
 	/**
-	 * Adds an "Edit Link in Bio" shortcut to the WordPress admin bar.
+	 * Adds an "Edit Bio Links" shortcut to the WordPress admin bar.
 	 *
-	 * Only shown when viewing the Link in Bio page and the current user has the
+	 * Only shown when viewing the Bio Links page and the current user has the
 	 * lib_manage_settings capability (administrators and editors).
 	 *
 	 * @param WP_Admin_Bar $wp_admin_bar Admin bar instance.
@@ -277,14 +277,14 @@ class LIB_Frontend {
 		$wp_admin_bar->add_node(
 			array(
 				'id'    => 'lib-settings',
-				'title' => __( 'Edit Link in Bio', 'link-in-bio' ),
+				'title' => __( 'Edit Bio Links', 'link-in-bio' ),
 				'href'  => admin_url( 'admin.php?page=link-in-bio' ),
 			)
 		);
 	}
 
 	/**
-	 * Checks whether the current request is for the designated Link in Bio page.
+	 * Checks whether the current request is for the designated Bio Links page.
 	 *
 	 * @return bool
 	 */
