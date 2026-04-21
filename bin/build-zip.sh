@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Builds link-in-bio.zip for WordPress upload.
-# Usage: npm run build:zip
+# Builds a versioned link-in-bio-{version}.zip for WordPress upload.
+# Usage: composer run package
 #
 # The zip contains a single top-level folder named "link-in-bio/" so that
 # WordPress installs it to wp-content/plugins/link-in-bio/.
@@ -9,7 +9,8 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-ZIP="$ROOT/link-in-bio.zip"
+VERSION=$(awk '/\* Version:/{print $NF; exit}' "$ROOT/link-in-bio.php")
+ZIP="$ROOT/link-in-bio-${VERSION}.zip"
 
 # Convert to Windows path for PowerShell
 WIN_ROOT="$(cygpath -w "$ROOT" 2>/dev/null || echo "$ROOT")"
@@ -26,7 +27,7 @@ powershell -NoProfile -Command "
   New-Item -ItemType Directory -Path \$plug | Out-Null
 
   # Individual root files
-  foreach (\$f in @('link-in-bio.php', 'uninstall.php', 'readme.txt')) {
+  foreach (\$f in @('link-in-bio.php', 'uninstall.php', 'readme.txt', 'LICENSE')) {
     Copy-Item (Join-Path \$src \$f) \$plug
   }
 
