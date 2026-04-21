@@ -9,7 +9,7 @@ License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://trumpkin.de/donate
 
-A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Assign the Link in Bio template to any Page — no shortcodes, no page builders.
+A link-in-bio page for WordPress — a self-hosted Linktree alternative. Assign the template to any Page. No shortcodes, no page builders.
 
 == Description ==
 
