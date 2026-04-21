@@ -161,6 +161,7 @@ PRs that introduce new options must:
    ```
 9. The `deploy.yml` GitHub Actions workflow runs automatically and deploys to WordPress.org SVN.
 10. Build the distributable ZIP for GitHub releases: `composer run package`
+    The output file is named `link-in-bio-{version}.zip` (e.g. `link-in-bio-1.0.0.zip`).
 
 ---
 
