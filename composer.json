@@ -33,7 +33,7 @@
     "test:unit": "phpunit --configuration phpunit.unit.xml",
     "test:coverage": "phpunit --configuration phpunit.xml.dist --coverage-text",
     "package": "php bin/build-zip.php",
-    "make:pot": "wp i18n make-pot . languages/link-in-bio.pot --slug=link-in-bio --domain=link-in-bio --exclude=vendor,node_modules,tests --package-name=\"Bio Links\"",
+    "make:pot": "wp i18n make-pot . languages/link-in-bio.pot --slug=link-in-bio --domain=link-in-bio --exclude=vendor,node_modules,tests --package-name=\"Simple Bio Links\"",
     "make:mo": "wp i18n make-mo languages/"
   },
   "config": {

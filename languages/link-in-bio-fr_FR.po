@@ -1,9 +1,9 @@
-# Translation of Bio Links in French (Français)
+# Translation of Simple Bio Links in French (Français)
 # Copyright (C) 2026 Stefan Wagner
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Bio Links 1.0.0-alpha.7\n"
+"Project-Id-Version: Simple Bio Links 1.0.0-alpha.7\n"
 "Report-Msgid-Bugs-To: https://github.com/habakuk007/Wordpress-LinkInBio-Template/issues\n"
 "POT-Creation-Date: 2026-04-16T10:14:36+00:00\n"
 "PO-Revision-Date: 2026-04-16T00:00:00+00:00\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: link-in-bio.php
 #: includes/class-lib-admin.php:47
 #: includes/class-lib-admin.php:152
-msgid "Bio Links"
+msgid "Simple Bio Links"
 msgstr ""
 
 #. Plugin URI of the plugin
@@ -30,8 +30,8 @@ msgstr ""
 
 #. Description of the plugin
 #: link-in-bio.php
-msgid "A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Configure your profile in the Bio Links admin menu, then assign the page template to any Page."
-msgstr "Une page link-in-bio pour WordPress — une alternative auto-hébergée à Linktree. Configurez votre profil dans le menu d'administration Bio Links, puis assignez le modèle de page à n'importe quelle page."
+msgid "A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Configure your profile in the Simple Bio Links admin menu, then assign the page template to any Page."
+msgstr "Une page link-in-bio pour WordPress — une alternative auto-hébergée à Linktree. Configurez votre profil dans le menu d'administration Simple Bio Links, puis assignez le modèle de page à n'importe quelle page."
 
 #. Author of the plugin
 #: link-in-bio.php
@@ -39,8 +39,8 @@ msgid "Stefan Wagner"
 msgstr ""
 
 #: includes/class-lib-admin.php:46
-msgid "Bio Links Settings"
-msgstr "Paramètres de Bio Links"
+msgid "Simple Bio Links Settings"
+msgstr "Paramètres de Simple Bio Links"
 
 #: includes/class-lib-admin.php:115
 msgid "Select Profile Image"
@@ -63,12 +63,12 @@ msgid "You do not have permission to access this page."
 msgstr "Vous n'avez pas la permission d'accéder à cette page."
 
 #: includes/class-lib-admin.php:157
-msgid "Create any WordPress Page, then select it below — the plugin will serve the Bio Links layout for that page automatically."
-msgstr "Créez n'importe quelle page WordPress, puis sélectionnez-la ci-dessous — le plugin affichera automatiquement la mise en page Bio Links pour cette page."
+msgid "Create any WordPress Page, then select it below — the plugin will serve the Simple Bio Links layout for that page automatically."
+msgstr "Créez n'importe quelle page WordPress, puis sélectionnez-la ci-dessous — le plugin affichera automatiquement la mise en page Simple Bio Links pour cette page."
 
 #: includes/class-lib-admin.php:165
-msgid "Bio Links Page"
-msgstr "Page Bio Links"
+msgid "Simple Bio Links Page"
+msgstr "Page Simple Bio Links"
 
 #: includes/class-lib-admin.php:169
 msgid "Page"
@@ -79,8 +79,8 @@ msgid "— Select a page —"
 msgstr "— Sélectionner une page —"
 
 #: includes/class-lib-admin.php:184
-msgid "The selected page will display the Bio Links profile layout, bypassing the active theme."
-msgstr "La page sélectionnée affichera la mise en page du profil Bio Links, en contournant le thème actif."
+msgid "The selected page will display the Simple Bio Links profile layout, bypassing the active theme."
+msgstr "La page sélectionnée affichera la mise en page du profil Simple Bio Links, en contournant le thème actif."
 
 #: includes/class-lib-admin.php:193
 #: templates/display.php:29
@@ -229,8 +229,8 @@ msgid "Save Settings"
 msgstr "Enregistrer les paramètres"
 
 #: includes/class-lib-frontend.php:280
-msgid "Edit Bio Links"
-msgstr "Modifier Bio Links"
+msgid "Edit Simple Bio Links"
+msgstr "Modifier Simple Bio Links"
 
 #: templates/display.php:24
 msgid "Skip to links"

@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Class LIB_Admin
  *
- * Manages the WordPress admin settings page under the Bio Links menu.
+ * Manages the WordPress admin settings page under the Simple Bio Links menu.
  * Uses the Settings API for saving; renders the form HTML directly for
  * maximum control over layout and the dynamic links repeater.
  */
@@ -43,8 +43,8 @@ class LIB_Admin {
 	 */
 	public function add_menu(): void {
 		add_menu_page(
-			__( 'Bio Links Settings', 'link-in-bio' ),
-			__( 'Bio Links', 'link-in-bio' ),
+			__( 'Simple Bio Links Settings', 'link-in-bio' ),
+			__( 'Simple Bio Links', 'link-in-bio' ),
 			'lib_manage_settings',
 			self::PAGE_SLUG,
 			array( $this, 'render_page' ),
@@ -149,12 +149,12 @@ class LIB_Admin {
 		$s = LIB_Settings::get();
 		?>
 		<div class="wrap lib-admin-wrap">
-			<h1><?php esc_html_e( 'Bio Links', 'link-in-bio' ); ?></h1>
+			<h1><?php esc_html_e( 'Simple Bio Links', 'link-in-bio' ); ?></h1>
 
 			<?php settings_errors( LIB_Settings::OPTION_SETTINGS ); ?>
 
 			<p class="lib-shortcode-tip">
-				<?php esc_html_e( 'Create any WordPress Page, then select it below — the plugin will serve the Bio Links layout for that page automatically.', 'link-in-bio' ); ?>
+				<?php esc_html_e( 'Create any WordPress Page, then select it below — the plugin will serve the Simple Bio Links layout for that page automatically.', 'link-in-bio' ); ?>
 			</p>
 
 			<form method="post" action="options.php" novalidate>
@@ -162,7 +162,7 @@ class LIB_Admin {
 
 				<!-- ── Page ─────────────────────────────────────────── -->
 				<div class="lib-section">
-					<h2 class="lib-section-title"><?php esc_html_e( 'Bio Links Page', 'link-in-bio' ); ?></h2>
+					<h2 class="lib-section-title"><?php esc_html_e( 'Simple Bio Links Page', 'link-in-bio' ); ?></h2>
 					<table class="form-table" role="presentation">
 						<tr>
 							<th scope="row">
@@ -181,7 +181,7 @@ class LIB_Admin {
 								);
 								?>
 								<p class="description">
-									<?php esc_html_e( 'The selected page will display the Bio Links profile layout, bypassing the active theme.', 'link-in-bio' ); ?>
+									<?php esc_html_e( 'The selected page will display the Simple Bio Links profile layout, bypassing the active theme.', 'link-in-bio' ); ?>
 								</p>
 							</td>
 						</tr>
@@ -509,7 +509,7 @@ class LIB_Admin {
 	}
 
 	/**
-	 * Purges the Bio Links page from all known caching layers when settings are saved.
+	 * Purges the Simple Bio Links page from all known caching layers when settings are saved.
 	 *
 	 * Fires on the update_option_lib_settings action so that changes to the profile,
 	 * links, colors, or designated page are visible immediately without a manual flush.

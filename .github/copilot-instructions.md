@@ -2,11 +2,11 @@
 
 ## Project Overview
 
-**Bio Links** is a WordPress plugin that provides a link-in-bio page — a self-hosted alternative to Linktree.
+**Simple Bio Links** is a WordPress plugin that provides a link-in-bio page — a self-hosted alternative to Linktree.
 Users configure a profile (name, bio, avatar), appearance (colors, gradients), and a list of
-links via the **Bio Links** menu in wp-admin (top-level menu, accessible to Administrators
+links via the **Simple Bio Links** menu in wp-admin (top-level menu, accessible to Administrators
 and Editors). The profile is displayed by creating a WordPress Page and assigning the
-**Bio Links** page template — no shortcodes, no page builders required.
+**Simple Bio Links** page template — no shortcodes, no page builders required.
 
 ## Instruction Files
 
@@ -54,7 +54,7 @@ tests/
 - **Escape on output**: Use `esc_html()`, `esc_attr()`, `esc_url()` everywhere.
 - **Sanitize on input**: Use `sanitize_text_field()`, `sanitize_hex_color()`, `esc_url_raw()`.
 - **No inline scripts/styles** except the CSS custom property block injected via `wp_add_inline_style()` in `LIB_Frontend`.
-- **Assets**: Register with `wp_register_*`, enqueue lazily in `maybe_enqueue_assets()` (only when the Bio Links page template is active).
+- **Assets**: Register with `wp_register_*`, enqueue lazily in `maybe_enqueue_assets()` (only when the Simple Bio Links page template is active).
 - **Cache**: Saving settings triggers `purge_page_cache()` in `LIB_Admin`, which clears WP object cache and known caching plugins (WP Super Cache, WP Rocket, W3 Total Cache, WP Fastest Cache, LiteSpeed Cache, Cache Enabler).
 - **Accessibility**: Skip link, semantic landmarks, WCAG 2.2 AA contrast, `prefers-reduced-motion`.
 

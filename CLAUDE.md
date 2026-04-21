@@ -1,11 +1,11 @@
-# Bio Links — Claude Instructions
+# Simple Bio Links — Claude Instructions
 
 ## What This Project Is
 
 A **WordPress plugin** that provides a link-in-bio page — a self-hosted alternative to Linktree.  
-Users go to **Bio Links** (top-level admin menu, position 81) to configure their profile, colors, and links.  
+Users go to **Simple Bio Links** (top-level admin menu, position 81) to configure their profile, colors, and links.  
 Both Administrators and Editors can access the settings page via the custom `lib_manage_settings` capability.  
-The result is displayed by creating a WordPress Page and selecting **Bio Links** from the Template dropdown.
+The result is displayed by creating a WordPress Page and selecting **Simple Bio Links** from the Template dropdown.
 
 ## File Map
 

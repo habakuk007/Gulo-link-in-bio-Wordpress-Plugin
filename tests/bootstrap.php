@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPUnit bootstrap for the Bio Links plugin.
+ * PHPUnit bootstrap for the Simple Bio Links plugin.
  *
  * Requires the WordPress test suite. Set the WP_TESTS_DIR environment
  * variable or the WP_TESTS_DIR constant to the path of the suite.
