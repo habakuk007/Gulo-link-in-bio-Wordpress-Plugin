@@ -36,21 +36,7 @@ class LIB_Plugin {
 
 	/** Constructor — registers hooks. */
 	private function __construct() {
-		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 		add_action( 'init', array( $this, 'init' ) );
-	}
-
-	/**
-	 * Loads the plugin text domain for i18n.
-	 *
-	 * @return void
-	 */
-	public function load_textdomain(): void {
-		load_plugin_textdomain(
-			'link-in-bio',
-			false,
-			dirname( LIB_PLUGIN_BASENAME ) . '/languages'
-		);
 	}
 
 	/**
