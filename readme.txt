@@ -117,6 +117,10 @@ On [GitHub Issues](https://github.com/habakuk007/Wordpress-LinkInBio-Template/is
 
 = 0.0.1 =
 * Initial WordPress.org submission release
+* Renamed plugin to "Simple Bio Links" — required by WordPress.org (name conflicts with existing plugins)
+* Changed text domain from `link-in-bio` to `simple-bio-links` to match the plugin slug
+* Renamed all language files accordingly (`simple-bio-links-*.po/mo/pot`)
+* Changed version format from `1.0.0-alpha.x` to numeric-only (`0.0.1`) as required by WordPress.org
 
 = 1.0.0-alpha.12 =
 * Renamed plugin from "Link in Bio" to "Simple Bio Links" — required by WordPress.org (name conflict with existing plugin)
