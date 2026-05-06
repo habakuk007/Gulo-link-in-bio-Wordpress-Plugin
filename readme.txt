@@ -48,7 +48,7 @@ The plugin serves a standalone HTML page (bypasses the active theme entirely), s
 
 = Manual installation =
 
-1. Download the ZIP from the [plugin page](https://wordpress.org/plugins/gulo-link-in-bio/).
+1. Download the ZIP from the [plugin page](https://wordpress.org/plugins/gulo-link-in-bio/) or [GitHub releases](https://github.com/habakuk007/Wordpress-LinkInBio-Template/releases).
 2. Go to **Plugins → Add New → Upload Plugin**.
 3. Upload the ZIP and click **Install Now**, then **Activate**.
 
@@ -103,7 +103,7 @@ Or use a plugin like [Loco Translate](https://wordpress.org/plugins/loco-transla
 
 = Where can I report a bug or request a feature? =
 
-On the [support forum](https://wordpress.org/support/plugin/gulo-link-in-bio/).
+On [GitHub Issues](https://github.com/habakuk007/Wordpress-LinkInBio-Template/issues).
 
 == Screenshots ==
 

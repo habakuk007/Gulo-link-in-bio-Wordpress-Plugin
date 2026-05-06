@@ -43,7 +43,6 @@ class GULO_Settings {
 			'seo_noindex'        => false,
 			'imprint_url'        => '',
 			'privacy_url'        => '',
-			'show_powered_by'    => false,
 		);
 	}
 
@@ -95,7 +94,6 @@ class GULO_Settings {
 
 		// Checkbox — absent when unchecked, so default is false.
 		$output['seo_noindex']     = ! empty( $input['seo_noindex'] );
-		$output['show_powered_by'] = ! empty( $input['show_powered_by'] );
 
 		$text_fields = array( 'profile_name', 'profile_bio', 'background_type', 'button_style' );
 		foreach ( $text_fields as $field ) {

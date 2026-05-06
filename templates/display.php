@@ -159,6 +159,7 @@ $gulo_container_class = 'glass' === $gulo_settings['button_style'] ? ' lib-btn-g
 			);
 			?>
 		</p>
+
 	</footer>
 
 </div>
