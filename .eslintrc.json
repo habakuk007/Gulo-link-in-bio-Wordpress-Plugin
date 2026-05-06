@@ -6,7 +6,7 @@
   },
   "globals": {
     "wp": "readonly",
-    "libAdmin": "readonly"
+    "guloAdmin": "readonly"
   },
   "rules": {
     "no-console": "warn",

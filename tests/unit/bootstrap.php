@@ -8,7 +8,7 @@
  */
 
 // Satisfy the ABSPATH guard in every plugin file.
-define( 'ABSPATH', '/' );
+define( 'ABSPATH', '/' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- WP core constant required by plugin guards.
 
 // Composer autoloader (PHPUnit, Brain\Monkey, polyfills).
 require dirname( __DIR__, 2 ) . '/vendor/autoload.php';

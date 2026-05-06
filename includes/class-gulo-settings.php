@@ -93,7 +93,7 @@ class GULO_Settings {
 		}
 
 		// Checkbox — absent when unchecked, so default is false.
-		$output['seo_noindex']     = ! empty( $input['seo_noindex'] );
+		$output['seo_noindex'] = ! empty( $input['seo_noindex'] );
 
 		$text_fields = array( 'profile_name', 'profile_bio', 'background_type', 'button_style' );
 		foreach ( $text_fields as $field ) {
