@@ -7,14 +7,14 @@
  */
 
 $root        = dirname( __DIR__ );
-$plugin_file = $root . '/link-in-bio.php';
+$plugin_file = $root . '/gulo-link-in-bio.php';
 
 // Extract version from plugin header.
 $content = file_get_contents( $plugin_file );
 preg_match( '/\* Version:\s+(\S+)/', $content, $matches );
 $version = $matches[1] ?? 'unknown';
 
-$zip_name = "link-in-bio-{$version}.zip";
+$zip_name = "gulo-link-in-bio-{$version}.zip";
 $zip_path = $root . DIRECTORY_SEPARATOR . $zip_name;
 
 if ( file_exists( $zip_path ) ) {
@@ -23,7 +23,7 @@ if ( file_exists( $zip_path ) ) {
 
 // git archive respects .gitattributes export-ignore rules.
 $cmd = sprintf(
-	'git archive --format=zip --prefix=link-in-bio/ HEAD -o %s',
+	'git archive --format=zip --prefix=gulo-link-in-bio/ HEAD -o %s',
 	escapeshellarg( $zip_path )
 );
 

@@ -1,4 +1,4 @@
-# Contributing to Simple Bio Links
+# Contributing to Gulo Link-in-Bio
 
 ## Development Setup
 
@@ -37,13 +37,13 @@ npm run lint:css
 
 ### Key conventions
 
-- **Prefix**: Classes `LIB_`, WordPress options `lib_`, JS globals `libAdmin.*`
-- **Text domain**: `simple-bio-links` in every i18n call
-- **Capability**: Use `lib_manage_settings` (not `manage_options`) for all permission checks
+- **Prefix**: Classes `GULO_`, WordPress options `gulo_`, JS globals `guloAdmin.*`
+- **Text domain**: `gulo-link-in-bio` in every i18n call
+- **Capability**: Use `gulo_manage_settings` (not `manage_options`) for all permission checks
 - **Escape on output**: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`
 - **Sanitize on input**: `sanitize_text_field()`, `sanitize_hex_color()`, `esc_url_raw()`
 - **No inline JS/CSS** — CSS custom properties are injected via `wp_add_inline_style()`
-- **Assets** — enqueued lazily, only when the Simple Bio Links page template is active
+- **Assets** — enqueued lazily, only when the Gulo Link-in-Bio page template is active
 
 See `CLAUDE.md` for the full rules reference.
 
@@ -89,7 +89,7 @@ Integration tests run automatically in CI on every push via the `phpunit` GitHub
 
 ## Translations
 
-Translatable strings use `esc_html__()`, `__()`, `esc_attr_e()`, etc. with the domain `simple-bio-links`.
+Translatable strings use `esc_html__()`, `__()`, `esc_attr_e()`, etc. with the domain `gulo-link-in-bio`.
 
 After adding or changing user-visible strings:
 
@@ -97,7 +97,7 @@ After adding or changing user-visible strings:
 # Re-extract strings
 composer run make:pot
 
-# Edit the relevant .po file (e.g. languages/simple-bio-links-de_DE.po) in Poedit or a text editor
+# Edit the relevant .po file (e.g. languages/gulo-link-in-bio-de_DE.po) in Poedit or a text editor
 
 # Recompile all .po → .mo
 composer run make:mo
@@ -136,7 +136,7 @@ docs: add translation workflow to README
 4. Link any related issue in the PR description.
 
 PRs that introduce new options must:
-- Add a sanitize callback in `LIB_Settings`
+- Add a sanitize callback in `GULO_Settings`
 - Add the key to the settings table in `README.md`
 - Update `CLAUDE.md` if the key is important for AI context
 
@@ -145,7 +145,7 @@ PRs that introduce new options must:
 ## Release Process
 
 1. Update the version string in **all three places**:
-   - `link-in-bio.php` — plugin header `Version:` and `LIB_VERSION` constant
+   - `gulo-link-in-bio.php` — plugin header `Version:` and `GULO_VERSION` constant
    - `package.json` — `"version"` field
    - `readme.txt` — `Stable tag:` header (use a plain version number, e.g. `1.0.0`)
 2. Add a `== Changelog ==` entry in `readme.txt`.
@@ -161,7 +161,7 @@ PRs that introduce new options must:
    ```
 9. The `deploy.yml` GitHub Actions workflow runs automatically and deploys to WordPress.org SVN.
 10. Build the distributable ZIP for GitHub releases: `composer run package`
-    The output file is named `link-in-bio-{version}.zip` (e.g. `link-in-bio-1.0.0.zip`).
+    The output file is named `gulo-link-in-bio-{version}.zip` (e.g. `link-in-bio-1.0.0.zip`).
 
 ---
 
@@ -187,13 +187,13 @@ Before the automated deploy can work, the plugin must be manually submitted for 
 ### Pre-submission checklist
 
 - [ ] `readme.txt` is valid (check at [wordpress.org/plugins/developers/readme-validator/](https://wordpress.org/plugins/developers/readme-validator/))
-- [ ] `Stable tag` in `readme.txt` matches the version in `link-in-bio.php`
-- [ ] All strings use `simple-bio-links` text domain
+- [ ] `Stable tag` in `readme.txt` matches the version in `gulo-link-in-bio.php`
+- [ ] All strings use `gulo-link-in-bio` text domain
 - [ ] No calls to external services without user consent
 - [ ] No obfuscated code, no minified code without source
 - [ ] Plugin uses WordPress's bundled libraries (jQuery, etc.) — does not bundle its own
 - [ ] All linters pass: `composer run lint:php`, `npm run lint:js`, `npm run lint:css`
-- [ ] Plugin deactivation removes the custom capability cleanly (via `LIB_Plugin::deactivate()`)
+- [ ] Plugin deactivation removes the custom capability cleanly (via `GULO_Plugin::deactivate()`)
 - [ ] Plugin deletion removes all options and capabilities cleanly (via `uninstall.php`)
 - [ ] Screenshots and banner artwork are in `.wordpress-org/`
 - [ ] `readme.txt` `Screenshots` section matches the number of screenshot files

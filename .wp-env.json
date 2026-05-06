@@ -3,7 +3,7 @@
   "env": {
     "tests": {
       "mappings": {
-        "wp-content/plugins/link-in-bio": "."
+        "wp-content/plugins/gulo-link-in-bio": "."
       }
     }
   }

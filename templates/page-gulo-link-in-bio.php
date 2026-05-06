@@ -1,17 +1,17 @@
 <?php
 /**
- * Simple Bio Links — full-page site template.
+ * Gulo Link-in-Bio — full-page site template.
  *
  * Selected from the Page Attributes panel in the Block Editor or Classic Editor.
- * Bypasses the active theme entirely and renders the Simple Bio Links profile page.
+ * Bypasses the active theme entirely and renders the Gulo Link-in-Bio profile page.
  *
- * @package LinkInBio
+ * @package GuloLinkInBio
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$lib_settings = LIB_Settings::get();
-$lib_links    = LIB_Settings::get_links();
+$gulo_settings = GULO_Settings::get();
+$gulo_links    = GULO_Settings::get_links();
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>

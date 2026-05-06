@@ -1,31 +1,31 @@
-# Simple Bio Links — Claude Instructions
+# Gulo Link-in-Bio — Claude Instructions
 
 ## What This Project Is
 
 A **WordPress plugin** that provides a link-in-bio page — a self-hosted alternative to Linktree.  
-Users go to **Simple Bio Links** (top-level admin menu, position 81) to configure their profile, colors, and links.  
-Both Administrators and Editors can access the settings page via the custom `lib_manage_settings` capability.  
-The result is displayed by creating a WordPress Page and selecting **Simple Bio Links** from the Template dropdown.
+Users go to **Gulo Link-in-Bio** (top-level admin menu, position 81) to configure their profile, colors, and links.  
+Both Administrators and Editors can access the settings page via the custom `gulo_manage_settings` capability.  
+The result is displayed by creating a WordPress Page and selecting **Gulo Link-in-Bio** from the Template dropdown.
 
 ## File Map
 
 ```
-link-in-bio.php                   Plugin header + bootstrap (constants, requires, hooks)
+gulo-link-in-bio.php                   Plugin header + bootstrap (constants, requires, hooks)
 uninstall.php                     Runs on plugin deletion: removes options + capability
 readme.txt                        WordPress.org directory listing (required for submission)
-includes/class-lib-plugin.php     Singleton boot class; activate/deactivate statics
-includes/class-lib-settings.php   Settings helper: get(), get_links(), sanitize callbacks
-includes/class-lib-admin.php      Admin menu, Settings API registration, page render
-includes/class-lib-frontend.php   Page template registration + lazy asset enqueueing
-templates/page-link-in-bio.php    Full HTML page (DOCTYPE → wp_footer); sets $lib_settings/$lib_links
+includes/class-gulo-plugin.php     Singleton boot class; activate/deactivate statics
+includes/class-gulo-settings.php   Settings helper: get(), get_links(), sanitize callbacks
+includes/class-gulo-admin.php      Admin menu, Settings API registration, page render
+includes/class-gulo-frontend.php   Page template registration + lazy asset enqueueing
+templates/page-gulo-gulo-link-in-bio.php    Full HTML page (DOCTYPE → wp_footer); sets $gulo_settings/$gulo_links
 templates/display.php             Accessible link-in-bio HTML partial (profile + nav + footer)
 assets/css/frontend.css           Link-in-bio CSS (custom properties for theming)
 assets/css/admin.css              Admin settings page styles
 assets/js/admin.js                Links repeater, WP media uploader, color pickers
 tests/bootstrap.php               PHPUnit bootstrap for integration tests (needs WP env)
 tests/unit/bootstrap.php          PHPUnit bootstrap for unit tests (Brain\Monkey, no WP needed)
-tests/unit/Test_LIB_Settings.php  Unit tests for LIB_Settings (32 tests, Brain\Monkey)
-tests/integration/class-test-lib-plugin.php  Integration tests (WP_UnitTestCase)
+tests/unit/Test_GULO_Settings.php  Unit tests for GULO_Settings (32 tests, Brain\Monkey)
+tests/integration/class-test-gulo-plugin.php  Integration tests (WP_UnitTestCase)
 phpcs.xml                         PHPCS / WPCS configuration
 phpunit.xml.dist                  PHPUnit config — integration tests (tests/integration/)
 phpunit.unit.xml                  PHPUnit config — unit tests (tests/unit/)
@@ -45,25 +45,25 @@ package.json                      JS dev dependencies (ESLint, Stylelint)
 
 | Option key     | Type          | Description                              |
 |----------------|---------------|------------------------------------------|
-| `lib_settings` | `array`       | Profile, colors, background              |
-| `lib_links`    | `string` JSON | Array of `{title, url, active}` objects  |
+| `gulo_settings` | `array`       | Profile, colors, background              |
+| `gulo_links`    | `string` JSON | Array of `{title, url, active}` objects  |
 
-Settings keys in `lib_settings`:
+Settings keys in `gulo_settings`:
 `profile_name`, `profile_bio`, `profile_image`, `background_type`, `background_color`,
 `gradient_start`, `gradient_end`, `button_style`, `button_bg_color`, `button_text_color`,
 `profile_text_color`, `page_id`, `seo_noindex`
 
 ## Coding Rules
 
-- **Prefix**: classes `LIB_`, options `lib_`, JS globals `libAdmin.*`
-- **Text domain**: `simple-bio-links` in every i18n call
-- **Capability**: `lib_manage_settings` for all permission checks in this plugin — never `manage_options`
+- **Prefix**: classes `GULO_`, options `gulo_`, JS globals `guloAdmin.*`
+- **Text domain**: `gulo-link-in-bio` in every i18n call
+- **Capability**: `gulo_manage_settings` for all permission checks in this plugin — never `manage_options`
 - **Escape outputs**: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`
 - **Sanitize inputs**: `sanitize_text_field()`, `sanitize_hex_color()`, `esc_url_raw()`
-- **No inline JS/CSS** — CSS custom properties are injected via `wp_add_inline_style()` in `LIB_Frontend`
+- **No inline JS/CSS** — CSS custom properties are injected via `wp_add_inline_style()` in `GULO_Frontend`
 - **Nonce + capability** for any write action (Settings API handles this via `settings_fields()`)
 - **Assets** — registered and enqueued lazily in `maybe_enqueue_assets()` (only on the template page)
-- **Cache** — `LIB_Admin::purge_page_cache()` is called automatically on `update_option_lib_settings`; it clears WP object cache + 6 known caching plugins
+- **Cache** — `GULO_Admin::purge_page_cache()` is called automatically on `update_option_gulo_settings`; it clears WP object cache + 6 known caching plugins
 - **PHP 7.4+** — avoid features that require PHP 8.x unless explicitly asked
 
 ## Accessibility Requirements
@@ -111,11 +111,11 @@ composer run make:mo
 
 ## What NOT to Change Without Asking
 
-- The option names `lib_settings` / `lib_links` — changing them loses saved data
-- `LIB_Frontend::TEMPLATE_KEY = 'link-in-bio-template'` — changing it breaks pages already assigned the template
-- The prefix `LIB_` / `lib_` — collision-avoidance contract
-- The `sanitize_*` callbacks in `LIB_Settings` — they protect data integrity
-- The capability slug `lib_manage_settings` — it is stored in the WordPress roles table; renaming it silently locks out Editors
+- The option names `gulo_settings` / `gulo_links` — changing them loses saved data
+- `GULO_Frontend::TEMPLATE_KEY = 'gulo-gulo-link-in-bio-template'` — changing it breaks pages already assigned the template
+- The prefix `GULO_` / `gulo_` — collision-avoidance contract
+- The `sanitize_*` callbacks in `GULO_Settings` — they protect data integrity
+- The capability slug `gulo_manage_settings` — it is stored in the WordPress roles table; renaming it silently locks out Editors
 
 ## Instruction Files Referenced
 

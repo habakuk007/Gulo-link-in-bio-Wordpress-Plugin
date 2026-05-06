@@ -1,7 +1,7 @@
-# Simple Bio Links — WordPress Plugin
+# Gulo Link-in-Bio — WordPress Plugin
 
 A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Create a dedicated page,
-select the **Simple Bio Links** page template, and your profile page is live — no shortcodes, no page builders.
+select the **Gulo Link-in-Bio** page template, and your profile page is live — no shortcodes, no page builders.
 
 ---
 
@@ -27,7 +27,7 @@ select the **Simple Bio Links** page template, and your profile page is live —
    git clone https://github.com/habakuk007/Wordpress-LinkInBio-Template.git link-in-bio
    ```
 
-2. In WordPress admin, go to **Plugins → Installed Plugins** and activate **Simple Bio Links**.
+2. In WordPress admin, go to **Plugins → Installed Plugins** and activate **Gulo Link-in-Bio**.
 
 ### As a ZIP
 
@@ -39,7 +39,7 @@ select the **Simple Bio Links** page template, and your profile page is live —
 
 ## Configuration
 
-1. Go to **Simple Bio Links** in the WordPress admin menu (top-level item, below Settings).
+1. Go to **Gulo Link-in-Bio** in the WordPress admin menu (top-level item, below Settings).
 2. Fill in your **Profile** details (name, bio, avatar image).
 3. Set your **Appearance** (background gradient or solid color, button and text colors).
 4. Add your **Links** — title, URL, and active toggle. Drag rows to reorder.
@@ -51,7 +51,7 @@ select the **Simple Bio Links** page template, and your profile page is live —
 
 1. Go to **Pages → Add New** and give the page a title (e.g. "Links").
 2. In the **Page Attributes** panel (classic editor) or the **Template** dropdown in the sidebar
-   (block editor), select **Simple Bio Links**.
+   (block editor), select **Gulo Link-in-Bio**.
 3. Publish the page.
 
 The plugin serves a fully self-contained HTML page that bypasses your active theme entirely,
@@ -61,7 +61,7 @@ so your link-in-bio page looks the same regardless of which theme is installed.
 
 ## Access Control
 
-The plugin registers a custom WordPress capability: `lib_manage_settings`.
+The plugin registers a custom WordPress capability: `gulo_manage_settings`.
 
 | Role | Access |
 |------|--------|
@@ -72,8 +72,8 @@ The plugin registers a custom WordPress capability: `lib_manage_settings`.
 The capability is granted automatically when the plugin is activated. It persists in the
 WordPress roles table — removing it requires deactivating the plugin (which removes it cleanly).
 
-When an Administrator or Editor views the Simple Bio Links page on the frontend, an
-**Edit Simple Bio Links** shortcut appears in the WordPress admin bar.
+When an Administrator or Editor views the Gulo Link-in-Bio page on the frontend, an
+**Edit Gulo Link-in-Bio** shortcut appears in the WordPress admin bar.
 
 ---
 
@@ -83,13 +83,13 @@ Settings and links are stored as WordPress options and can be set via `update_op
 
 ```php
 // Override settings programmatically
-update_option( 'lib_settings', array_merge(
-    get_option( 'lib_settings', array() ),
+update_option( 'gulo_settings', array_merge(
+    get_option( 'gulo_settings', array() ),
     array( 'profile_name' => 'My Brand' )
 ) );
 ```
 
-### Available settings keys (`lib_settings`)
+### Available settings keys (`gulo_settings`)
 
 | Key | Type | Description |
 |-----|------|-------------|
@@ -107,7 +107,7 @@ update_option( 'lib_settings', array_merge(
 | `page_id` | int | WordPress page ID that shows the template |
 | `seo_noindex` | `1` \| `''` | Whether to add `noindex` to the page |
 
-### Links option (`lib_links`)
+### Links option (`gulo_links`)
 
 Stored as a JSON string. Each item: `{"title": "...", "url": "...", "active": true}`.
 
@@ -119,7 +119,7 @@ Stored as a JSON string. Each item: `{"title": "...", "url": "...", "active": tr
 
 | Hook | When | Use |
 |------|------|-----|
-| `update_option_lib_settings` | After settings save | Extend cache purging |
+| `update_option_gulo_settings` | After settings save | Extend cache purging |
 
 ### Filters (Yoast SEO integration)
 
@@ -149,7 +149,7 @@ emitting competing HTML tags:
 ```bash
 # Clone
 git clone https://github.com/habakuk007/Wordpress-LinkInBio-Template.git
-cd wordpress-link-in-bio
+cd gulo-link-in-bio
 
 # PHP dependencies (WPCS, PHPUnit, etc.)
 composer install
@@ -208,12 +208,12 @@ composer run test
 ### Translations
 
 The plugin ships with German (`de_DE`), French (`fr_FR`), Spanish (`es_ES`), and Ukrainian (`uk`)
-translations. All strings are wrapped in WordPress i18n functions with the text domain `simple-bio-links`.
+translations. All strings are wrapped in WordPress i18n functions with the text domain `gulo-link-in-bio`.
 
 To add or update translations:
 
 ```bash
-# 1. Re-extract strings from source → languages/simple-bio-links.pot
+# 1. Re-extract strings from source → languages/gulo-link-in-bio.pot
 composer run make:pot
 
 # 2. Edit the relevant .po file (e.g. in Poedit or a text editor)
@@ -230,25 +230,25 @@ Both commands require [WP-CLI](https://wp-cli.org/) to be available as `wp` in `
 
 ```text
 link-in-bio/
-├── link-in-bio.php               ← Plugin entry point
+├── gulo-link-in-bio.php               ← Plugin entry point
 ├── uninstall.php                 ← Removes options and capability on plugin deletion
 ├── readme.txt                    ← WordPress.org directory listing
 ├── includes/
-│   ├── class-lib-plugin.php      ← Bootstrap, lifecycle, capability grants
-│   ├── class-lib-settings.php    ← Options helper & sanitizers
-│   ├── class-lib-admin.php       ← Admin menu, settings page, cache purge
-│   └── class-lib-frontend.php    ← Page template, assets, SEO meta, admin bar
+│   ├── class-gulo-plugin.php      ← Bootstrap, lifecycle, capability grants
+│   ├── class-gulo-settings.php    ← Options helper & sanitizers
+│   ├── class-gulo-admin.php       ← Admin menu, settings page, cache purge
+│   └── class-gulo-frontend.php    ← Page template, assets, SEO meta, admin bar
 ├── templates/
-│   ├── page-link-in-bio.php      ← Full HTML page (DOCTYPE → wp_footer)
+│   ├── page-gulo-gulo-link-in-bio.php      ← Full HTML page (DOCTYPE → wp_footer)
 │   └── display.php               ← Profile + links + footer partial
 ├── assets/
 │   ├── css/frontend.css          ← Frontend styles
 │   ├── css/admin.css             ← Admin styles
 │   └── js/admin.js               ← Admin JS (links repeater, media, colors)
 ├── languages/
-│   ├── simple-bio-links.pot           ← Translation template
-│   ├── simple-bio-links-de_DE.po      ← German (source)
-│   ├── simple-bio-links-de_DE.mo      ← German (compiled)
+│   ├── gulo-link-in-bio.pot           ← Translation template
+│   ├── gulo-link-in-bio-de_DE.po      ← German (source)
+│   ├── gulo-link-in-bio-de_DE.mo      ← German (compiled)
 │   ├── link-in-bio-fr_FR.po      ← French (source)
 │   ├── link-in-bio-fr_FR.mo      ← French (compiled)
 │   ├── link-in-bio-es_ES.po      ← Spanish (source)
@@ -259,9 +259,9 @@ link-in-bio/
 │   ├── bootstrap.php                 ← Integration test bootstrap (WP env)
 │   ├── unit/
 │   │   ├── bootstrap.php             ← Unit test bootstrap (Brain\Monkey)
-│   │   └── Test_LIB_Settings.php     ← Unit tests for LIB_Settings
+│   │   └── Test_GULO_Settings.php     ← Unit tests for GULO_Settings
 │   └── integration/
-│       └── class-test-lib-plugin.php ← Integration tests (WP_UnitTestCase)
+│       └── class-test-gulo-plugin.php ← Integration tests (WP_UnitTestCase)
 ├── .github/
 │   ├── copilot-instructions.md
 │   ├── instructions/             ← Copilot domain rules (WP, CSS, a11y)
@@ -284,28 +284,28 @@ link-in-bio/
 
 ## Troubleshooting
 
-**The Simple Bio Links page shows the theme instead of the plugin layout.**
-Go to **Simple Bio Links** in wp-admin, scroll to the **Simple Bio Links Page** section, and select the
+**The Gulo Link-in-Bio page shows the theme instead of the plugin layout.**
+Go to **Gulo Link-in-Bio** in wp-admin, scroll to the **Gulo Link-in-Bio Page** section, and select the
 correct page. Alternatively confirm that the page's Template (Page Attributes) is set to
-**Simple Bio Links** in the block editor.
+**Gulo Link-in-Bio** in the block editor.
 
 **Translations are not loading.**
-Check that MO files exist in `languages/` (`simple-bio-links-{locale}.mo`). If you added or changed
+Check that MO files exist in `languages/` (`gulo-link-in-bio-{locale}.mo`). If you added or changed
 PO files, run `composer run make:mo` to recompile them. Ensure the WordPress site language
 matches the locale (e.g., `de_DE`).
 
 **The settings page is not visible for an Editor.**
-The `lib_manage_settings` capability must be present in the `editor` role. Deactivate and
+The `gulo_manage_settings` capability must be present in the `editor` role. Deactivate and
 reactivate the plugin to re-grant it. Verify with:
-`get_role('editor')->has_cap('lib_manage_settings')` in a PHP snippet.
+`get_role('editor')->has_cap('gulo_manage_settings')` in a PHP snippet.
 
 **Changes to settings are not reflected on the frontend.**
 A caching plugin may be serving a stale page. Saving settings normally triggers automatic cache
 purging for WP Super Cache, WP Rocket, W3 Total Cache, WP Fastest Cache, LiteSpeed Cache, and
 Cache Enabler. If your caching plugin is not listed, purge it manually or hook into
-`update_option_lib_settings`.
+`update_option_gulo_settings`.
 
-**Yoast SEO shows wrong title or OG tags for the Simple Bio Links page.**
+**Yoast SEO shows wrong title or OG tags for the Gulo Link-in-Bio page.**
 Ensure you are running version 1.0.0-alpha.7 or later. The plugin hooks into Yoast's own filters
 (`wpseo_title`, `wpseo_opengraph_type`, `wpseo_opengraph_title`, `wpseo_robots`) to avoid
 duplicate meta tags.

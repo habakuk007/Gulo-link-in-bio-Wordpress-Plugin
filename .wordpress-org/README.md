@@ -53,7 +53,7 @@ The banner appears at the top of the plugin's directory page.
 - Max file size: 4 MB per banner
 - Format: PNG (recommended for clean edges) or JPG
 - Background: use the plugin's gradient `#667eea` → `#764ba2` (top-left to bottom-right)
-- Include the plugin name "Simple Bio Links" in a clean sans-serif font
+- Include the plugin name "Gulo Link-in-Bio" in a clean sans-serif font
 - White or light text for contrast
 - Optionally show a stylized screenshot of the frontend profile page on the right side
 - Leave a safe zone of ~40 px on all edges for responsive cropping
@@ -62,7 +62,7 @@ The banner appears at the top of the plugin's directory page.
 
 ```
 Left side:
-  - Plugin name: "Simple Bio Links" (large, white, bold)
+  - Plugin name: "Gulo Link-in-Bio" (large, white, bold)
   - Tagline: "Your Linktree — inside WordPress." (smaller, white)
 
 Right side:

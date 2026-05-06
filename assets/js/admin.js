@@ -1,5 +1,5 @@
 /**
- * Link in Bio — Admin JavaScript
+ * Gulo Link-in-Bio — Admin JavaScript
  *
  * Manages:
  *  - Dynamic links repeater (add / remove / reorder via sortable)
@@ -61,8 +61,8 @@
 		}
 
 		mediaFrame = wp.media( {
-			title: libAdmin.mediaTitle,
-			button: { text: libAdmin.mediaButton },
+			title: guloAdmin.mediaTitle,
+			button: { text: guloAdmin.mediaButton },
 			multiple: false,
 			library: { type: 'image' },
 		} );
@@ -154,8 +154,8 @@
 
 	// ── Render initial links ────────────────────────────────────────
 
-	if ( libAdmin.links && libAdmin.links.length ) {
-		$.each( libAdmin.links, function( i, link ) {
+	if ( guloAdmin.links && guloAdmin.links.length ) {
+		$.each( guloAdmin.links, function( i, link ) {
 			$linksList.append( buildLinkRow( link.title, link.url, link.active ) );
 		} );
 	}

@@ -2,19 +2,19 @@
 /**
  * Frontend — page template serving, asset enqueueing, and SEO meta output.
  *
- * @package LinkInBio
+ * @package GuloLinkInBio
  */
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class LIB_Frontend
+ * Class GULO_Frontend
  *
- * Serves the Simple Bio Links full-page template for whichever WordPress Page
- * the admin has designated in Settings → Simple Bio Links, loads frontend
+ * Serves the Gulo Link-in-Bio full-page template for whichever WordPress Page
+ * the admin has designated in Settings → Gulo Link-in-Bio, loads frontend
  * assets, and injects SEO / Open Graph meta tags via wp_head.
  */
-class LIB_Frontend {
+class GULO_Frontend {
 
 	/** Constructor — registers hooks. */
 	public function __construct() {
@@ -45,14 +45,14 @@ class LIB_Frontend {
 	 */
 	public function load_template( string $template ): string {
 		if ( $this->is_lib_page() ) {
-			return LIB_PLUGIN_DIR . 'templates/page-link-in-bio.php';
+			return GULO_PLUGIN_DIR . 'templates/page-gulo-link-in-bio.php';
 		}
 		return $template;
 	}
 
 	/**
 	 * Registers and enqueues frontend assets (stylesheet + inline CSS custom
-	 * properties) only on the designated Simple Bio Links page.
+	 * properties) only on the designated Gulo Link-in-Bio page.
 	 *
 	 * @return void
 	 */
@@ -62,20 +62,20 @@ class LIB_Frontend {
 		}
 
 		wp_enqueue_style(
-			'lib-frontend',
-			LIB_PLUGIN_URL . 'assets/css/frontend.css',
+			'gulo-frontend',
+			GULO_PLUGIN_URL . 'assets/css/frontend.css',
 			array(),
-			LIB_VERSION
+			GULO_VERSION
 		);
 
 		wp_add_inline_style(
-			'lib-frontend',
-			$this->build_custom_css( LIB_Settings::get() )
+			'gulo-frontend',
+			$this->build_custom_css( GULO_Settings::get() )
 		);
 	}
 
 	/**
-	 * Outputs SEO and Open Graph meta tags in wp_head, only on the Simple Bio Links page.
+	 * Outputs SEO and Open Graph meta tags in wp_head, only on the Gulo Link-in-Bio page.
 	 *
 	 * When Yoast SEO is active it already emits canonical, og:type, og:title,
 	 * og:url, and Twitter card tags (all corrected via the wpseo_* filters above).
@@ -89,7 +89,7 @@ class LIB_Frontend {
 			return;
 		}
 
-		$s            = LIB_Settings::get();
+		$s            = GULO_Settings::get();
 		$page_url     = get_permalink( (int) $s['page_id'] );
 		$yoast_active = defined( 'WPSEO_VERSION' );
 
@@ -187,7 +187,7 @@ class LIB_Frontend {
 			return $title;
 		}
 
-		$name = LIB_Settings::get( 'profile_name' );
+		$name = GULO_Settings::get( 'profile_name' );
 
 		if ( ! $name ) {
 			return $title;
@@ -217,7 +217,7 @@ class LIB_Frontend {
 			return $title;
 		}
 
-		$name = LIB_Settings::get( 'profile_name' );
+		$name = GULO_Settings::get( 'profile_name' );
 
 		return $name ? $name : $title;
 	}
@@ -229,7 +229,7 @@ class LIB_Frontend {
 	 * @return string
 	 */
 	public function filter_yoast_robots( string $robots ): string {
-		if ( ! $this->is_lib_page() || empty( LIB_Settings::get( 'seo_noindex' ) ) ) {
+		if ( ! $this->is_lib_page() || empty( GULO_Settings::get( 'seo_noindex' ) ) ) {
 			return $robots;
 		}
 
@@ -242,7 +242,7 @@ class LIB_Frontend {
 	}
 
 	/**
-	 * Sets the browser <title> to the profile name on the Simple Bio Links page.
+	 * Sets the browser <title> to the profile name on the Gulo Link-in-Bio page.
 	 *
 	 * @param array<string, string> $parts Title parts.
 	 * @return array<string, string>
@@ -252,7 +252,7 @@ class LIB_Frontend {
 			return $parts;
 		}
 
-		$name = LIB_Settings::get( 'profile_name' );
+		$name = GULO_Settings::get( 'profile_name' );
 		if ( $name ) {
 			$parts['title'] = $name;
 		}
@@ -261,35 +261,35 @@ class LIB_Frontend {
 	}
 
 	/**
-	 * Adds an "Edit Simple Bio Links" shortcut to the WordPress admin bar.
+	 * Adds an "Edit Gulo Link-in-Bio" shortcut to the WordPress admin bar.
 	 *
-	 * Only shown when viewing the Simple Bio Links page and the current user has the
-	 * lib_manage_settings capability (administrators and editors).
+	 * Only shown when viewing the Gulo Link-in-Bio page and the current user has the
+	 * gulo_manage_settings capability (administrators and editors).
 	 *
 	 * @param WP_Admin_Bar $wp_admin_bar Admin bar instance.
 	 * @return void
 	 */
 	public function add_admin_bar_node( WP_Admin_Bar $wp_admin_bar ): void {
-		if ( ! $this->is_lib_page() || ! current_user_can( 'lib_manage_settings' ) ) {
+		if ( ! $this->is_lib_page() || ! current_user_can( 'gulo_manage_settings' ) ) {
 			return;
 		}
 
 		$wp_admin_bar->add_node(
 			array(
 				'id'    => 'lib-settings',
-				'title' => __( 'Edit Simple Bio Links', 'simple-bio-links' ),
-				'href'  => admin_url( 'admin.php?page=link-in-bio' ),
+				'title' => __( 'Edit Gulo Link-in-Bio', 'gulo-link-in-bio' ),
+				'href'  => admin_url( 'admin.php?page=gulo-link-in-bio' ),
 			)
 		);
 	}
 
 	/**
-	 * Checks whether the current request is for the designated Simple Bio Links page.
+	 * Checks whether the current request is for the designated Gulo Link-in-Bio page.
 	 *
 	 * @return bool
 	 */
 	private function is_lib_page(): bool {
-		$page_id = (int) LIB_Settings::get( 'page_id' );
+		$page_id = (int) GULO_Settings::get( 'page_id' );
 		return $page_id > 0 && is_page( $page_id );
 	}
 

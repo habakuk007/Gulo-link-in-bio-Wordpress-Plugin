@@ -4,24 +4,24 @@
  *
  * Run via CI (bin/install-wp-tests.sh) or locally with wp-env + Docker.
  *
- * @package LinkInBio
+ * @package GuloLinkInBio
  */
 
 /**
- * Class Test_LIB_Plugin_Integration
+ * Class Test_GULO_Plugin_Integration
  */
-final class Test_LIB_Plugin_Integration extends WP_UnitTestCase {
+final class Test_GULO_Plugin_Integration extends WP_UnitTestCase {
 
-	public function test_lib_settings_class_is_loaded(): void {
-		$this->assertTrue( class_exists( 'LIB_Settings' ) );
+	public function test_gulo_settings_class_is_loaded(): void {
+		$this->assertTrue( class_exists( 'GULO_Settings' ) );
 	}
 
-	public function test_lib_plugin_class_is_loaded(): void {
-		$this->assertTrue( class_exists( 'LIB_Plugin' ) );
+	public function test_gulo_plugin_class_is_loaded(): void {
+		$this->assertTrue( class_exists( 'GULO_Plugin' ) );
 	}
 
 	public function test_get_defaults_returns_expected_structure(): void {
-		$defaults = LIB_Settings::get_defaults();
+		$defaults = GULO_Settings::get_defaults();
 
 		$this->assertIsArray( $defaults );
 		$this->assertSame( 0, $defaults['page_id'] );
@@ -38,7 +38,7 @@ final class Test_LIB_Plugin_Integration extends WP_UnitTestCase {
 			'button_bg_color' => '#ff0000',
 		);
 
-		$result = LIB_Settings::sanitize_settings( $input );
+		$result = GULO_Settings::sanitize_settings( $input );
 
 		$this->assertSame( 10, $result['page_id'] );
 		$this->assertSame( 'Test Name', $result['profile_name'] );
@@ -47,13 +47,13 @@ final class Test_LIB_Plugin_Integration extends WP_UnitTestCase {
 	}
 
 	public function test_sanitize_settings_rejects_invalid_hex_color(): void {
-		$result = LIB_Settings::sanitize_settings( array( 'button_bg_color' => 'not-a-color' ) );
+		$result = GULO_Settings::sanitize_settings( array( 'button_bg_color' => 'not-a-color' ) );
 
 		$this->assertArrayNotHasKey( 'button_bg_color', $result );
 	}
 
 	public function test_sanitize_settings_seo_noindex_false_when_absent(): void {
-		$result = LIB_Settings::sanitize_settings( array( 'profile_name' => 'Test' ) );
+		$result = GULO_Settings::sanitize_settings( array( 'profile_name' => 'Test' ) );
 
 		$this->assertFalse( $result['seo_noindex'] );
 	}
@@ -66,7 +66,7 @@ final class Test_LIB_Plugin_Integration extends WP_UnitTestCase {
 			)
 		);
 
-		$result  = LIB_Settings::sanitize_links( $input );
+		$result  = GULO_Settings::sanitize_links( $input );
 		$decoded = json_decode( $result, true );
 
 		$this->assertCount( 1, $decoded );
@@ -76,7 +76,7 @@ final class Test_LIB_Plugin_Integration extends WP_UnitTestCase {
 	}
 
 	public function test_sanitize_links_returns_empty_for_invalid_json(): void {
-		$result  = LIB_Settings::sanitize_links( 'not-valid-json' );
+		$result  = GULO_Settings::sanitize_links( 'not-valid-json' );
 		$decoded = json_decode( $result, true );
 
 		$this->assertSame( array(), $decoded );

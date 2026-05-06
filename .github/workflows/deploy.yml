@@ -30,7 +30,7 @@ jobs:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
 
           # WordPress.org plugin slug — must match the slug approved by the review team.
-          SLUG: link-in-bio
+          SLUG: gulo-link-in-bio
 
           # Directory containing plugin artwork (banner, icon, screenshots).
           # These are copied to the SVN /assets/ folder, NOT included in the plugin ZIP.

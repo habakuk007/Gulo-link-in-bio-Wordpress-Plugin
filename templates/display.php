@@ -2,42 +2,42 @@
 /**
  * Frontend display partial — profile, links, and footer.
  *
- * Included from templates/page-link-in-bio.php, which sets:
- *   $lib_settings   array   Plugin settings (profile, colors, etc.)
- *   $lib_links      array   All link items [{title, url, active}]
+ * Included from templates/page-gulo-link-in-bio.php, which sets:
+ *   $gulo_settings   array   Plugin settings (profile, colors, etc.)
+ *   $gulo_links      array   All link items [{title, url, active}]
  *
- * @package LinkInBio
+ * @package GuloLinkInBio
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$lib_active_links = array_filter( $lib_links, static fn( array $lib_link ) => ! empty( $lib_link['active'] ) );
+$gulo_active_links = array_filter( $gulo_links, static fn( array $gulo_link ) => ! empty( $gulo_link['active'] ) );
 
 // CSS class added to container when glass button style is selected.
-$lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-glass' : '';
+$gulo_container_class = 'glass' === $gulo_settings['button_style'] ? ' lib-btn-glass' : '';
 ?>
-<div class="lib-container<?php echo esc_attr( $lib_container_class ); ?>">
+<div class="lib-container<?php echo esc_attr( $gulo_container_class ); ?>">
 
 	<!-- Skip navigation for keyboard and assistive-technology users -->
-	<?php if ( ! empty( $lib_active_links ) ) : ?>
+	<?php if ( ! empty( $gulo_active_links ) ) : ?>
 		<a class="lib-skip-link" href="#lib-links">
-			<?php esc_html_e( 'Skip to links', 'simple-bio-links' ); ?>
+			<?php esc_html_e( 'Skip to links', 'gulo-link-in-bio' ); ?>
 		</a>
 	<?php endif; ?>
 
 	<!-- ── Profile ────────────────────────────────────────────── -->
-	<section class="lib-profile" aria-label="<?php esc_attr_e( 'Profile', 'simple-bio-links' ); ?>">
+	<section class="lib-profile" aria-label="<?php esc_attr_e( 'Profile', 'gulo-link-in-bio' ); ?>">
 
-		<?php if ( ! empty( $lib_settings['profile_image'] ) ) : ?>
+		<?php if ( ! empty( $gulo_settings['profile_image'] ) ) : ?>
 			<div class="lib-avatar">
 				<img
-					src="<?php echo esc_url( $lib_settings['profile_image'] ); ?>"
+					src="<?php echo esc_url( $gulo_settings['profile_image'] ); ?>"
 					alt="
 					<?php
 					printf(
 						/* translators: %s: profile name */
-						esc_attr__( 'Profile photo of %s', 'simple-bio-links' ),
-						esc_attr( $lib_settings['profile_name'] )
+						esc_attr__( 'Profile photo of %s', 'gulo-link-in-bio' ),
+						esc_attr( $gulo_settings['profile_name'] )
 					);
 					?>
 					"
@@ -49,40 +49,40 @@ $lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-gla
 			</div>
 		<?php endif; ?>
 
-		<?php if ( ! empty( $lib_settings['profile_name'] ) ) : ?>
+		<?php if ( ! empty( $gulo_settings['profile_name'] ) ) : ?>
 			<h1 class="lib-name">
-				<?php echo esc_html( $lib_settings['profile_name'] ); ?>
+				<?php echo esc_html( $gulo_settings['profile_name'] ); ?>
 			</h1>
 		<?php endif; ?>
 
-		<?php if ( ! empty( $lib_settings['profile_bio'] ) ) : ?>
+		<?php if ( ! empty( $gulo_settings['profile_bio'] ) ) : ?>
 			<p class="lib-bio">
-				<?php echo esc_html( $lib_settings['profile_bio'] ); ?>
+				<?php echo esc_html( $gulo_settings['profile_bio'] ); ?>
 			</p>
 		<?php endif; ?>
 
 	</section>
 
 	<!-- ── Links ──────────────────────────────────────────────── -->
-	<?php if ( ! empty( $lib_active_links ) ) : ?>
+	<?php if ( ! empty( $gulo_active_links ) ) : ?>
 		<nav
 			class="lib-links"
 			id="lib-links"
-			aria-label="<?php esc_attr_e( 'Profile links', 'simple-bio-links' ); ?>"
+			aria-label="<?php esc_attr_e( 'Profile links', 'gulo-link-in-bio' ); ?>"
 			tabindex="-1"
 		>
 			<ul class="lib-links-list" role="list">
 				<?php
-				$lib_index = 0;
-				foreach ( $lib_active_links as $lib_link ) :
+				$gulo_index = 0;
+				foreach ( $gulo_active_links as $gulo_link ) :
 					?>
 					<li
 						class="lib-link-item"
 						role="listitem"
-						style="--lib-item-index:<?php echo esc_attr( (string) $lib_index ); ?>"
+						style="--lib-item-index:<?php echo esc_attr( (string) $gulo_index ); ?>"
 					>
 						<a
-							href="<?php echo esc_url( $lib_link['url'] ); ?>"
+							href="<?php echo esc_url( $gulo_link['url'] ); ?>"
 							class="lib-link-btn"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -90,13 +90,13 @@ $lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-gla
 							<?php
 							printf(
 								/* translators: %s: link title */
-								esc_attr__( '%s (opens in new tab)', 'simple-bio-links' ),
-								esc_attr( $lib_link['title'] )
+								esc_attr__( '%s (opens in new tab)', 'gulo-link-in-bio' ),
+								esc_attr( $gulo_link['title'] )
 							);
 							?>
 							"
 						>
-							<span class="lib-link-title"><?php echo esc_html( $lib_link['title'] ); ?></span>
+							<span class="lib-link-title"><?php echo esc_html( $gulo_link['title'] ); ?></span>
 							<span class="lib-link-arrow" aria-hidden="true">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +116,7 @@ $lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-gla
 						</a>
 					</li>
 					<?php
-					++$lib_index;
+					++$gulo_index;
 				endforeach;
 				?>
 			</ul>
@@ -126,22 +126,22 @@ $lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-gla
 	<!-- ── Footer ─────────────────────────────────────────────── -->
 	<footer class="lib-footer">
 
-		<?php if ( ! empty( $lib_settings['imprint_url'] ) || ! empty( $lib_settings['privacy_url'] ) ) : ?>
+		<?php if ( ! empty( $gulo_settings['imprint_url'] ) || ! empty( $gulo_settings['privacy_url'] ) ) : ?>
 			<p class="lib-footer-text lib-footer-legal">
-				<?php if ( ! empty( $lib_settings['imprint_url'] ) ) : ?>
+				<?php if ( ! empty( $gulo_settings['imprint_url'] ) ) : ?>
 					<a
-						href="<?php echo esc_url( $lib_settings['imprint_url'] ); ?>"
+						href="<?php echo esc_url( $gulo_settings['imprint_url'] ); ?>"
 						class="lib-footer-link"
-					><?php esc_html_e( 'Imprint', 'simple-bio-links' ); ?></a>
+					><?php esc_html_e( 'Imprint', 'gulo-link-in-bio' ); ?></a>
 				<?php endif; ?>
-				<?php if ( ! empty( $lib_settings['imprint_url'] ) && ! empty( $lib_settings['privacy_url'] ) ) : ?>
+				<?php if ( ! empty( $gulo_settings['imprint_url'] ) && ! empty( $gulo_settings['privacy_url'] ) ) : ?>
 					<span aria-hidden="true"> · </span>
 				<?php endif; ?>
-				<?php if ( ! empty( $lib_settings['privacy_url'] ) ) : ?>
+				<?php if ( ! empty( $gulo_settings['privacy_url'] ) ) : ?>
 					<a
-						href="<?php echo esc_url( $lib_settings['privacy_url'] ); ?>"
+						href="<?php echo esc_url( $gulo_settings['privacy_url'] ); ?>"
 						class="lib-footer-link"
-					><?php esc_html_e( 'Privacy Policy', 'simple-bio-links' ); ?></a>
+					><?php esc_html_e( 'Privacy Policy', 'gulo-link-in-bio' ); ?></a>
 				<?php endif; ?>
 			</p>
 		<?php endif; ?>
@@ -150,7 +150,7 @@ $lib_container_class = 'glass' === $lib_settings['button_style'] ? ' lib-btn-gla
 			<?php
 			printf(
 				/* translators: %s: site name as a link */
-				esc_html__( 'Powered by %s', 'simple-bio-links' ),
+				esc_html__( 'Powered by %s', 'gulo-link-in-bio' ),
 				sprintf(
 					'<a href="%s" class="lib-footer-link">%s</a>',
 					esc_url( home_url( '/' ) ),

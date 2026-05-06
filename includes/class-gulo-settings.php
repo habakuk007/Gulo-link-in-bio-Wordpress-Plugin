@@ -2,24 +2,24 @@
 /**
  * Settings helper — reads, sanitizes, and provides defaults.
  *
- * @package LinkInBio
+ * @package GuloLinkInBio
  */
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class LIB_Settings
+ * Class GULO_Settings
  *
  * Static helper for reading/sanitizing plugin options.
  * No instances needed — all methods are static.
  */
-class LIB_Settings {
+class GULO_Settings {
 
 	/** WordPress option key for general settings. */
-	const OPTION_SETTINGS = 'lib_settings';
+	const OPTION_SETTINGS = 'gulo_settings';
 
 	/** WordPress option key for the links JSON array. */
-	const OPTION_LINKS = 'lib_links';
+	const OPTION_LINKS = 'gulo_links';
 
 	/**
 	 * Returns default settings values.
