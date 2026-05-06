@@ -1,6 +1,6 @@
 {
   "name": "gulo-link-in-bio",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A link-in-bio page WordPress plugin",
   "private": true,
   "scripts": {

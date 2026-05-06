@@ -24,7 +24,8 @@
     "phpcompatibility/php-compatibility": "^9.0",
     "phpunit/phpunit": "^10.0",
     "yoast/phpunit-polyfills": "^2.0",
-    "brain/monkey": "^2.6"
+    "brain/monkey": "^2.6",
+    "wp-cli/wp-cli-bundle": "^2.0"
   },
   "scripts": {
     "lint:php": "phpcs -p",
@@ -33,8 +34,8 @@
     "test:unit": "phpunit --configuration phpunit.unit.xml",
     "test:coverage": "phpunit --configuration phpunit.xml.dist --coverage-text",
     "package": "php bin/build-zip.php",
-    "make:pot": "wp i18n make-pot . languages/gulo-link-in-bio.pot --slug=gulo-link-in-bio --domain=gulo-link-in-bio --exclude=vendor,node_modules,tests --package-name=\"Gulo Link-in-Bio\"",
-    "make:mo": "wp i18n make-mo languages/"
+    "make:pot": "@php vendor/wp-cli/wp-cli/php/boot-fs.php i18n make-pot . languages/gulo-link-in-bio.pot --slug=gulo-link-in-bio --domain=gulo-link-in-bio --exclude=vendor,node_modules,tests --package-name=\"Gulo Link-in-Bio\"",
+    "make:mo": "@php vendor/wp-cli/wp-cli/php/boot-fs.php i18n make-mo languages/"
   },
   "config": {
     "allow-plugins": {

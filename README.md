@@ -24,14 +24,15 @@ select the **Gulo Link-in-Bio** page template, and your profile page is live —
 
    ```bash
    cd wp-content/plugins/
-   git clone https://github.com/habakuk007/Wordpress-LinkInBio-Template.git link-in-bio
+   git clone https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plugin.git
+   link-in-bio
    ```
 
 2. In WordPress admin, go to **Plugins → Installed Plugins** and activate **Gulo Link-in-Bio**.
 
 ### As a ZIP
 
-1. [Download the latest release](https://github.com/habakuk007/Wordpress-LinkInBio-Template/releases)
+1. [Download the latest release](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plugin/releases)
 2. Go to **Plugins → Add New → Upload Plugin** and upload the ZIP.
 3. Activate the plugin.
 
@@ -132,153 +133,6 @@ emitting competing HTML tags:
 | `wpseo_opengraph_type` | Sets OG type to `profile` |
 | `wpseo_opengraph_title` | Sets OG title to the profile name |
 | `wpseo_robots` | Passes through `noindex` when the SEO option is set |
-
----
-
-## Development
-
-### Requirements
-
-- PHP 7.4+
-- Composer
-- Node.js 18+
-- npm
-
-### Setup
-
-```bash
-# Clone
-git clone https://github.com/habakuk007/Wordpress-LinkInBio-Template.git
-cd gulo-link-in-bio
-
-# PHP dependencies (WPCS, PHPUnit, etc.)
-composer install
-
-# JS dependencies (ESLint, Stylelint)
-npm install
-```
-
-### Lint & Fix
-
-```bash
-# PHP — check coding standards
-composer run lint:php
-
-# PHP — auto-fix style
-composer run fix:php
-
-# JS — lint
-npm run lint:js
-
-# CSS — lint
-npm run lint:css
-```
-
-### Tests
-
-The test suite is split into **unit tests** (fast, no WordPress needed) and **integration tests** (require a real WP environment).
-
-#### Unit tests — run locally right now
-
-```bash
-composer run test:unit
-```
-
-Unit tests use [Brain\Monkey](https://brain-wp.github.io/BrainMonkey/) to stub WordPress functions. No database, no WP install required.
-
-#### Integration tests — require a WordPress environment
-
-**Option A — local MySQL:**
-
-```bash
-# One-time setup (adjust DB credentials)
-bash bin/install-wp-tests.sh wordpress_test root '' localhost latest
-
-# Run suite
-WP_TESTS_DIR=/tmp/wordpress-tests-lib composer run test
-```
-
-**Option B — Docker via wp-env:**
-
-```bash
-npx @wordpress/env start
-composer run test
-```
-
-### Translations
-
-The plugin ships with German (`de_DE`), French (`fr_FR`), Spanish (`es_ES`), and Ukrainian (`uk`)
-translations. All strings are wrapped in WordPress i18n functions with the text domain `gulo-link-in-bio`.
-
-To add or update translations:
-
-```bash
-# 1. Re-extract strings from source → languages/gulo-link-in-bio.pot
-composer run make:pot
-
-# 2. Edit the relevant .po file (e.g. in Poedit or a text editor)
-
-# 3. Compile all .po files → .mo binaries
-composer run make:mo
-```
-
-Both commands require [WP-CLI](https://wp-cli.org/) to be available as `wp` in `$PATH`.
-
----
-
-## File Structure
-
-```text
-link-in-bio/
-├── gulo-link-in-bio.php               ← Plugin entry point
-├── uninstall.php                 ← Removes options and capability on plugin deletion
-├── readme.txt                    ← WordPress.org directory listing
-├── includes/
-│   ├── class-gulo-plugin.php      ← Bootstrap, lifecycle, capability grants
-│   ├── class-gulo-settings.php    ← Options helper & sanitizers
-│   ├── class-gulo-admin.php       ← Admin menu, settings page, cache purge
-│   └── class-gulo-frontend.php    ← Page template, assets, SEO meta, admin bar
-├── templates/
-│   ├── page-gulo-gulo-link-in-bio.php      ← Full HTML page (DOCTYPE → wp_footer)
-│   └── display.php               ← Profile + links + footer partial
-├── assets/
-│   ├── css/frontend.css          ← Frontend styles
-│   ├── css/admin.css             ← Admin styles
-│   └── js/admin.js               ← Admin JS (links repeater, media, colors)
-├── languages/
-│   ├── gulo-link-in-bio.pot           ← Translation template
-│   ├── gulo-link-in-bio-de_DE.po      ← German (source)
-│   ├── gulo-link-in-bio-de_DE.mo      ← German (compiled)
-│   ├── link-in-bio-fr_FR.po      ← French (source)
-│   ├── link-in-bio-fr_FR.mo      ← French (compiled)
-│   ├── link-in-bio-es_ES.po      ← Spanish (source)
-│   ├── link-in-bio-es_ES.mo      ← Spanish (compiled)
-│   ├── link-in-bio-uk.po         ← Ukrainian (source)
-│   └── link-in-bio-uk.mo         ← Ukrainian (compiled)
-├── tests/
-│   ├── bootstrap.php                 ← Integration test bootstrap (WP env)
-│   ├── unit/
-│   │   ├── bootstrap.php             ← Unit test bootstrap (Brain\Monkey)
-│   │   └── Test_GULO_Settings.php     ← Unit tests for GULO_Settings
-│   └── integration/
-│       └── class-test-gulo-plugin.php ← Integration tests (WP_UnitTestCase)
-├── .github/
-│   ├── copilot-instructions.md
-│   ├── instructions/             ← Copilot domain rules (WP, CSS, a11y)
-│   └── workflows/ci.yml
-├── .vscode/
-│   ├── extensions.json
-│   └── settings.json
-├── CLAUDE.md
-├── CONTRIBUTING.md
-├── composer.json
-├── package.json
-├── phpcs.xml
-├── phpunit.xml.dist              ← PHPUnit config (integration tests)
-├── phpunit.unit.xml              ← PHPUnit config (unit tests)
-├── .wp-env.json                  ← wp-env / Docker config
-└── .editorconfig
-```
 
 ---
 

@@ -10,11 +10,74 @@
 - npm
 - WP-CLI (for i18n commands — install from [wp-cli.org](https://wp-cli.org/))
 
-### Install dependencies
+### Clone and install
 
 ```bash
+# Fork on GitHub first, then clone your fork
+git clone https://github.com/habakuk007/Wordpress-LinkInBio-Template.git gulo-link-in-bio
+cd gulo-link-in-bio
+
+# PHP dependencies (WPCS, PHPUnit, etc.)
 composer install
+
+# JS dependencies (ESLint, Stylelint)
 npm install
+```
+
+---
+
+## File Structure
+
+```text
+gulo-link-in-bio/
+├── gulo-link-in-bio.php               ← Plugin entry point
+├── uninstall.php                 ← Removes options and capability on plugin deletion
+├── readme.txt                    ← WordPress.org directory listing
+├── includes/
+│   ├── class-gulo-plugin.php      ← Bootstrap, lifecycle, capability grants
+│   ├── class-gulo-settings.php    ← Options helper & sanitizers
+│   ├── class-gulo-admin.php       ← Admin menu, settings page, cache purge
+│   └── class-gulo-frontend.php    ← Page template, assets, SEO meta, admin bar
+├── templates/
+│   ├── page-gulo-link-in-bio.php        ← Full HTML page (DOCTYPE → wp_footer)
+│   └── display.php               ← Profile + links + footer partial
+├── assets/
+│   ├── css/frontend.css          ← Frontend styles
+│   ├── css/admin.css             ← Admin styles
+│   └── js/admin.js               ← Admin JS (links repeater, media, colors)
+├── languages/
+│   ├── gulo-link-in-bio.pot           ← Translation template
+│   ├── gulo-link-in-bio-de_DE.po      ← German (source)
+│   ├── gulo-link-in-bio-de_DE.mo      ← German (compiled)
+│   ├── gulo-link-in-bio-fr_FR.po      ← French (source)
+│   ├── gulo-link-in-bio-fr_FR.mo      ← French (compiled)
+│   ├── gulo-link-in-bio-es_ES.po      ← Spanish (source)
+│   ├── gulo-link-in-bio-es_ES.mo      ← Spanish (compiled)
+│   ├── gulo-link-in-bio-uk.po         ← Ukrainian (source)
+│   └── gulo-link-in-bio-uk.mo         ← Ukrainian (compiled)
+├── tests/
+│   ├── bootstrap.php                 ← Integration test bootstrap (WP env)
+│   ├── unit/
+│   │   ├── bootstrap.php             ← Unit test bootstrap (Brain\Monkey)
+│   │   └── Test_GULO_Settings.php     ← Unit tests for GULO_Settings
+│   └── integration/
+│       └── class-test-gulo-plugin.php ← Integration tests (WP_UnitTestCase)
+├── .github/
+│   ├── copilot-instructions.md
+│   ├── instructions/             ← Copilot domain rules (WP, CSS, a11y)
+│   └── workflows/ci.yml
+├── .vscode/
+│   ├── extensions.json
+│   └── settings.json
+├── CLAUDE.md
+├── CONTRIBUTING.md
+├── composer.json
+├── package.json
+├── phpcs.xml
+├── phpunit.xml.dist              ← PHPUnit config (integration tests)
+├── phpunit.unit.xml              ← PHPUnit config (unit tests)
+├── .wp-env.json                  ← wp-env / Docker config
+└── .editorconfig
 ```
 
 ---
