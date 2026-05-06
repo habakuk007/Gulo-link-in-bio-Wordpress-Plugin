@@ -55,6 +55,10 @@ gulo-link-in-bio/
 │   ├── gulo-link-in-bio-es_ES.mo      ← Spanish (compiled)
 │   ├── gulo-link-in-bio-uk.po         ← Ukrainian (source)
 │   └── gulo-link-in-bio-uk.mo         ← Ukrainian (compiled)
+├── bin/
+│   ├── build-zip.php         ← Cross-platform release ZIP builder (used by `composer run package`)
+│   ├── build-zip.sh          ← Bash/PowerShell release ZIP builder (alternative)
+│   └── install-wp-tests.sh   ← One-time integration test environment setup
 ├── tests/
 │   ├── bootstrap.php                 ← Integration test bootstrap (WP env)
 │   ├── unit/
@@ -223,8 +227,13 @@ PRs that introduce new options must:
    git push origin 1.0.0
    ```
 9. The `deploy.yml` GitHub Actions workflow runs automatically and deploys to WordPress.org SVN.
-10. Build the distributable ZIP for GitHub releases: `composer run package`
-    The output file is named `gulo-link-in-bio-{version}.zip` (e.g. `link-in-bio-1.0.0.zip`).
+10. Build the distributable ZIP for GitHub releases:
+    ```bash
+    composer run package
+    ```
+    This runs `bin/build-zip.php`, which reads the version from the plugin header and produces
+    `gulo-link-in-bio-{version}.zip` (e.g. `gulo-link-in-bio-0.1.0.zip`) via `git archive`.
+    Alternatively, `bin/build-zip.sh` does the same using PowerShell's `Compress-Archive`.
 
 ---
 
