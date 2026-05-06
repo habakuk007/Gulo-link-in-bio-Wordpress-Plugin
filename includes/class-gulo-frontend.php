@@ -70,7 +70,7 @@ class GULO_Frontend {
 
 		wp_add_inline_style(
 			'gulo-frontend',
-			$this->build_custom_css( GULO_Settings::get() )
+			wp_strip_all_tags( $this->build_custom_css( GULO_Settings::get() ) )
 		);
 	}
 

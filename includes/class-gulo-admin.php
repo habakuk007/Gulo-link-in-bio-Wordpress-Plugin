@@ -431,7 +431,7 @@ class GULO_Admin {
 				<div class="lib-section">
 					<h2 class="lib-section-title"><?php esc_html_e( 'Legal', 'gulo-link-in-bio' ); ?></h2>
 					<p class="description">
-						<?php esc_html_e( 'Optional links shown in the page footer above "Powered by". Leave blank to hide.', 'gulo-link-in-bio' ); ?>
+						<?php esc_html_e( 'Optional links shown in the page footer. Leave blank to hide.', 'gulo-link-in-bio' ); ?>
 					</p>
 					<table class="form-table" role="presentation">
 						<tr>
@@ -464,6 +464,23 @@ class GULO_Admin {
 									placeholder="https://"
 									autocomplete="off"
 								/>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Powered By Credit', 'gulo-link-in-bio' ); ?></th>
+							<td>
+								<label>
+									<input
+										type="checkbox"
+										name="<?php echo esc_attr( GULO_Settings::OPTION_SETTINGS ); ?>[show_powered_by]"
+										value="1"
+										<?php checked( $s['show_powered_by'] ); ?>
+									/>
+									<?php esc_html_e( 'Show "Powered by [site name]" in the page footer', 'gulo-link-in-bio' ); ?>
+								</label>
+								<p class="description">
+									<?php esc_html_e( 'Displays a link back to your site in the footer. Off by default.', 'gulo-link-in-bio' ); ?>
+								</p>
 							</td>
 						</tr>
 					</table>
