@@ -5,13 +5,13 @@
  * Selected from the Page Attributes panel in the Block Editor or Classic Editor.
  * Bypasses the active theme entirely and renders the Gulo Link-in-Bio profile page.
  *
- * @package GuloLinkInBio
+ * @package SimpleBioLinks
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$gulo_settings = GULO_Settings::get();
-$gulo_links    = GULO_Settings::get_links();
+$guloli_settings = GULOLI_Settings::get();
+$guloli_links    = GULOLI_Settings::get_links();
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>

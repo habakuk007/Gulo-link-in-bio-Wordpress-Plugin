@@ -2,24 +2,24 @@
 /**
  * Settings helper — reads, sanitizes, and provides defaults.
  *
- * @package GuloLinkInBio
+ * @package SimpleBioLinks
  */
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class GULO_Settings
+ * Class GULOLI_Settings
  *
  * Static helper for reading/sanitizing plugin options.
  * No instances needed — all methods are static.
  */
-class GULO_Settings {
+class GULOLI_Settings {
 
 	/** WordPress option key for general settings. */
-	const OPTION_SETTINGS = 'gulo_settings';
+	const OPTION_SETTINGS = 'guloli_settings';
 
 	/** WordPress option key for the links JSON array. */
-	const OPTION_LINKS = 'gulo_links';
+	const OPTION_LINKS = 'guloli_links';
 
 	/**
 	 * Returns default settings values.
@@ -95,10 +95,25 @@ class GULO_Settings {
 		// Checkbox — absent when unchecked, so default is false.
 		$output['seo_noindex'] = ! empty( $input['seo_noindex'] );
 
-		$text_fields = array( 'profile_name', 'profile_bio', 'background_type', 'button_style' );
+		$text_fields = array( 'profile_name', 'profile_bio' );
 		foreach ( $text_fields as $field ) {
 			if ( isset( $input[ $field ] ) ) {
 				$output[ $field ] = sanitize_text_field( $input[ $field ] );
+			}
+		}
+
+		// Enum fields — strict allowlist validation.
+		if ( isset( $input['background_type'] ) ) {
+			$val = sanitize_key( $input['background_type'] );
+			if ( in_array( $val, array( 'gradient', 'solid' ), true ) ) {
+				$output['background_type'] = $val;
+			}
+		}
+
+		if ( isset( $input['button_style'] ) ) {
+			$val = sanitize_key( $input['button_style'] );
+			if ( in_array( $val, array( 'filled', 'glass' ), true ) ) {
+				$output['button_style'] = $val;
 			}
 		}
 

@@ -2,25 +2,25 @@
 /**
  * Main plugin bootstrap class.
  *
- * @package GuloLinkInBio
+ * @package SimpleBioLinks
  */
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class GULO_Plugin
+ * GULOLI_Plugin class
  *
  * Singleton that bootstraps the plugin, wires hooks, and coordinates
  * the admin and frontend sub-systems.
  */
-class GULO_Plugin {
+class GULOLI_Plugin {
 
 	/**
 	 * Single instance.
 	 *
-	 * @var GULO_Plugin|null
+	 * @var GULOLI_Plugin|null
 	 */
-	private static ?GULO_Plugin $instance = null;
+	private static ?GULOLI_Plugin $instance = null;
 
 	/**
 	 * Returns (and creates on first call) the singleton instance.
@@ -42,7 +42,7 @@ class GULO_Plugin {
 	/**
 	 * Fires on WordPress 'init' — boots sub-systems.
 	 *
-	 * Also ensures the gulo_manage_settings capability is present on existing
+	 * Also ensures the guloli_manage_settings capability is present on existing
 	 * installations that pre-date this feature (upgrade compatibility).
 	 *
 	 * @return void
@@ -50,21 +50,21 @@ class GULO_Plugin {
 	public function init(): void {
 		// Grant the capability if it is missing (handles plugin upgrades).
 		$role = get_role( 'administrator' );
-		if ( $role instanceof WP_Role && ! $role->has_cap( 'gulo_manage_settings' ) ) {
+		if ( $role instanceof WP_Role && ! $role->has_cap( 'guloli_manage_settings' ) ) {
 			self::grant_settings_capability();
 
 			// Also update the current user's in-memory capability object so that
 			// this same request benefits from the newly granted cap without a reload.
 			$current_user = wp_get_current_user();
 			if ( $current_user instanceof WP_User && $current_user->exists() ) {
-				$current_user->add_cap( 'gulo_manage_settings' );
+				$current_user->add_cap( 'guloli_manage_settings' );
 			}
 		}
 
-		new GULO_Frontend();
+		new GULOLI_Frontend();
 
 		if ( is_admin() ) {
-			new GULO_Admin();
+			new GULOLI_Admin();
 		}
 	}
 
@@ -75,12 +75,12 @@ class GULO_Plugin {
 	 * @return void
 	 */
 	public static function activate(): void {
-		if ( false === get_option( GULO_Settings::OPTION_SETTINGS ) ) {
-			update_option( GULO_Settings::OPTION_SETTINGS, GULO_Settings::get_defaults() );
+		if ( false === get_option( GULOLI_Settings::OPTION_SETTINGS ) ) {
+			update_option( GULOLI_Settings::OPTION_SETTINGS, GULOLI_Settings::get_defaults() );
 		}
 
-		if ( false === get_option( GULO_Settings::OPTION_LINKS ) ) {
-			update_option( GULO_Settings::OPTION_LINKS, wp_json_encode( array() ) );
+		if ( false === get_option( GULOLI_Settings::OPTION_LINKS ) ) {
+			update_option( GULOLI_Settings::OPTION_LINKS, wp_json_encode( array() ) );
 		}
 
 		// WordPress caches the page template list per theme. Clear it so our
@@ -100,13 +100,13 @@ class GULO_Plugin {
 		foreach ( array( 'administrator', 'editor' ) as $role_name ) {
 			$role = get_role( $role_name );
 			if ( $role instanceof WP_Role ) {
-				$role->remove_cap( 'gulo_manage_settings' );
+				$role->remove_cap( 'guloli_manage_settings' );
 			}
 		}
 	}
 
 	/**
-	 * Grants the gulo_manage_settings capability to administrators and editors.
+	 * Grants the guloli_manage_settings capability to administrators and editors.
 	 *
 	 * @return void
 	 */
@@ -114,7 +114,7 @@ class GULO_Plugin {
 		foreach ( array( 'administrator', 'editor' ) as $role_name ) {
 			$role = get_role( $role_name );
 			if ( $role instanceof WP_Role ) {
-				$role->add_cap( 'gulo_manage_settings' );
+				$role->add_cap( 'guloli_manage_settings' );
 			}
 		}
 	}

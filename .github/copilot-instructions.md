@@ -21,14 +21,14 @@ Additional domain-specific instructions are in `.github/instructions/`:
 ## Plugin Architecture
 
 ```
-gulo-link-in-bio.php              ← Plugin entry point (header + bootstrap)
+simple-bio-links.php              ← Plugin entry point (header + bootstrap)
 includes/
-  class-gulo-plugin.php       ← Singleton boot class, activation/deactivation, capability grants
-  class-gulo-settings.php     ← Static helper: get(), get_links(), sanitize callbacks
-  class-gulo-admin.php        ← Top-level admin menu, Settings API, settings page HTML, cache purge
-  class-gulo-frontend.php     ← Page template registration, lazy asset enqueue, SEO meta, admin bar
+  class-guloli-plugin.php       ← Singleton boot class, activation/deactivation, capability grants
+  class-guloli-settings.php     ← Static helper: get(), get_links(), sanitize callbacks
+  class-guloli-admin.php        ← Top-level admin menu, Settings API, settings page HTML, cache purge
+  class-guloli-frontend.php     ← Page template registration, lazy asset enqueue, SEO meta, admin bar
 templates/
-  page-gulo-gulo-link-in-bio.php       ← Full standalone HTML page (DOCTYPE → wp_footer)
+  page-gulo-simple-bio-links.php       ← Full standalone HTML page (DOCTYPE → wp_footer)
   display.php                ← Accessible profile + links + footer partial
 assets/
   css/frontend.css           ← Link-in-bio page frontend design (CSS custom props)
@@ -42,20 +42,20 @@ languages/
   link-in-bio-uk.po/.mo      ← Ukrainian
 tests/
   bootstrap.php              ← PHPUnit bootstrap (WP test suite)
-  class-test-gulo-settings.php ← Unit tests for GULO_Settings
+  class-test-gulo-settings.php ← Unit tests for GULOLI_Settings
 ```
 
 ## Key Conventions
 
 - **Prefix**: All PHP classes use `GULO_` prefix; options use `gulo_` prefix.
-- **Text domain**: `gulo-link-in-bio` — always use this in i18n functions.
-- **Settings API**: Two options — `gulo_settings` (array) and `gulo_links` (JSON string).
-- **Capability**: `gulo_manage_settings` — custom cap granted to Administrators and Editors on activation. Use this (not `manage_options`) for all capability checks in this plugin.
+- **Text domain**: `simple-bio-links` — always use this in i18n functions.
+- **Settings API**: Two options — `GULOLI_Settings` (array) and `gulo_links` (JSON string).
+- **Capability**: `guloli_manage_settings` — custom cap granted to Administrators and Editors on activation. Use this (not `manage_options`) for all capability checks in this plugin.
 - **Escape on output**: Use `esc_html()`, `esc_attr()`, `esc_url()` everywhere.
 - **Sanitize on input**: Use `sanitize_text_field()`, `sanitize_hex_color()`, `esc_url_raw()`.
-- **No inline scripts/styles** except the CSS custom property block injected via `wp_add_inline_style()` in `GULO_Frontend`.
+- **No inline scripts/styles** except the CSS custom property block injected via `wp_add_inline_style()` in `GULOLI_Frontend`.
 - **Assets**: Register with `wp_register_*`, enqueue lazily in `maybe_enqueue_assets()` (only when the Gulo Link-in-Bio page template is active).
-- **Cache**: Saving settings triggers `purge_page_cache()` in `GULO_Admin`, which clears WP object cache and known caching plugins (WP Super Cache, WP Rocket, W3 Total Cache, WP Fastest Cache, LiteSpeed Cache, Cache Enabler).
+- **Cache**: Saving settings triggers `purge_page_cache()` in `GULOLI_Admin`, which clears WP object cache and known caching plugins (WP Super Cache, WP Rocket, W3 Total Cache, WP Fastest Cache, LiteSpeed Cache, Cache Enabler).
 - **Accessibility**: Skip link, semantic landmarks, WCAG 2.2 AA contrast, `prefers-reduced-motion`.
 
 ## Development Commands
@@ -97,5 +97,5 @@ composer run make:mo
 4. Wrap user-visible strings in `esc_html__( 'Text', 'link-in-bio' )`.
 5. Write or update tests in `tests/`.
 6. Check WCAG 2.2 AA for any UI additions.
-7. Use `gulo_manage_settings` (not `manage_options`) for any new capability check.
+7. Use `guloli_manage_settings` (not `manage_options`) for any new capability check.
 8. After adding new strings, run `composer run make:pot` and update the PO files.

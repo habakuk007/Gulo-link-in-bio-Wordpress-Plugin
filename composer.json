@@ -34,7 +34,7 @@
     "test:unit": "phpunit --configuration phpunit.unit.xml",
     "test:coverage": "phpunit --configuration phpunit.xml.dist --coverage-text",
     "package": "php bin/build-zip.php",
-    "make:pot": "@php vendor/wp-cli/wp-cli/php/boot-fs.php i18n make-pot . languages/gulo-link-in-bio.pot --slug=gulo-link-in-bio --domain=gulo-link-in-bio --exclude=vendor,node_modules,tests --package-name=\"Gulo Link-in-Bio\"",
+    "make:pot": "@php vendor/wp-cli/wp-cli/php/boot-fs.php i18n make-pot . languages/simple-bio-links.pot --slug=simple-bio-links --domain=simple-bio-links --exclude=vendor,node_modules,tests --package-name=\"Gulo Link-in-Bio\"",
     "make:mo": "@php vendor/wp-cli/wp-cli/php/boot-fs.php i18n make-mo languages/"
   },
   "config": {

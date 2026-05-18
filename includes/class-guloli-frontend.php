@@ -2,19 +2,19 @@
 /**
  * Frontend — page template serving, asset enqueueing, and SEO meta output.
  *
- * @package GuloLinkInBio
+ * @package SimpleBioLinks
  */
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class GULO_Frontend
+ * GULOLI_Frontend class
  *
  * Serves the Gulo Link-in-Bio full-page template for whichever WordPress Page
  * the admin has designated in Settings → Gulo Link-in-Bio, loads frontend
  * assets, and injects SEO / Open Graph meta tags via wp_head.
  */
-class GULO_Frontend {
+class GULOLI_Frontend {
 
 	/** Constructor — registers hooks. */
 	public function __construct() {
@@ -45,7 +45,7 @@ class GULO_Frontend {
 	 */
 	public function load_template( string $template ): string {
 		if ( $this->is_lib_page() ) {
-			return GULO_PLUGIN_DIR . 'templates/page-gulo-link-in-bio.php';
+			return GULOLI_PLUGIN_DIR . 'templates/page-simple-bio-links.php';
 		}
 		return $template;
 	}
@@ -62,15 +62,15 @@ class GULO_Frontend {
 		}
 
 		wp_enqueue_style(
-			'gulo-frontend',
-			GULO_PLUGIN_URL . 'assets/css/frontend.css',
+			'guloli-frontend',
+			GULOLI_PLUGIN_URL . 'assets/css/frontend.css',
 			array(),
-			GULO_VERSION
+			GULOLI_VERSION
 		);
 
 		wp_add_inline_style(
-			'gulo-frontend',
-			wp_strip_all_tags( $this->build_custom_css( GULO_Settings::get() ) )
+			'guloli-frontend',
+			wp_strip_all_tags( $this->build_custom_css( GULOLI_Settings::get() ) )
 		);
 	}
 
@@ -89,7 +89,7 @@ class GULO_Frontend {
 			return;
 		}
 
-		$s            = GULO_Settings::get();
+		$s            = GULOLI_Settings::get();
 		$page_url     = get_permalink( (int) $s['page_id'] );
 		$yoast_active = defined( 'WPSEO_VERSION' );
 
@@ -187,7 +187,7 @@ class GULO_Frontend {
 			return $title;
 		}
 
-		$name = GULO_Settings::get( 'profile_name' );
+		$name = GULOLI_Settings::get( 'profile_name' );
 
 		if ( ! $name ) {
 			return $title;
@@ -217,7 +217,7 @@ class GULO_Frontend {
 			return $title;
 		}
 
-		$name = GULO_Settings::get( 'profile_name' );
+		$name = GULOLI_Settings::get( 'profile_name' );
 
 		return $name ? $name : $title;
 	}
@@ -229,7 +229,7 @@ class GULO_Frontend {
 	 * @return string
 	 */
 	public function filter_yoast_robots( string $robots ): string {
-		if ( ! $this->is_lib_page() || empty( GULO_Settings::get( 'seo_noindex' ) ) ) {
+		if ( ! $this->is_lib_page() || empty( GULOLI_Settings::get( 'seo_noindex' ) ) ) {
 			return $robots;
 		}
 
@@ -252,7 +252,7 @@ class GULO_Frontend {
 			return $parts;
 		}
 
-		$name = GULO_Settings::get( 'profile_name' );
+		$name = GULOLI_Settings::get( 'profile_name' );
 		if ( $name ) {
 			$parts['title'] = $name;
 		}
@@ -264,21 +264,21 @@ class GULO_Frontend {
 	 * Adds an "Edit Gulo Link-in-Bio" shortcut to the WordPress admin bar.
 	 *
 	 * Only shown when viewing the Gulo Link-in-Bio page and the current user has the
-	 * gulo_manage_settings capability (administrators and editors).
+	 * guloli_manage_settings capability (administrators and editors).
 	 *
 	 * @param WP_Admin_Bar $wp_admin_bar Admin bar instance.
 	 * @return void
 	 */
 	public function add_admin_bar_node( WP_Admin_Bar $wp_admin_bar ): void {
-		if ( ! $this->is_lib_page() || ! current_user_can( 'gulo_manage_settings' ) ) {
+		if ( ! $this->is_lib_page() || ! current_user_can( 'guloli_manage_settings' ) ) {
 			return;
 		}
 
 		$wp_admin_bar->add_node(
 			array(
 				'id'    => 'lib-settings',
-				'title' => __( 'Edit Gulo Link-in-Bio', 'gulo-link-in-bio' ),
-				'href'  => admin_url( 'admin.php?page=gulo-link-in-bio' ),
+				'title' => __( 'Edit Gulo Link-in-Bio', 'simple-bio-links' ),
+				'href'  => admin_url( 'admin.php?page=simple-bio-links' ),
 			)
 		);
 	}
@@ -289,7 +289,7 @@ class GULO_Frontend {
 	 * @return bool
 	 */
 	private function is_lib_page(): bool {
-		$page_id = (int) GULO_Settings::get( 'page_id' );
+		$page_id = (int) GULOLI_Settings::get( 'page_id' );
 		return $page_id > 0 && is_page( $page_id );
 	}
 

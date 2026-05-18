@@ -1,10 +1,10 @@
 <?php
 /**
- * Unit tests for GULO_Settings.
+ * Unit tests for GULOLI_Settings.
  *
  * WordPress functions are stubbed with Brain\Monkey — no WP environment needed.
  *
- * @package GuloLinkInBio
+ * @package SimpleBioLinks
  */
 
 use Brain\Monkey;
@@ -12,9 +12,9 @@ use Brain\Monkey\Functions;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class Test_GULO_Settings_Unit
+ * Test_GULOLI_Settings_Unit class
  */
-final class Test_GULO_Settings extends TestCase {
+final class Test_GULOLI_Settings extends TestCase {
 
 	/**
 	 * Sets up Brain\Monkey before each test.
@@ -72,7 +72,7 @@ final class Test_GULO_Settings extends TestCase {
 	public function test_get_defaults_contains_all_expected_keys(): void {
 		Functions\when( 'get_bloginfo' )->justReturn( '' );
 
-		$defaults = GULO_Settings::get_defaults();
+		$defaults = GULOLI_Settings::get_defaults();
 		$expected = array(
 			'page_id',
 			'profile_name',
@@ -102,7 +102,7 @@ final class Test_GULO_Settings extends TestCase {
 	public function test_get_defaults_seo_noindex_is_false(): void {
 		Functions\when( 'get_bloginfo' )->justReturn( '' );
 
-		$this->assertFalse( GULO_Settings::get_defaults()['seo_noindex'] );
+		$this->assertFalse( GULOLI_Settings::get_defaults()['seo_noindex'] );
 	}
 
 	/**
@@ -111,7 +111,7 @@ final class Test_GULO_Settings extends TestCase {
 	public function test_get_defaults_page_id_is_zero(): void {
 		Functions\when( 'get_bloginfo' )->justReturn( '' );
 
-		$this->assertSame( 0, GULO_Settings::get_defaults()['page_id'] );
+		$this->assertSame( 0, GULOLI_Settings::get_defaults()['page_id'] );
 	}
 
 	/**
@@ -122,7 +122,7 @@ final class Test_GULO_Settings extends TestCase {
 			->twice()
 			->andReturnValues( array( 'My Site', 'Just another site' ) );
 
-		$defaults = GULO_Settings::get_defaults();
+		$defaults = GULOLI_Settings::get_defaults();
 
 		$this->assertSame( 'My Site', $defaults['profile_name'] );
 		$this->assertSame( 'Just another site', $defaults['profile_bio'] );
@@ -134,7 +134,7 @@ final class Test_GULO_Settings extends TestCase {
 	 */ public function test_sanitize_settings_returns_defaults_for_non_array(): void {
 		Functions\when( 'get_bloginfo' )->justReturn( '' );
 
-		$result = GULO_Settings::sanitize_settings( 'not-an-array' );
+		$result = GULOLI_Settings::sanitize_settings( 'not-an-array' );
 
 		$this->assertIsArray( $result );
 		$this->assertArrayHasKey( 'page_id', $result );
@@ -146,7 +146,7 @@ final class Test_GULO_Settings extends TestCase {
 public function test_sanitize_settings_returns_defaults_for_null(): void {
 	Functions\when( 'get_bloginfo' )->justReturn( '' );
 
-	$result = GULO_Settings::sanitize_settings( null );
+	$result = GULOLI_Settings::sanitize_settings( null );
 
 	$this->assertIsArray( $result );
 }
@@ -157,7 +157,7 @@ public function test_sanitize_settings_returns_defaults_for_null(): void {
 	 */ public function test_sanitize_settings_page_id_string_cast_to_int(): void {
 		$this->stub_sanitizers();
 
-		$result = GULO_Settings::sanitize_settings( array( 'page_id' => '42' ) );
+		$result = GULOLI_Settings::sanitize_settings( array( 'page_id' => '42' ) );
 
 		$this->assertSame( 42, $result['page_id'] );
 }
@@ -168,7 +168,7 @@ public function test_sanitize_settings_returns_defaults_for_null(): void {
 public function test_sanitize_settings_page_id_negative_becomes_positive(): void {
 	$this->stub_sanitizers();
 
-	$result = GULO_Settings::sanitize_settings( array( 'page_id' => '-7' ) );
+	$result = GULOLI_Settings::sanitize_settings( array( 'page_id' => '-7' ) );
 
 	$this->assertSame( 7, $result['page_id'] );
 }
@@ -179,7 +179,7 @@ public function test_sanitize_settings_page_id_negative_becomes_positive(): void
 public function test_sanitize_settings_page_id_alphanumeric_strips_letters(): void {
 	$this->stub_sanitizers();
 
-	$result = GULO_Settings::sanitize_settings( array( 'page_id' => '10abc' ) );
+	$result = GULOLI_Settings::sanitize_settings( array( 'page_id' => '10abc' ) );
 
 	$this->assertSame( 10, $result['page_id'] );
 }
@@ -188,7 +188,7 @@ public function test_sanitize_settings_page_id_alphanumeric_strips_letters(): vo
 	/**
 	 * Tests that seo_noindex is true when value is 1.
 	 */ public function test_sanitize_settings_seo_noindex_true_when_value_is_1(): void {
-		$result = GULO_Settings::sanitize_settings( array( 'seo_noindex' => '1' ) );
+		$result = GULOLI_Settings::sanitize_settings( array( 'seo_noindex' => '1' ) );
 
 		$this->assertTrue( $result['seo_noindex'] );
 }
@@ -197,7 +197,7 @@ public function test_sanitize_settings_page_id_alphanumeric_strips_letters(): vo
 	 * Tests that seo_noindex is false when absent.
 	 */
 public function test_sanitize_settings_seo_noindex_false_when_absent(): void {
-	$result = GULO_Settings::sanitize_settings( array() );
+	$result = GULOLI_Settings::sanitize_settings( array() );
 
 	$this->assertFalse( $result['seo_noindex'] );
 }
@@ -206,7 +206,7 @@ public function test_sanitize_settings_seo_noindex_false_when_absent(): void {
 	 * Tests that seo_noindex is false when given an empty string.
 	 */
 public function test_sanitize_settings_seo_noindex_false_when_empty_string(): void {
-	$result = GULO_Settings::sanitize_settings( array( 'seo_noindex' => '' ) );
+	$result = GULOLI_Settings::sanitize_settings( array( 'seo_noindex' => '' ) );
 
 	$this->assertFalse( $result['seo_noindex'] );
 }
@@ -217,7 +217,7 @@ public function test_sanitize_settings_seo_noindex_false_when_empty_string(): vo
 	 */ public function test_sanitize_settings_strips_html_from_profile_name(): void {
 		$this->stub_sanitizers();
 
-		$result = GULO_Settings::sanitize_settings( array( 'profile_name' => '<b>Stefan</b>' ) );
+		$result = GULOLI_Settings::sanitize_settings( array( 'profile_name' => '<b>Stefan</b>' ) );
 
 		$this->assertSame( 'Stefan', $result['profile_name'] );
 }
@@ -228,7 +228,7 @@ public function test_sanitize_settings_seo_noindex_false_when_empty_string(): vo
 public function test_sanitize_settings_strips_script_tag_from_bio(): void {
 	$this->stub_sanitizers();
 
-	$result = GULO_Settings::sanitize_settings( array( 'profile_bio' => '<script>alert(1)</script>Bio' ) );
+	$result = GULOLI_Settings::sanitize_settings( array( 'profile_bio' => '<script>alert(1)</script>Bio' ) );
 
 	$this->assertSame( 'alert(1)Bio', $result['profile_bio'] );
 }
@@ -239,7 +239,7 @@ public function test_sanitize_settings_strips_script_tag_from_bio(): void {
 public function test_sanitize_settings_trims_whitespace_from_text_fields(): void {
 	$this->stub_sanitizers();
 
-	$result = GULO_Settings::sanitize_settings( array( 'profile_name' => '  Stefan  ' ) );
+	$result = GULOLI_Settings::sanitize_settings( array( 'profile_name' => '  Stefan  ' ) );
 
 	$this->assertSame( 'Stefan', $result['profile_name'] );
 }
@@ -250,7 +250,7 @@ public function test_sanitize_settings_trims_whitespace_from_text_fields(): void
 	 */ public function test_sanitize_settings_accepts_valid_six_digit_hex(): void {
 		$this->stub_sanitizers();
 
-		$result = GULO_Settings::sanitize_settings( array( 'button_bg_color' => '#1a2b3c' ) );
+		$result = GULOLI_Settings::sanitize_settings( array( 'button_bg_color' => '#1a2b3c' ) );
 
 		$this->assertSame( '#1a2b3c', $result['button_bg_color'] );
 }
@@ -261,7 +261,7 @@ public function test_sanitize_settings_trims_whitespace_from_text_fields(): void
 public function test_sanitize_settings_accepts_valid_three_digit_hex(): void {
 	$this->stub_sanitizers();
 
-	$result = GULO_Settings::sanitize_settings( array( 'gradient_start' => '#fff' ) );
+	$result = GULOLI_Settings::sanitize_settings( array( 'gradient_start' => '#fff' ) );
 
 	$this->assertSame( '#fff', $result['gradient_start'] );
 }
@@ -272,7 +272,7 @@ public function test_sanitize_settings_accepts_valid_three_digit_hex(): void {
 public function test_sanitize_settings_rejects_invalid_color_string(): void {
 	$this->stub_sanitizers();
 
-	$result = GULO_Settings::sanitize_settings( array( 'button_bg_color' => 'red' ) );
+	$result = GULOLI_Settings::sanitize_settings( array( 'button_bg_color' => 'red' ) );
 
 	$this->assertArrayNotHasKey( 'button_bg_color', $result );
 }
@@ -283,7 +283,7 @@ public function test_sanitize_settings_rejects_invalid_color_string(): void {
 public function test_sanitize_settings_rejects_color_without_hash(): void {
 	$this->stub_sanitizers();
 
-	$result = GULO_Settings::sanitize_settings( array( 'button_bg_color' => 'ffffff' ) );
+	$result = GULOLI_Settings::sanitize_settings( array( 'button_bg_color' => 'ffffff' ) );
 
 	$this->assertArrayNotHasKey( 'button_bg_color', $result );
 }
@@ -294,7 +294,7 @@ public function test_sanitize_settings_rejects_color_without_hash(): void {
 	 */ public function test_sanitize_settings_accepts_valid_profile_image_url(): void {
 		$this->stub_sanitizers();
 
-		$result = GULO_Settings::sanitize_settings( array( 'profile_image' => 'https://example.com/avatar.jpg' ) );
+		$result = GULOLI_Settings::sanitize_settings( array( 'profile_image' => 'https://example.com/avatar.jpg' ) );
 
 		$this->assertSame( 'https://example.com/avatar.jpg', $result['profile_image'] );
 }
@@ -305,7 +305,7 @@ public function test_sanitize_settings_rejects_color_without_hash(): void {
 public function test_sanitize_settings_trims_whitespace_from_url(): void {
 	$this->stub_sanitizers();
 
-	$result = GULO_Settings::sanitize_settings( array( 'imprint_url' => '  https://example.com/imprint  ' ) );
+	$result = GULOLI_Settings::sanitize_settings( array( 'imprint_url' => '  https://example.com/imprint  ' ) );
 
 	$this->assertSame( 'https://example.com/imprint', $result['imprint_url'] );
 }
@@ -316,7 +316,7 @@ public function test_sanitize_settings_trims_whitespace_from_url(): void {
 public function test_sanitize_settings_accepts_valid_privacy_url(): void {
 	$this->stub_sanitizers();
 
-	$result = GULO_Settings::sanitize_settings( array( 'privacy_url' => 'https://example.com/privacy' ) );
+	$result = GULOLI_Settings::sanitize_settings( array( 'privacy_url' => 'https://example.com/privacy' ) );
 
 	$this->assertSame( 'https://example.com/privacy', $result['privacy_url'] );
 }
@@ -327,7 +327,7 @@ public function test_sanitize_settings_accepts_valid_privacy_url(): void {
 	 */ public function test_sanitize_links_returns_empty_json_for_invalid_json(): void {
 		Functions\when( 'wp_json_encode' )->alias( 'json_encode' );
 
-		$result = GULO_Settings::sanitize_links( 'not-valid-json' );
+		$result = GULOLI_Settings::sanitize_links( 'not-valid-json' );
 
 		$this->assertSame( '[]', $result );
 }
@@ -338,7 +338,7 @@ public function test_sanitize_settings_accepts_valid_privacy_url(): void {
 public function test_sanitize_links_returns_empty_json_for_null(): void {
 	Functions\when( 'wp_json_encode' )->alias( 'json_encode' );
 
-	$result = GULO_Settings::sanitize_links( null );
+	$result = GULOLI_Settings::sanitize_links( null );
 
 	$this->assertSame( '[]', $result );
 }
@@ -358,7 +358,7 @@ public function test_sanitize_links_skips_entry_with_empty_title_and_url(): void
 			),
 		)
 	);
-	$result = GULO_Settings::sanitize_links( $input );
+	$result = GULOLI_Settings::sanitize_links( $input );
 
 	$this->assertSame( '[]', $result );
 }
@@ -378,7 +378,7 @@ public function test_sanitize_links_skips_non_array_entries(): void {
 			),
 		)
 	);
-	$result  = GULO_Settings::sanitize_links( $input );
+	$result  = GULOLI_Settings::sanitize_links( $input );
 	$decoded = json_decode( $result, true );
 
 	$this->assertCount( 1, $decoded );
@@ -399,7 +399,7 @@ public function test_sanitize_links_preserves_valid_link(): void {
 			),
 		)
 	);
-	$result  = GULO_Settings::sanitize_links( $input );
+	$result  = GULOLI_Settings::sanitize_links( $input );
 	$decoded = json_decode( $result, true );
 
 	$this->assertCount( 1, $decoded );
@@ -422,7 +422,7 @@ public function test_sanitize_links_active_defaults_to_true_when_absent(): void 
 			),
 		)
 	);
-	$result  = GULO_Settings::sanitize_links( $input );
+	$result  = GULOLI_Settings::sanitize_links( $input );
 	$decoded = json_decode( $result, true );
 
 	$this->assertTrue( $decoded[0]['active'] );
@@ -443,7 +443,7 @@ public function test_sanitize_links_preserves_active_false(): void {
 			),
 		)
 	);
-	$result  = GULO_Settings::sanitize_links( $input );
+	$result  = GULOLI_Settings::sanitize_links( $input );
 	$decoded = json_decode( $result, true );
 
 	$this->assertFalse( $decoded[0]['active'] );
@@ -464,7 +464,7 @@ public function test_sanitize_links_strips_html_from_title(): void {
 			),
 		)
 	);
-	$result  = GULO_Settings::sanitize_links( $input );
+	$result  = GULOLI_Settings::sanitize_links( $input );
 	$decoded = json_decode( $result, true );
 
 	$this->assertSame( 'GitHub', $decoded[0]['title'] );
@@ -491,7 +491,7 @@ public function test_sanitize_links_preserves_multiple_valid_links(): void {
 		)
 	);
 
-	$result  = GULO_Settings::sanitize_links( $input );
+	$result  = GULOLI_Settings::sanitize_links( $input );
 	$decoded = json_decode( $result, true );
 
 	$this->assertCount( 2, $decoded );
@@ -514,7 +514,7 @@ public function test_sanitize_links_entry_with_title_only_is_kept(): void {
 			),
 		)
 	);
-	$result  = GULO_Settings::sanitize_links( $input );
+	$result  = GULOLI_Settings::sanitize_links( $input );
 	$decoded = json_decode( $result, true );
 
 	$this->assertCount( 1, $decoded );

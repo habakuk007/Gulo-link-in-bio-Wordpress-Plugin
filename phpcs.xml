@@ -25,7 +25,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="gulo-link-in-bio"/>
+				<element value="simple-bio-links"/>
 			</property>
 		</properties>
 	</rule>
@@ -34,7 +34,7 @@
 	<rule ref="WordPress.WP.Capabilities">
 		<properties>
 			<property name="custom_capabilities" type="array">
-				<element value="gulo_manage_settings"/>
+				<element value="guloli_manage_settings"/>
 			</property>
 		</properties>
 	</rule>
@@ -43,8 +43,8 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<property name="prefixes" type="array">
-				<element value="gulo_"/>
-				<element value="GULO_"/>
+				<element value="guloli_"/>
+				<element value="guloli_"/>
 			</property>
 		</properties>
 	</rule>

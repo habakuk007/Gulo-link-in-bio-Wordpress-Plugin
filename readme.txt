@@ -48,7 +48,7 @@ The plugin serves a standalone HTML page (bypasses the active theme entirely), s
 
 = Manual installation =
 
-1. Download the ZIP from the [plugin page](https://wordpress.org/plugins/gulo-link-in-bio/) or [GitHub releases](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plugin/releases).
+1. Download the ZIP from the [plugin page](https://wordpress.org/plugins/simple-bio-links/) or [GitHub releases](https://github.com/habakuk007/simple-bio-links-Wordpress-Plugin/releases).
 2. Go to **Plugins → Add New → Upload Plugin**.
 3. Upload the ZIP and click **Install Now**, then **Activate**.
 
@@ -95,7 +95,7 @@ By default, yes. To exclude it, check **Exclude this page from search engines (n
 = How do I add a language not included in the plugin? =
 
 1. Run `composer run make:pot` to re-extract strings (requires WP-CLI).
-2. Copy `languages/gulo-link-in-bio.pot` to `languages/gulo-link-in-bio-{locale}.po`.
+2. Copy `languages/simple-bio-links.pot` to `languages/simple-bio-links-{locale}.po`.
 3. Add translations in a PO editor (e.g. [Poedit](https://poedit.net/)).
 4. Run `composer run make:mo` to compile the MO binary.
 
@@ -103,7 +103,7 @@ Or use a plugin like [Loco Translate](https://wordpress.org/plugins/loco-transla
 
 = Where can I report a bug or request a feature? =
 
-On [GitHub Issues](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plugin/issues).
+On [GitHub Issues](https://github.com/habakuk007/simple-bio-links-Wordpress-Plugin/issues).
 
 == Screenshots ==
 
@@ -121,8 +121,8 @@ On [GitHub Issues](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plug
 = 0.0.1 =
 * Initial WordPress.org submission release
 * Renamed plugin to "Gulo Link-in-Bio" — required by WordPress.org (name conflicts with existing plugins)
-* Changed text domain from `link-in-bio` to `gulo-link-in-bio` to match the plugin slug
-* Renamed all language files accordingly (`gulo-link-in-bio-*.po/mo/pot`)
+* Changed text domain from `link-in-bio` to `simple-bio-links` to match the plugin slug
+* Renamed all language files accordingly (`simple-bio-links-*.po/mo/pot`)
 * Changed version format from `1.0.0-alpha.x` to numeric-only (`0.0.1`) as required by WordPress.org
 
 = 1.0.0-alpha.12 =
@@ -135,7 +135,7 @@ On [GitHub Issues](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plug
 * Fixed "Tested up to" bumped to 6.9
 * Fixed short description trimmed to ≤150 characters (readme.txt validator)
 * Fixed excluded `phpunit.unit.xml` and `.wp-env.json` from release ZIP
-* Build release ZIP now named `gulo-link-in-bio-{version}.zip` (includes version in filename)
+* Build release ZIP now named `simple-bio-links-{version}.zip` (includes version in filename)
 * Build replaced bash build script with PHP to avoid WSL conflicts on Windows
 
 = 1.0.0-alpha.10 =
@@ -172,7 +172,7 @@ On [GitHub Issues](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plug
 * Version bump and release ZIP build via `composer run package`
 
 = 1.0.0-alpha.7 =
-* Converted from `[link_in_bio]` shortcode to a dedicated WordPress page template (`page-gulo-gulo-link-in-bio.php`)
+* Converted from `[link_in_bio]` shortcode to a dedicated WordPress page template (`page-gulo-simple-bio-links.php`)
 * Eliminated theme dependency — the page is now a fully standalone HTML document
 * Added page selection dropdown in settings
 

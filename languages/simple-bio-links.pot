@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gulo Link-in-Bio 0.1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gulo-link-in-bio\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/simple-bio-links\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12,32 +12,32 @@ msgstr ""
 "POT-Creation-Date: 2026-05-06T23:34:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: gulo-link-in-bio\n"
+"X-Domain: simple-bio-links\n"
 
 #. Plugin Name of the plugin
-#: gulo-link-in-bio.php:3
+#: simple-bio-links.php:3
 #: includes/class-gulo-admin.php:47
 #: includes/class-gulo-admin.php:152
 msgid "Gulo Link-in-Bio"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: gulo-link-in-bio.php:4
-msgid "https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plugin"
+#: simple-bio-links.php:4
+msgid "https://github.com/habakuk007/simple-bio-links-Wordpress-Plugin"
 msgstr ""
 
 #. Description of the plugin
-#: gulo-link-in-bio.php:5
+#: simple-bio-links.php:5
 msgid "A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Configure your profile in the Gulo Link-in-Bio admin menu, then assign the page template to any Page."
 msgstr ""
 
 #. Author of the plugin
-#: gulo-link-in-bio.php:9
+#: simple-bio-links.php:9
 msgid "Stefan Wagner"
 msgstr ""
 
 #. Author URI of the plugin
-#: gulo-link-in-bio.php:10
+#: simple-bio-links.php:10
 msgid "https://trumpkin.de/"
 msgstr ""
 

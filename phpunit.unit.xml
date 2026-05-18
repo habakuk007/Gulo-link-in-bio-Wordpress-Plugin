@@ -9,7 +9,7 @@
 >
 	<testsuites>
 		<testsuite name="Unit">
-			<file>tests/unit/Test_GULO_Settings.php</file>
+			<file>tests/unit/Test_GULOLI_Settings.php</file>
 		</testsuite>
 	</testsuites>
 
