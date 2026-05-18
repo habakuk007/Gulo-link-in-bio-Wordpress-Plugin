@@ -37,9 +37,13 @@ The header block is the first section of `readme.txt`. Every field has strict re
 
 ### `Tags`
 
-- 1–5 comma-separated lowercase terms.
-- Do not use competitor brand names (e.g. Linktree, Beacons) as tags — this violates WordPress.org guidelines.
-- Do not use tags that are unique to this plugin alone (they won't appear in tag browsing).
+- Up to **12 tags** are permitted; only the **first 5** are displayed on WordPress.org (all 12 are used for search indexing).
+- Lowercase, comma-separated. Tags beyond 12 are ignored entirely.
+- Do not use competitor brand names (e.g. Linktree, Beacons) as tags — this violates WordPress.org Guideline 12.
+- Do not use tags unique to this plugin alone (they won't appear in tag browsing).
+- Do not repeat keywords already in the plugin name or description — this is keyword stuffing and is penalised.
+
+*Source: [Detailed Plugin Guidelines #12](https://developer.wordpress.org/plugins/wordpress-org/detailed-plugin-guidelines/#12-public-facing-pages-on-wordpress-org-readmes-must-not-spam) · [Plugin Developer FAQ](https://developer.wordpress.org/plugins/wordpress-org/plugin-developer-faq/)*
 
 ### `Contributors`
 
@@ -136,6 +140,10 @@ WordPress.org flags readmes larger than 10 KB. When the file approaches that lim
 2. Move all entries older than the two most recent releases into `changelog.txt`.
 3. Add a note at the bottom of `== Changelog ==`: `See changelog.txt for older entries.`
 
+### Format reference
+
+Follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) conventions for verb prefixes and entry structure — this is the format WordPress.org explicitly recommends.
+
 ---
 
 ## 5) Upgrade Notice Rules
@@ -173,3 +181,49 @@ All fields must pass without errors. Common failures:
 - Short description exceeds 150 characters
 - `Tested up to` contains a patch version or "WP" prefix
 - Screenshot captions reference numbers with no corresponding SVN asset file
+
+---
+
+## 8) Plugin SVN Assets
+
+*Source: [How Your Plugin Assets Work](https://developer.wordpress.org/plugins/wordpress-org/plugin-assets/) · [Plugin Headers (banners)](https://developer.wordpress.org/plugins/wordpress-org/plugin-assets/#plugin-headers) · [Plugin Icons](https://developer.wordpress.org/plugins/wordpress-org/plugin-assets/#plugin-icons) · [Readme developer reference](https://wordpress.org/plugins/developers/#readme)*
+
+The top-level SVN `/assets/` directory (same level as `trunk/` and `tags/`) stores images
+shown on the WordPress.org plugin page. This is **not** the plugin's own `assets/` folder inside `trunk/`.
+
+All images are served via CDN; allow up to 6 hours for changes to propagate after an SVN commit.
+
+### Plugin Banner
+
+Shown at the top of the plugin page on WordPress.org.
+
+- `banner-772x250.(jpg|png)` — normal banner, **772 × 250 px** *(required for any banner to appear)*
+- `banner-1544x500.(jpg|png)` — retina (high-DPI) banner, **1544 × 500 px** *(only works if the normal banner also exists)*
+- `banner-772x250-rtl.(jpg|png)` — RTL language variant of the normal banner
+- Max file size: **4 MB** (CDN-cached; smaller is better).
+- Do not use official product or brand logos as the sole banner design.
+
+### Plugin Icon
+
+Shown in WordPress.org search results and in the wp-admin Plugins list.
+
+- `icon-128x128.(png|jpg|gif)` — normal icon, **128 × 128 px** *(required for a custom icon)*
+- `icon-256x256.(png|jpg|gif)` — retina icon, **256 × 256 px**
+- `icon.svg` — SVG icon; **must** be accompanied by a PNG fallback (`icon-128x128.png`)
+- Max file size: **1 MB**.
+- An auto-generated icon is used when no custom icon files are present.
+- Do not use official brand or product logos.
+
+### Screenshots
+
+- Filename pattern: `screenshot-1.(png|jpg)`, `screenshot-2.(png|jpg)`, etc. — **lowercase only** (uppercase names are silently ignored).
+- Each numbered file maps to the corresponding caption line inside `== Screenshots ==` in `readme.txt`. Keep the count in sync.
+- Screenshots must be local files committed to SVN — external image URLs are not supported.
+- Max file size: **10 MB** per screenshot.
+
+### SVN MIME-type (if images download instead of display)
+
+```
+svn propset svn:mime-type image/png *.png
+svn propset svn:mime-type image/jpeg *.jpg
+```

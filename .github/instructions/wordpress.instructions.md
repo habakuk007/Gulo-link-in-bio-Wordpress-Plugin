@@ -14,18 +14,43 @@ description: 'Coding, security, and testing rules for WordPress plugins and them
 - Enqueue assets; never inline raw `<script>`/`<style>` in PHP templates.
 - Make user‑facing strings translatable and load the correct text domain.
 
-### Minimal plugin header & guard
+### Plugin header — all available fields
+
+*Source: [Plugin Header Requirements](https://developer.wordpress.org/plugins/the-basics/header-requirements/)*
+
+- `Plugin Name:` *(required)* — displayed in the wp-admin Plugins list.
+- `Plugin URI:` — unique URL for the plugin's home page; cannot be a WordPress.org URL.
+- `Description:` — ≤ 140 characters; shown under the plugin name in wp-admin.
+- `Version:` — use `version_compare()`-compatible format (e.g. `1.0.3`; note `1.02 > 1.1` in PHP).
+- `Requires at least:` — minimum WordPress version (e.g. `6.0`).
+- `Requires PHP:` — minimum PHP version (e.g. `7.4`).
+- `Author:` — plugin author name(s).
+- `Author URI:` — author's website.
+- `License:` — short licence slug, e.g. `GPL-2.0-or-later`.
+- `License URI:` — link to the full licence text.
+- `Text Domain:` — must match the string in `load_plugin_textdomain()` and all i18n calls.
+- `Domain Path:` — where translation files live, e.g. `/languages`.
+- `Update URI:` — prevents accidental WP.org update hijacking for externally-distributed plugins.
+- `Requires Plugins:` — comma-separated WP.org slugs of required plugins (WordPress 6.5+).
+- `Network:` — set `true` only for network-wide plugins; omit otherwise.
+
 ```php
 <?php
-defined('ABSPATH') || exit;
+defined( 'ABSPATH' ) || exit;
 /**
- * Plugin Name: Awesome Feature
- * Description: Example plugin scaffold.
- * Version: 0.1.0
- * Author: Example
- * License: GPL-2.0-or-later
- * Text Domain: awesome-feature
- * Domain Path: /languages
+ * Plugin Name:       Awesome Feature
+ * Plugin URI:        https://example.com/awesome-feature/
+ * Description:       Example plugin scaffold.
+ * Version:           0.1.0
+ * Requires at least: 6.0
+ * Requires PHP:      7.4
+ * Author:            Example Author
+ * Author URI:        https://example.com/
+ * License:           GPL-2.0-or-later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       awesome-feature
+ * Domain Path:       /languages
+ * Update URI:        https://example.com/awesome-feature/
  */
 ```
 
@@ -81,14 +106,41 @@ defined('ABSPATH') || exit;
 ```
 
 ## 3) Security & Data Handling
-- **Escape on output, sanitize on input.**
-  - Escape: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`.
-  - Sanitize: `sanitize_text_field()`, `sanitize_email()`, `sanitize_key()`, `absint()`, `intval()`.
-- **Capabilities & nonces** for forms, AJAX, REST:
-  - Add nonces with `wp_nonce_field()` and verify via `check_admin_referer()` / `wp_verify_nonce()`.
-  - Restrict mutations with `current_user_can( 'manage_options' /* or specific cap */ )`.
-- **Database:** always use `$wpdb->prepare()` with placeholders; never concatenate untrusted input.
-- **Uploads:** validate MIME/type and use `wp_handle_upload()`/`media_handle_upload()`.
+
+*Official references: [Security](https://developer.wordpress.org/apis/security/) · [Escaping](https://developer.wordpress.org/apis/security/escaping/) · [Sanitizing](https://developer.wordpress.org/apis/security/sanitizing/) · [Nonces](https://developer.wordpress.org/apis/security/nonces/)*
+
+- **Escape on output — escape late.** Escape at the point of output, not earlier. Escaping too early and then concatenating can silently double-escape data.
+  - HTML element content: `esc_html()` · HTML attribute: `esc_attr()` · URL in `href`/`src`: `esc_url()`
+  - URL stored in DB: `esc_url_raw()` · Inline JS value: `esc_js()` · `<textarea>` content: `esc_textarea()`
+  - XML/XSL context: `esc_xml()` · Trusted post HTML: `wp_kses_post()` · Custom allowed HTML: `wp_kses( $html, $allowed_tags )`
+  - Integers: `absint()` / `(int)`
+  - Combined escape + translation (preferred over separate calls): `esc_html__()`, `esc_html_e()`, `esc_html_x()`, `esc_attr__()`, `esc_attr_e()`, `esc_attr_x()`
+- **Sanitize on input.** Prefer validation (reject bad input) over sanitization where the expected format is known.
+  - Generic single-line text: `sanitize_text_field()` · Multi-line: `sanitize_textarea_field()`
+  - Email: `sanitize_email()` · URL: `sanitize_url()` / `esc_url_raw()` · Hex colour: `sanitize_hex_color()`
+  - CSS class: `sanitize_html_class()` · Key/identifier: `sanitize_key()` · Integer: `absint()` / `intval()`
+  - HTML from editors: `wp_kses_post()`
+- **Nonces & capabilities** for forms, AJAX, REST:
+  - Add nonces: `wp_nonce_field()` (forms), `wp_create_nonce()` (AJAX/JS).
+  - Verify: `check_admin_referer()` (admin forms), `check_ajax_referer()` (AJAX), `wp_verify_nonce()` (other contexts).
+  - **Nonces are not authentication or authorisation.** Always pair nonce verification with `current_user_can()`. A valid nonce alone must never grant access.
+  - Default nonce lifetime is 24 h; adjust via the `nonce_life` filter if needed.
+- **Database:** always use `$wpdb->prepare()` with `%s`/`%d`/`%f` placeholders; never concatenate untrusted input into SQL.
+- **Uploads:** validate MIME type; use `wp_handle_upload()` or `media_handle_upload()`.
+
+```php
+// Escape late — at the point of output
+echo '<a href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>';
+echo esc_html__( 'Save settings', 'my-plugin' );
+
+// Nonce: admin form
+wp_nonce_field( 'save-settings_' . $post_id );
+check_admin_referer( 'save-settings_' . $post_id );
+
+// Nonce: AJAX
+wp_localize_script( 'my-js', 'myData', [ 'nonce' => wp_create_nonce( 'my-action' ) ] );
+check_ajax_referer( 'my-action' );
+```
 
 ## 4) Internationalization (i18n)
 - Wrap user‑visible strings with translation functions using your text domain:
@@ -248,3 +300,47 @@ function myplugin_maybe_show_notice() {
 ### Attribution & Credit Links (Guideline 10)
 - Any "Powered by [Plugin Name]" or credit link rendered on the front end must be **opt-in** and **hidden by default**.
 - Provide a clear, labeled toggle in settings; never require credits to unlock functionality.
+
+### Developer Responsibility for All Bundled Assets (Guideline 2)
+- You are responsible for every file you distribute — plugin code, images, fonts, and third-party libraries.
+- Before adding any third-party library, verify its licence is GPL-compatible and document its source in comments or `readme.txt`.
+- If a security issue is found in bundled code, patch it promptly or remove the component.
+
+### SVN is a Release Repository Only (Guideline 3)
+- Only push production-ready, deployable code to SVN. The directory generates a zip on every commit.
+- Distributing plugin updates through channels other than WordPress.org while keeping SVN stale is prohibited.
+- Tag each release with its version number; never use `trunk` as the `Stable tag`.
+
+### External Services / SaaS (Guideline 6)
+- Plugins that interface with external paid or free services are permitted.
+- Always document the service in `readme.txt`: what it does, its pricing model, and a link to its Terms of Use.
+- Never create an artificial external dependency solely to move code out of the plugin.
+
+### No Illegal, Dishonest, or Manipulative Behaviour (Guideline 9)
+- No keyword stuffing, black-hat SEO, or artificial search-ranking manipulation.
+- No fake reviews, sockpuppeting (multiple accounts for reviews/ratings), or pressuring users for reviews.
+- No implying legal-compliance guarantees ("GDPR-compliant", "ADA-compliant").
+- No unauthorized use of the user's server resources (e.g. crypto mining, botnet participation).
+- No copying another developer's plugin and presenting it as original work.
+
+### Readme / Public Pages Must Not Spam (Guideline 12)
+- Maximum **12 tags** in `readme.txt`; only the first **5** are displayed on WordPress.org (all 12 contribute to search).
+- Tags may not include competitor brand names; related product tags are permitted (e.g. `woocommerce` for a WC extension).
+- Repeating a tag or keyword counts as keyword stuffing and is prohibited.
+- Affiliate links must be **disclosed** and must link **directly** to the affiliate service — no cloaked or redirect URLs.
+
+### SVN Commit Discipline (Guideline 14)
+- Commit only deployable code; every SVN commit regenerates the plugin zip file.
+- Avoid rapid "cleanup" or "update" commits; use descriptive messages explaining what changed and why.
+- Use a VCS (e.g. GitHub) for day-to-day development; push to SVN only when releasing.
+
+### Increment Version for Every Code Release (Guideline 15)
+- Users receive update prompts only when the version number increases. Every code change reaching users needs a new version.
+- The trunk `readme.txt` `Stable tag` must always match the current deployed version.
+
+### Respect Trademarks and Copyrights (Guideline 17)
+- A plugin slug must **not** begin with another product's registered trademark (e.g. `wordpress`, `woocommerce`) unless you are the official owner.
+- Choose original, unique plugin names; avoid confusingly similar names to established products.
+- Forking another plugin is permitted under the GPL, but you must credit the original and comply with its licence.
+
+*Source: [Detailed Plugin Guidelines](https://developer.wordpress.org/plugins/wordpress-org/detailed-plugin-guidelines/) · [Plugin Developer FAQ](https://developer.wordpress.org/plugins/wordpress-org/plugin-developer-faq/)*
