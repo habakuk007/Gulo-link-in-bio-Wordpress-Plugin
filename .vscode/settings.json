@@ -63,5 +63,9 @@
 
   // ── Git ─────────────────────────────────────────────────────────
   "git.autofetch": true,
-  "git.enableSmartCommit": true
+  "git.enableSmartCommit": true,
+  "chat.tools.terminal.autoApprove": {
+    "composer": true,
+    "git tag": true
+  }
 }

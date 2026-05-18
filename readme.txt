@@ -3,7 +3,7 @@ Contributors: habakuk
 Tags: link in bio, linktree, links, profile, social links
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -114,6 +114,14 @@ On [GitHub Issues](https://github.com/habakuk007/simple-bio-links-Wordpress-Plug
 5. The live frontend profile page on a mobile screen.
 
 == Changelog ==
+
+= 0.2.0 =
+* Fixed plugin slug restored to `simple-bio-links` (main file renamed from `gulo-link-in-bio.php`) — required by WordPress.org plugin review
+* Fixed text domain: all `gulo-link-in-bio` references replaced with `simple-bio-links` across PHP files, templates, and language files (POT + 4 PO/MO)
+* Renamed PHP prefix from `GULO_` / `gulo_` to `GULOLI_` / `guloli_` to satisfy WordPress.org uniqueness requirement — affects class names (`GULOLI_Settings`, `GULOLI_Admin`, `GULOLI_Plugin`, `GULOLI_Frontend`), constants, option keys (`guloli_settings`, `guloli_links`), capability (`guloli_manage_settings`), template variables, asset handles, nonces, and settings group
+* Fixed `background_type` and `button_style` sanitization: now uses strict allowlist via `sanitize_key()` + `in_array()` instead of `sanitize_text_field()`
+* Updated all unit and integration tests to reflect renamed classes and constants
+* Updated GitHub Sponsors username in `FUNDING.yml`
 
 = 0.1.0 =
 * Version bump
