@@ -35,7 +35,7 @@ package.json                      JS dev dependencies (ESLint, Stylelint)
 .editorconfig                     Editor settings (tabs, UTF-8, LF)
 .gitignore                        Ignored paths
 .github/copilot-instructions.md   GitHub Copilot project overview
-.github/instructions/             Copilot domain instruction files (WP, CSS, a11y)
+.github/instructions/             Copilot domain instruction files (WP, CSS, a11y, readme.txt)
 .github/workflows/ci.yml          GitHub Actions: lint + test matrix
 .vscode/settings.json             VS Code editor settings
 .vscode/extensions.json           VS Code recommended extensions
@@ -126,3 +126,4 @@ follow the same rules:
 - **WordPress**: `.github/instructions/wordpress.instructions.md`
 - **Color/CSS**: `.github/instructions/html-css-style-color-guide.instructions.md`
 - **Accessibility**: `.github/instructions/a11y.instructions.md`
+- **readme.txt / changelog.txt**: `.github/instructions/readme-txt.instructions.md`
