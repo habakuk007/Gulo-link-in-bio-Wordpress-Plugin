@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-# Builds a versioned simple-bio-links-{version}.zip for WordPress upload.
+# Builds gulo-link-in-bio.zip for WordPress upload.
 # Usage: composer run package
 #
-# The zip contains a single top-level folder named "simple-bio-links/" so that
-# WordPress installs it to wp-content/plugins/simple-bio-links/.
+# The zip contains a single top-level folder named "gulo-link-in-bio/" so that
+# WordPress installs it to wp-content/plugins/gulo-link-in-bio/.
 # To update an existing install: Plugins → Add New → Upload Plugin,
 # then click "Replace current with uploaded" (NOT "Install Now").
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-VERSION=$(awk '/\* Version:/{print $NF; exit}' "$ROOT/simple-bio-links.php")
-ZIP="$ROOT/simple-bio-links-${VERSION}.zip"
+VERSION=$(awk '/\* Version:/{print $NF; exit}' "$ROOT/gulo-link-in-bio.php")
+ZIP="$ROOT/gulo-link-in-bio.zip"
 
 # Convert to Windows path for PowerShell
 WIN_ROOT="$(cygpath -w "$ROOT" 2>/dev/null || echo "$ROOT")"
@@ -23,11 +23,11 @@ powershell -NoProfile -Command "
   if (Test-Path \$zip) { Remove-Item \$zip }
 
   \$tmp  = Join-Path ([System.IO.Path]::GetTempPath()) ('gulo-zip-' + [System.IO.Path]::GetRandomFileName())
-  \$plug = Join-Path \$tmp 'simple-bio-links'
+  \$plug = Join-Path \$tmp 'gulo-link-in-bio'
   New-Item -ItemType Directory -Path \$plug | Out-Null
 
   # Individual root files
-  foreach (\$f in @('simple-bio-links.php', 'uninstall.php', 'readme.txt', 'LICENSE')) {
+  foreach (\$f in @('gulo-link-in-bio.php', 'uninstall.php', 'readme.txt', 'LICENSE')) {
     Copy-Item (Join-Path \$src \$f) \$plug
   }
 

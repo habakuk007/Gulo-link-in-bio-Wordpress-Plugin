@@ -2,7 +2,7 @@
 /**
  * Main plugin bootstrap class.
  *
- * @package SimpleBioLinks
+ * @package GuloLinkInBio
  */
 
 defined( 'ABSPATH' ) || exit;

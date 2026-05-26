@@ -2,7 +2,7 @@
 /**
  * Admin settings page — menu, settings registration, and page render.
  *
- * @package SimpleBioLinks
+ * @package GuloLinkInBio
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 class GULOLI_Admin {
 
 	/** Admin page slug used as screen ID. */
-	const PAGE_SLUG = 'simple-bio-links';
+	const PAGE_SLUG = 'gulo-link-in-bio';
 
 	/** Settings group used with settings_fields(). */
 	const SETTINGS_GROUP = 'guloli_settings_group';
@@ -43,8 +43,8 @@ class GULOLI_Admin {
 	 */
 	public function add_menu(): void {
 		add_menu_page(
-			__( 'Gulo Link-in-Bio Settings', 'simple-bio-links' ),
-			__( 'Gulo Link-in-Bio', 'simple-bio-links' ),
+			__( 'Gulo Link-in-Bio Settings', 'gulo-link-in-bio' ),
+			__( 'Gulo Link-in-Bio', 'gulo-link-in-bio' ),
 			'guloli_manage_settings',
 			self::PAGE_SLUG,
 			array( $this, 'render_page' ),
@@ -112,9 +112,9 @@ class GULOLI_Admin {
 			'guloAdmin',
 			array(
 				'links'         => GULOLI_Settings::get_links(),
-				'mediaTitle'    => __( 'Select Profile Image', 'simple-bio-links' ),
-				'mediaButton'   => __( 'Use this image', 'simple-bio-links' ),
-				'removeConfirm' => __( 'Remove this link?', 'simple-bio-links' ),
+				'mediaTitle'    => __( 'Select Profile Image', 'gulo-link-in-bio' ),
+				'mediaButton'   => __( 'Use this image', 'gulo-link-in-bio' ),
+				'removeConfirm' => __( 'Remove this link?', 'gulo-link-in-bio' ),
 				'nonce'         => wp_create_nonce( 'guloli-admin' ),
 			)
 		);
@@ -130,7 +130,7 @@ class GULOLI_Admin {
 		$settings_link = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( admin_url( 'admin.php?page=' . self::PAGE_SLUG ) ),
-			esc_html__( 'Settings', 'simple-bio-links' )
+			esc_html__( 'Settings', 'gulo-link-in-bio' )
 		);
 		array_unshift( $links, $settings_link );
 		return $links;
@@ -143,18 +143,18 @@ class GULOLI_Admin {
 	 */
 	public function render_page(): void {
 		if ( ! current_user_can( 'guloli_manage_settings' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'simple-bio-links' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'gulo-link-in-bio' ) );
 		}
 
 		$s = GULOLI_Settings::get();
 		?>
 		<div class="wrap lib-admin-wrap">
-			<h1><?php esc_html_e( 'Gulo Link-in-Bio', 'simple-bio-links' ); ?></h1>
+			<h1><?php esc_html_e( 'Gulo Link-in-Bio', 'gulo-link-in-bio' ); ?></h1>
 
 			<?php settings_errors( GULOLI_Settings::OPTION_SETTINGS ); ?>
 
 			<p class="lib-shortcode-tip">
-				<?php esc_html_e( 'Create any WordPress Page, then select it below — the plugin will serve the Gulo Link-in-Bio layout for that page automatically.', 'simple-bio-links' ); ?>
+				<?php esc_html_e( 'Create any WordPress Page, then select it below — the plugin will serve the Gulo Link-in-Bio layout for that page automatically.', 'gulo-link-in-bio' ); ?>
 			</p>
 
 			<form method="post" action="options.php" novalidate>
@@ -162,11 +162,11 @@ class GULOLI_Admin {
 
 				<!-- ── Page ─────────────────────────────────────────── -->
 				<div class="lib-section">
-					<h2 class="lib-section-title"><?php esc_html_e( 'Gulo Link-in-Bio Page', 'simple-bio-links' ); ?></h2>
+					<h2 class="lib-section-title"><?php esc_html_e( 'Gulo Link-in-Bio Page', 'gulo-link-in-bio' ); ?></h2>
 					<table class="form-table" role="presentation">
 						<tr>
 							<th scope="row">
-								<label for="lib-page-id"><?php esc_html_e( 'Page', 'simple-bio-links' ); ?></label>
+								<label for="lib-page-id"><?php esc_html_e( 'Page', 'gulo-link-in-bio' ); ?></label>
 							</th>
 							<td>
 								<?php
@@ -175,13 +175,13 @@ class GULOLI_Admin {
 										'name'             => esc_attr( GULOLI_Settings::OPTION_SETTINGS ) . '[page_id]',
 										'id'               => 'lib-page-id',
 										'selected'         => (int) $s['page_id'],
-										'show_option_none' => esc_html__( '— Select a page —', 'simple-bio-links' ),
+										'show_option_none' => esc_html__( '— Select a page —', 'gulo-link-in-bio' ),
 										'option_none_value' => '0',
 									)
 								);
 								?>
 								<p class="description">
-									<?php esc_html_e( 'The selected page will display the Gulo Link-in-Bio profile layout, bypassing the active theme.', 'simple-bio-links' ); ?>
+									<?php esc_html_e( 'The selected page will display the Gulo Link-in-Bio profile layout, bypassing the active theme.', 'gulo-link-in-bio' ); ?>
 								</p>
 							</td>
 						</tr>
@@ -190,11 +190,11 @@ class GULOLI_Admin {
 
 				<!-- ── Profile ──────────────────────────────────────── -->
 				<div class="lib-section">
-					<h2 class="lib-section-title"><?php esc_html_e( 'Profile', 'simple-bio-links' ); ?></h2>
+					<h2 class="lib-section-title"><?php esc_html_e( 'Profile', 'gulo-link-in-bio' ); ?></h2>
 					<table class="form-table" role="presentation">
 						<tr>
 							<th scope="row">
-								<label for="lib-profile-name"><?php esc_html_e( 'Name', 'simple-bio-links' ); ?></label>
+								<label for="lib-profile-name"><?php esc_html_e( 'Name', 'gulo-link-in-bio' ); ?></label>
 							</th>
 							<td>
 								<input
@@ -209,7 +209,7 @@ class GULOLI_Admin {
 						</tr>
 						<tr>
 							<th scope="row">
-								<label for="lib-profile-bio"><?php esc_html_e( 'Bio / Tagline', 'simple-bio-links' ); ?></label>
+								<label for="lib-profile-bio"><?php esc_html_e( 'Bio / Tagline', 'gulo-link-in-bio' ); ?></label>
 							</th>
 							<td>
 								<textarea
@@ -222,7 +222,7 @@ class GULOLI_Admin {
 						</tr>
 						<tr>
 							<th scope="row">
-								<label for="lib-profile-image"><?php esc_html_e( 'Profile Image URL', 'simple-bio-links' ); ?></label>
+								<label for="lib-profile-image"><?php esc_html_e( 'Profile Image URL', 'gulo-link-in-bio' ); ?></label>
 							</th>
 							<td>
 								<div class="lib-image-field">
@@ -235,10 +235,10 @@ class GULOLI_Admin {
 										autocomplete="off"
 									/>
 									<button type="button" id="lib-upload-image" class="button">
-										<?php esc_html_e( 'Select Image', 'simple-bio-links' ); ?>
+										<?php esc_html_e( 'Select Image', 'gulo-link-in-bio' ); ?>
 									</button>
 									<button type="button" id="lib-remove-image" class="button button-link-delete<?php echo empty( $s['profile_image'] ) ? ' hidden' : ''; ?>">
-										<?php esc_html_e( 'Remove', 'simple-bio-links' ); ?>
+										<?php esc_html_e( 'Remove', 'gulo-link-in-bio' ); ?>
 									</button>
 								</div>
 								<?php if ( ! empty( $s['profile_image'] ) ) : ?>
@@ -246,14 +246,14 @@ class GULOLI_Admin {
 										<img
 											id="lib-image-preview"
 											src="<?php echo esc_url( $s['profile_image'] ); ?>"
-											alt="<?php esc_attr_e( 'Profile image preview', 'simple-bio-links' ); ?>"
+											alt="<?php esc_attr_e( 'Profile image preview', 'gulo-link-in-bio' ); ?>"
 											width="80"
 											height="80"
 										/>
 									</div>
 								<?php else : ?>
 									<div class="lib-image-preview-wrap hidden">
-										<img id="lib-image-preview" src="" alt="<?php esc_attr_e( 'Profile image preview', 'simple-bio-links' ); ?>" width="80" height="80" />
+										<img id="lib-image-preview" src="" alt="<?php esc_attr_e( 'Profile image preview', 'gulo-link-in-bio' ); ?>" width="80" height="80" />
 									</div>
 								<?php endif; ?>
 							</td>
@@ -263,13 +263,13 @@ class GULOLI_Admin {
 
 				<!-- ── Appearance ───────────────────────────────────── -->
 				<div class="lib-section">
-					<h2 class="lib-section-title"><?php esc_html_e( 'Appearance', 'simple-bio-links' ); ?></h2>
+					<h2 class="lib-section-title"><?php esc_html_e( 'Appearance', 'gulo-link-in-bio' ); ?></h2>
 					<table class="form-table" role="presentation">
 						<tr>
-							<th scope="row"><?php esc_html_e( 'Background', 'simple-bio-links' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Background', 'gulo-link-in-bio' ); ?></th>
 							<td>
 								<fieldset>
-									<legend class="screen-reader-text"><?php esc_html_e( 'Background type', 'simple-bio-links' ); ?></legend>
+									<legend class="screen-reader-text"><?php esc_html_e( 'Background type', 'gulo-link-in-bio' ); ?></legend>
 									<label>
 										<input
 											type="radio"
@@ -278,7 +278,7 @@ class GULOLI_Admin {
 											<?php checked( $s['background_type'], 'gradient' ); ?>
 											class="lib-bg-type-radio"
 										/>
-										<?php esc_html_e( 'Gradient', 'simple-bio-links' ); ?>
+										<?php esc_html_e( 'Gradient', 'gulo-link-in-bio' ); ?>
 									</label>
 									&nbsp;&nbsp;
 									<label>
@@ -289,12 +289,12 @@ class GULOLI_Admin {
 											<?php checked( $s['background_type'], 'solid' ); ?>
 											class="lib-bg-type-radio"
 										/>
-										<?php esc_html_e( 'Solid color', 'simple-bio-links' ); ?>
+										<?php esc_html_e( 'Solid color', 'gulo-link-in-bio' ); ?>
 									</label>
 								</fieldset>
 
 								<div id="lib-bg-gradient" class="lib-color-group<?php echo 'solid' === $s['background_type'] ? ' hidden' : ''; ?>">
-									<label for="lib-gradient-start"><?php esc_html_e( 'Gradient Start', 'simple-bio-links' ); ?></label>
+									<label for="lib-gradient-start"><?php esc_html_e( 'Gradient Start', 'gulo-link-in-bio' ); ?></label>
 									<input
 										type="text"
 										id="lib-gradient-start"
@@ -303,7 +303,7 @@ class GULOLI_Admin {
 										class="lib-color-picker"
 										data-default-color="#1a1a2e"
 									/>
-									<label for="lib-gradient-end"><?php esc_html_e( 'Gradient End', 'simple-bio-links' ); ?></label>
+									<label for="lib-gradient-end"><?php esc_html_e( 'Gradient End', 'gulo-link-in-bio' ); ?></label>
 									<input
 										type="text"
 										id="lib-gradient-end"
@@ -315,7 +315,7 @@ class GULOLI_Admin {
 								</div>
 
 								<div id="lib-bg-solid" class="lib-color-group<?php echo 'gradient' === $s['background_type'] ? ' hidden' : ''; ?>">
-									<label for="lib-bg-color"><?php esc_html_e( 'Background Color', 'simple-bio-links' ); ?></label>
+									<label for="lib-bg-color"><?php esc_html_e( 'Background Color', 'gulo-link-in-bio' ); ?></label>
 									<input
 										type="text"
 										id="lib-bg-color"
@@ -329,7 +329,7 @@ class GULOLI_Admin {
 						</tr>
 						<tr>
 							<th scope="row">
-								<label for="lib-text-color"><?php esc_html_e( 'Profile Text Color', 'simple-bio-links' ); ?></label>
+								<label for="lib-text-color"><?php esc_html_e( 'Profile Text Color', 'gulo-link-in-bio' ); ?></label>
 							</th>
 							<td>
 								<input
@@ -343,10 +343,10 @@ class GULOLI_Admin {
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><?php esc_html_e( 'Button Style', 'simple-bio-links' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Button Style', 'gulo-link-in-bio' ); ?></th>
 							<td>
 								<fieldset>
-									<legend class="screen-reader-text"><?php esc_html_e( 'Button style', 'simple-bio-links' ); ?></legend>
+									<legend class="screen-reader-text"><?php esc_html_e( 'Button style', 'gulo-link-in-bio' ); ?></legend>
 									<label>
 										<input
 											type="radio"
@@ -354,7 +354,7 @@ class GULOLI_Admin {
 											value="filled"
 											<?php checked( $s['button_style'], 'filled' ); ?>
 										/>
-										<?php esc_html_e( 'Solid', 'simple-bio-links' ); ?>
+										<?php esc_html_e( 'Solid', 'gulo-link-in-bio' ); ?>
 									</label>
 									&nbsp;&nbsp;
 									<label>
@@ -364,16 +364,16 @@ class GULOLI_Admin {
 											value="glass"
 											<?php checked( $s['button_style'], 'glass' ); ?>
 										/>
-										<?php esc_html_e( 'Glass (frosted)', 'simple-bio-links' ); ?>
+										<?php esc_html_e( 'Glass (frosted)', 'gulo-link-in-bio' ); ?>
 									</label>
 								</fieldset>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><?php esc_html_e( 'Button Colors', 'simple-bio-links' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Button Colors', 'gulo-link-in-bio' ); ?></th>
 							<td>
 								<div class="lib-color-group">
-									<label for="lib-btn-bg"><?php esc_html_e( 'Button Background', 'simple-bio-links' ); ?></label>
+									<label for="lib-btn-bg"><?php esc_html_e( 'Button Background', 'gulo-link-in-bio' ); ?></label>
 									<input
 										type="text"
 										id="lib-btn-bg"
@@ -382,7 +382,7 @@ class GULOLI_Admin {
 										class="lib-color-picker"
 										data-default-color="#ffffff"
 									/>
-									<label for="lib-btn-text"><?php esc_html_e( 'Button Text', 'simple-bio-links' ); ?></label>
+									<label for="lib-btn-text"><?php esc_html_e( 'Button Text', 'gulo-link-in-bio' ); ?></label>
 									<input
 										type="text"
 										id="lib-btn-text"
@@ -399,23 +399,23 @@ class GULOLI_Admin {
 
 				<!-- ── Links ────────────────────────────────────────── -->
 				<div class="lib-section">
-					<h2 class="lib-section-title"><?php esc_html_e( 'Links', 'simple-bio-links' ); ?></h2>
+					<h2 class="lib-section-title"><?php esc_html_e( 'Links', 'gulo-link-in-bio' ); ?></h2>
 					<p class="description">
-						<?php esc_html_e( 'Drag rows to reorder. Uncheck "Active" to hide a link without deleting it.', 'simple-bio-links' ); ?>
+						<?php esc_html_e( 'Drag rows to reorder. Uncheck "Active" to hide a link without deleting it.', 'gulo-link-in-bio' ); ?>
 					</p>
 
 					<div
 						id="lib-links-list"
 						class="lib-links-list"
 						role="list"
-						aria-label="<?php esc_attr_e( 'Manage links', 'simple-bio-links' ); ?>"
+						aria-label="<?php esc_attr_e( 'Manage links', 'gulo-link-in-bio' ); ?>"
 					>
 						<!-- Populated by admin.js from libAdmin.links -->
 					</div>
 
 					<button type="button" id="lib-add-link" class="button button-secondary lib-add-link-btn">
 						<span aria-hidden="true">+</span>
-						<?php esc_html_e( 'Add Link', 'simple-bio-links' ); ?>
+						<?php esc_html_e( 'Add Link', 'gulo-link-in-bio' ); ?>
 					</button>
 
 					<!-- Hidden input: JS serializes link rows to JSON here before submit -->
@@ -429,14 +429,14 @@ class GULOLI_Admin {
 
 				<!-- ── Legal ───────────────────────────────────────────── -->
 				<div class="lib-section">
-					<h2 class="lib-section-title"><?php esc_html_e( 'Legal', 'simple-bio-links' ); ?></h2>
+					<h2 class="lib-section-title"><?php esc_html_e( 'Legal', 'gulo-link-in-bio' ); ?></h2>
 					<p class="description">
-						<?php esc_html_e( 'Optional links shown in the page footer above "Powered by". Leave blank to hide.', 'simple-bio-links' ); ?>
+						<?php esc_html_e( 'Optional links shown in the page footer above "Powered by". Leave blank to hide.', 'gulo-link-in-bio' ); ?>
 					</p>
 					<table class="form-table" role="presentation">
 						<tr>
 							<th scope="row">
-								<label for="lib-imprint-url"><?php esc_html_e( 'Imprint URL (Impressum)', 'simple-bio-links' ); ?></label>
+								<label for="lib-imprint-url"><?php esc_html_e( 'Imprint URL (Impressum)', 'gulo-link-in-bio' ); ?></label>
 							</th>
 							<td>
 								<input
@@ -452,7 +452,7 @@ class GULOLI_Admin {
 						</tr>
 						<tr>
 							<th scope="row">
-								<label for="lib-privacy-url"><?php esc_html_e( 'Privacy Policy URL (Datenschutzerklärung)', 'simple-bio-links' ); ?></label>
+								<label for="lib-privacy-url"><?php esc_html_e( 'Privacy Policy URL (Datenschutzerklärung)', 'gulo-link-in-bio' ); ?></label>
 							</th>
 							<td>
 								<input
@@ -471,10 +471,10 @@ class GULOLI_Admin {
 
 				<!-- ── SEO ──────────────────────────────────────────── -->
 				<div class="lib-section">
-					<h2 class="lib-section-title"><?php esc_html_e( 'SEO', 'simple-bio-links' ); ?></h2>
+					<h2 class="lib-section-title"><?php esc_html_e( 'SEO', 'gulo-link-in-bio' ); ?></h2>
 					<table class="form-table" role="presentation">
 						<tr>
-							<th scope="row"><?php esc_html_e( 'Search Engines', 'simple-bio-links' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Search Engines', 'gulo-link-in-bio' ); ?></th>
 							<td>
 								<label>
 									<input
@@ -483,17 +483,17 @@ class GULOLI_Admin {
 										value="1"
 										<?php checked( $s['seo_noindex'] ); ?>
 									/>
-									<?php esc_html_e( 'Exclude this page from search engines (noindex)', 'simple-bio-links' ); ?>
+									<?php esc_html_e( 'Exclude this page from search engines (noindex)', 'gulo-link-in-bio' ); ?>
 								</label>
 								<p class="description">
-									<?php esc_html_e( 'Adds a noindex tag to the page. Use this if you prefer the page not to appear in Google or Bing results.', 'simple-bio-links' ); ?>
+									<?php esc_html_e( 'Adds a noindex tag to the page. Use this if you prefer the page not to appear in Google or Bing results.', 'gulo-link-in-bio' ); ?>
 								</p>
 							</td>
 						</tr>
 					</table>
 				</div>
 
-				<?php submit_button( __( 'Save Settings', 'simple-bio-links' ) ); ?>
+				<?php submit_button( __( 'Save Settings', 'gulo-link-in-bio' ) ); ?>
 			</form>
 
 			<p class="lib-donate">
@@ -501,8 +501,8 @@ class GULOLI_Admin {
 					href="<?php echo esc_url( 'https://trumpkin.de/donate' ); ?>"
 					target="_blank"
 					rel="noopener noreferrer"
-					aria-label="<?php esc_attr_e( 'Buy me a coffee (opens in new tab)', 'simple-bio-links' ); ?>"
-				><?php esc_html_e( 'Buy me a coffee', 'simple-bio-links' ); ?></a>
+					aria-label="<?php esc_attr_e( 'Buy me a coffee (opens in new tab)', 'gulo-link-in-bio' ); ?>"
+				><?php esc_html_e( 'Buy me a coffee', 'gulo-link-in-bio' ); ?></a>
 			</p>
 		</div>
 		<?php

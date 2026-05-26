@@ -4,7 +4,7 @@
  *
  * Run via CI (bin/install-wp-tests.sh) or locally with wp-env + Docker.
  *
- * @package SimpleBioLinks
+ * @package GuloLinkInBio
  */
 
 /**

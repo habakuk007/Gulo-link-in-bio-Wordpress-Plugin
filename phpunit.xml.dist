@@ -16,7 +16,7 @@
 	<source>
 		<include>
 			<directory suffix=".php">includes/</directory>
-			<file>simple-bio-links.php</file>
+			<file>gulo-link-in-bio.php</file>
 		</include>
 	</source>
 </phpunit>

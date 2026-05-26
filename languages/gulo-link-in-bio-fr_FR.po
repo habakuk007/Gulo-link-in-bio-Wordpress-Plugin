@@ -1,4 +1,4 @@
-# Translation of Gulo Link-in-Bio in French (Français)
+﻿# Translation of Gulo Link-in-Bio in French (Français)
 # Copyright (C) 2026 Stefan Wagner
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
@@ -17,24 +17,24 @@ msgstr ""
 "X-Generator: Claude Code\n"
 
 #. Plugin Name of the plugin
-#: simple-bio-links.php
+#: gulo-link-in-bio.php
 #: includes/class-gulo-admin.php:47
 #: includes/class-gulo-admin.php:152
 msgid "Gulo Link-in-Bio"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: simple-bio-links.php
+#: gulo-link-in-bio.php
 msgid "https://github.com/habakuk007/Wordpress-LinkInBio-Template"
 msgstr ""
 
 #. Description of the plugin
-#: simple-bio-links.php
+#: gulo-link-in-bio.php
 msgid "A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Configure your profile in the Gulo Link-in-Bio admin menu, then assign the page template to any Page."
 msgstr "Une page link-in-bio pour WordPress — une alternative auto-hébergée à Linktree. Configurez votre profil dans le menu d'administration Gulo Link-in-Bio, puis assignez le modèle de page à n'importe quelle page."
 
 #. Author of the plugin
-#: simple-bio-links.php
+#: gulo-link-in-bio.php
 msgid "Stefan Wagner"
 msgstr ""
 

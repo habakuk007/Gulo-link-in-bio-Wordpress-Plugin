@@ -5,7 +5,7 @@
  * Requires the WordPress test suite. Set the WP_TESTS_DIR environment
  * variable or the WP_TESTS_DIR constant to the path of the suite.
  *
- * @package SimpleBioLinks
+ * @package GuloLinkInBio
  */
 
 $_tests_dir = getenv( 'WP_TESTS_DIR' ) ?: '/tmp/wordpress-tests-lib';
@@ -32,7 +32,7 @@ require_once $_tests_dir . '/includes/functions.php';
 tests_add_filter(
 	'muplugins_loaded',
 	static function (): void {
-		require dirname( __DIR__ ) . '/simple-bio-links.php';
+		require dirname( __DIR__ ) . '/gulo-link-in-bio.php';
 	}
 );
 

@@ -3,7 +3,7 @@ Contributors: habakuk
 Tags: link in bio, linktree, links, profile, social links
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -48,7 +48,7 @@ The plugin serves a standalone HTML page (bypasses the active theme entirely), s
 
 = Manual installation =
 
-1. Download the ZIP from the [plugin page](https://wordpress.org/plugins/simple-bio-links/) or [GitHub releases](https://github.com/habakuk007/simple-bio-links-Wordpress-Plugin/releases).
+1. Download the ZIP from the [plugin page](https://wordpress.org/plugins/gulo-link-in-bio/) or [GitHub releases](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plugin/releases).
 2. Go to **Plugins → Add New → Upload Plugin**.
 3. Upload the ZIP and click **Install Now**, then **Activate**.
 
@@ -95,7 +95,7 @@ By default, yes. To exclude it, check **Exclude this page from search engines (n
 = How do I add a language not included in the plugin? =
 
 1. Run `composer run make:pot` to re-extract strings (requires WP-CLI).
-2. Copy `languages/simple-bio-links.pot` to `languages/simple-bio-links-{locale}.po`.
+2. Copy `languages/gulo-link-in-bio.pot` to `languages/gulo-link-in-bio-{locale}.po`.
 3. Add translations in a PO editor (e.g. [Poedit](https://poedit.net/)).
 4. Run `composer run make:mo` to compile the MO binary.
 
@@ -103,7 +103,7 @@ Or use a plugin like [Loco Translate](https://wordpress.org/plugins/loco-transla
 
 = Where can I report a bug or request a feature? =
 
-On [GitHub Issues](https://github.com/habakuk007/simple-bio-links-Wordpress-Plugin/issues).
+On [GitHub Issues](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plugin/issues).
 
 == Screenshots ==
 
@@ -114,6 +114,14 @@ On [GitHub Issues](https://github.com/habakuk007/simple-bio-links-Wordpress-Plug
 5. The live frontend profile page on a mobile screen.
 
 == Changelog ==
+
+= 0.3.0 =
+* Restored plugin slug to `gulo-link-in-bio` (main file renamed from `simple-bio-links.php`) — required by WordPress.org plugin review
+* Restored text domain to `gulo-link-in-bio` across all PHP files, templates, and language files (POT + 4 PO/MO)
+* Renamed language files from `simple-bio-links-*` to `gulo-link-in-bio-*`
+* Updated GitHub repository URLs to `Gulo-link-in-bio-Wordpress-Plugin`
+* Changed admin menu page slug to `gulo-link-in-bio`
+* Standardized `@package GuloLinkInBio` docblock across all PHP files
 
 = 0.2.0 =
 * Fixed plugin slug restored to `simple-bio-links` (main file renamed from `gulo-link-in-bio.php`) — required by WordPress.org plugin review

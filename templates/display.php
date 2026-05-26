@@ -6,7 +6,7 @@
  *   $guloli_settings   array   Plugin settings (profile, colors, etc.)
  *   $guloli_links      array   All link items [{title, url, active}]
  *
- * @package SimpleBioLinks
+ * @package GuloLinkInBio
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -21,12 +21,12 @@ $guloli_container_class = 'glass' === $guloli_settings['button_style'] ? ' lib-b
 	<!-- Skip navigation for keyboard and assistive-technology users -->
 	<?php if ( ! empty( $guloli_active_links ) ) : ?>
 		<a class="lib-skip-link" href="#lib-links">
-			<?php esc_html_e( 'Skip to links', 'simple-bio-links' ); ?>
+			<?php esc_html_e( 'Skip to links', 'gulo-link-in-bio' ); ?>
 		</a>
 	<?php endif; ?>
 
 	<!-- ── Profile ────────────────────────────────────────────── -->
-	<section class="lib-profile" aria-label="<?php esc_attr_e( 'Profile', 'simple-bio-links' ); ?>">
+	<section class="lib-profile" aria-label="<?php esc_attr_e( 'Profile', 'gulo-link-in-bio' ); ?>">
 
 		<?php if ( ! empty( $guloli_settings['profile_image'] ) ) : ?>
 			<div class="lib-avatar">
@@ -36,7 +36,7 @@ $guloli_container_class = 'glass' === $guloli_settings['button_style'] ? ' lib-b
 					<?php
 					printf(
 						/* translators: %s: profile name */
-						esc_attr__( 'Profile photo of %s', 'simple-bio-links' ),
+						esc_attr__( 'Profile photo of %s', 'gulo-link-in-bio' ),
 						esc_attr( $guloli_settings['profile_name'] )
 					);
 					?>
@@ -68,7 +68,7 @@ $guloli_container_class = 'glass' === $guloli_settings['button_style'] ? ' lib-b
 		<nav
 			class="lib-links"
 			id="lib-links"
-			aria-label="<?php esc_attr_e( 'Profile links', 'simple-bio-links' ); ?>"
+			aria-label="<?php esc_attr_e( 'Profile links', 'gulo-link-in-bio' ); ?>"
 			tabindex="-1"
 		>
 			<ul class="lib-links-list" role="list">
@@ -90,7 +90,7 @@ $guloli_container_class = 'glass' === $guloli_settings['button_style'] ? ' lib-b
 							<?php
 							printf(
 								/* translators: %s: link title */
-								esc_attr__( '%s (opens in new tab)', 'simple-bio-links' ),
+								esc_attr__( '%s (opens in new tab)', 'gulo-link-in-bio' ),
 								esc_attr( $guloli_link['title'] )
 							);
 							?>
@@ -132,7 +132,7 @@ $guloli_container_class = 'glass' === $guloli_settings['button_style'] ? ' lib-b
 					<a
 						href="<?php echo esc_url( $guloli_settings['imprint_url'] ); ?>"
 						class="lib-footer-link"
-					><?php esc_html_e( 'Imprint', 'simple-bio-links' ); ?></a>
+					><?php esc_html_e( 'Imprint', 'gulo-link-in-bio' ); ?></a>
 				<?php endif; ?>
 				<?php if ( ! empty( $guloli_settings['imprint_url'] ) && ! empty( $guloli_settings['privacy_url'] ) ) : ?>
 					<span aria-hidden="true"> · </span>
@@ -141,7 +141,7 @@ $guloli_container_class = 'glass' === $guloli_settings['button_style'] ? ' lib-b
 					<a
 						href="<?php echo esc_url( $guloli_settings['privacy_url'] ); ?>"
 						class="lib-footer-link"
-					><?php esc_html_e( 'Privacy Policy', 'simple-bio-links' ); ?></a>
+					><?php esc_html_e( 'Privacy Policy', 'gulo-link-in-bio' ); ?></a>
 				<?php endif; ?>
 			</p>
 		<?php endif; ?>
@@ -150,7 +150,7 @@ $guloli_container_class = 'glass' === $guloli_settings['button_style'] ? ' lib-b
 			<?php
 			printf(
 				/* translators: %s: site name as a link */
-				esc_html__( 'Powered by %s', 'simple-bio-links' ),
+				esc_html__( 'Powered by %s', 'gulo-link-in-bio' ),
 				sprintf(
 					'<a href="%s" class="lib-footer-link">%s</a>',
 					esc_url( home_url( '/' ) ),

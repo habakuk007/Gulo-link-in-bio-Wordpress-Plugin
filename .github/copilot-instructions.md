@@ -22,7 +22,7 @@ Additional domain-specific instructions are in `.github/instructions/`:
 ## Plugin Architecture
 
 ```
-simple-bio-links.php              ← Plugin entry point (header + bootstrap)
+gulo-link-in-bio.php              ← Plugin entry point (header + bootstrap)
 includes/
   class-guloli-plugin.php       ← Singleton boot class, activation/deactivation, capability grants
   class-guloli-settings.php     ← Static helper: get(), get_links(), sanitize callbacks
@@ -49,7 +49,7 @@ tests/
 ## Key Conventions
 
 - **Prefix**: All PHP classes use `GULO_` prefix; options use `gulo_` prefix.
-- **Text domain**: `simple-bio-links` — always use this in i18n functions.
+- **Text domain**: `gulo-link-in-bio` — always use this in i18n functions.
 - **Settings API**: Two options — `GULOLI_Settings` (array) and `gulo_links` (JSON string).
 - **Capability**: `guloli_manage_settings` — custom cap granted to Administrators and Editors on activation. Use this (not `manage_options`) for all capability checks in this plugin.
 - **Escape on output**: Use `esc_html()`, `esc_attr()`, `esc_url()` everywhere.

@@ -1,4 +1,4 @@
-# Translation of Gulo Link-in-Bio in German (Deutsch)
+﻿# Translation of Gulo Link-in-Bio in Spanish (Español)
 # Copyright (C) 2026 Stefan Wagner
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
@@ -8,8 +8,8 @@ msgstr ""
 "POT-Creation-Date: 2026-04-16T10:14:36+00:00\n"
 "PO-Revision-Date: 2026-04-16T00:00:00+00:00\n"
 "Last-Translator: Automatically generated\n"
-"Language-Team: German (Deutsch)\n"
-"Language: de_DE\n"
+"Language-Team: Spanish (Español)\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,196 +17,196 @@ msgstr ""
 "X-Generator: Claude Code\n"
 
 #. Plugin Name of the plugin
-#: simple-bio-links.php
+#: gulo-link-in-bio.php
 #: includes/class-gulo-admin.php:47
 #: includes/class-gulo-admin.php:152
 msgid "Gulo Link-in-Bio"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: simple-bio-links.php
+#: gulo-link-in-bio.php
 msgid "https://github.com/habakuk007/Wordpress-LinkInBio-Template"
 msgstr ""
 
 #. Description of the plugin
-#: simple-bio-links.php
+#: gulo-link-in-bio.php
 msgid "A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Configure your profile in the Gulo Link-in-Bio admin menu, then assign the page template to any Page."
-msgstr "Eine Link-in-Bio-Seite für WordPress – eine selbst gehostete Alternative zu Linktree. Konfigurieren Sie Ihr Profil im Menü Gulo Link-in-Bio und weisen Sie dann einer Seite das Seitentemplate zu."
+msgstr "Una página link-in-bio para WordPress — una alternativa autoalojada a Linktree. Configure su perfil en el menú de administración Gulo Link-in-Bio y asigne la plantilla de página a cualquier página."
 
 #. Author of the plugin
-#: simple-bio-links.php
+#: gulo-link-in-bio.php
 msgid "Stefan Wagner"
 msgstr ""
 
 #: includes/class-gulo-admin.php:46
 msgid "Gulo Link-in-Bio Settings"
-msgstr "Gulo Link-in-Bio Einstellungen"
+msgstr "Ajustes de Gulo Link-in-Bio"
 
 #: includes/class-gulo-admin.php:115
 msgid "Select Profile Image"
-msgstr "Profilbild auswählen"
+msgstr "Seleccionar imagen de perfil"
 
 #: includes/class-gulo-admin.php:116
 msgid "Use this image"
-msgstr "Dieses Bild verwenden"
+msgstr "Usar esta imagen"
 
 #: includes/class-gulo-admin.php:117
 msgid "Remove this link?"
-msgstr "Diesen Link entfernen?"
+msgstr "¿Eliminar este enlace?"
 
 #: includes/class-gulo-admin.php:133
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr "Ajustes"
 
 #: includes/class-gulo-admin.php:146
 msgid "You do not have permission to access this page."
-msgstr "Sie haben keine Berechtigung, auf diese Seite zuzugreifen."
+msgstr "No tiene permiso para acceder a esta página."
 
 #: includes/class-gulo-admin.php:157
 msgid "Create any WordPress Page, then select it below — the plugin will serve the Gulo Link-in-Bio layout for that page automatically."
-msgstr "Erstellen Sie eine beliebige WordPress-Seite und wählen Sie sie unten aus – das Plugin zeigt das Gulo Link-in-Bio Layout für diese Seite automatisch an."
+msgstr "Cree cualquier página de WordPress y selecciónela a continuación: el plugin mostrará automáticamente el diseño de Gulo Link-in-Bio para esa página."
 
 #: includes/class-gulo-admin.php:165
 msgid "Gulo Link-in-Bio Page"
-msgstr "Gulo Link-in-Bio Seite"
+msgstr "Página de Gulo Link-in-Bio"
 
 #: includes/class-gulo-admin.php:169
 msgid "Page"
-msgstr "Seite"
+msgstr "Página"
 
 #: includes/class-gulo-admin.php:178
 msgid "— Select a page —"
-msgstr "— Seite auswählen —"
+msgstr "— Seleccionar una página —"
 
 #: includes/class-gulo-admin.php:184
 msgid "The selected page will display the Gulo Link-in-Bio profile layout, bypassing the active theme."
-msgstr "Die ausgewählte Seite zeigt das Gulo Link-in-Bio Profil-Layout an und umgeht das aktive Theme."
+msgstr "La página seleccionada mostrará el diseño de perfil de Gulo Link-in-Bio, omitiendo el tema activo."
 
 #: includes/class-gulo-admin.php:193
 #: templates/display.php:29
 msgid "Profile"
-msgstr "Profil"
+msgstr "Perfil"
 
 #: includes/class-gulo-admin.php:197
 msgid "Name"
-msgstr "Name"
+msgstr "Nombre"
 
 #: includes/class-gulo-admin.php:212
 msgid "Bio / Tagline"
-msgstr "Bio / Slogan"
+msgstr "Bio / Eslogan"
 
 #: includes/class-gulo-admin.php:225
 msgid "Profile Image URL"
-msgstr "Profilbild-URL"
+msgstr "URL de la imagen de perfil"
 
 #: includes/class-gulo-admin.php:238
 msgid "Select Image"
-msgstr "Bild auswählen"
+msgstr "Seleccionar imagen"
 
 #: includes/class-gulo-admin.php:241
 msgid "Remove"
-msgstr "Entfernen"
+msgstr "Eliminar"
 
 #: includes/class-gulo-admin.php:249
 #: includes/class-gulo-admin.php:256
 msgid "Profile image preview"
-msgstr "Vorschau des Profilbilds"
+msgstr "Vista previa de la imagen de perfil"
 
 #: includes/class-gulo-admin.php:266
 msgid "Appearance"
-msgstr "Darstellung"
+msgstr "Apariencia"
 
 #: includes/class-gulo-admin.php:269
 msgid "Background"
-msgstr "Hintergrund"
+msgstr "Fondo"
 
 #: includes/class-gulo-admin.php:272
 msgid "Background type"
-msgstr "Hintergrundtyp"
+msgstr "Tipo de fondo"
 
 #: includes/class-gulo-admin.php:281
 msgid "Gradient"
-msgstr "Verlauf"
+msgstr "Degradado"
 
 #: includes/class-gulo-admin.php:292
 msgid "Solid color"
-msgstr "Volltonfarbe"
+msgstr "Color sólido"
 
 #: includes/class-gulo-admin.php:297
 msgid "Gradient Start"
-msgstr "Verlaufsbeginn"
+msgstr "Inicio del degradado"
 
 #: includes/class-gulo-admin.php:306
 msgid "Gradient End"
-msgstr "Verlaufsende"
+msgstr "Fin del degradado"
 
 #: includes/class-gulo-admin.php:318
 msgid "Background Color"
-msgstr "Hintergrundfarbe"
+msgstr "Color de fondo"
 
 #: includes/class-gulo-admin.php:332
 msgid "Profile Text Color"
-msgstr "Profiltextfarbe"
+msgstr "Color del texto del perfil"
 
 #: includes/class-gulo-admin.php:346
 msgid "Button Style"
-msgstr "Schaltflächenstil"
+msgstr "Estilo de botón"
 
 #: includes/class-gulo-admin.php:349
 msgid "Button style"
-msgstr "Schaltflächenstil"
+msgstr "Estilo de botón"
 
 #: includes/class-gulo-admin.php:357
 msgid "Solid"
-msgstr "Ausgefüllt"
+msgstr "Sólido"
 
 #: includes/class-gulo-admin.php:367
 msgid "Glass (frosted)"
-msgstr "Glas (mattiert)"
+msgstr "Vidrio (esmerilado)"
 
 #: includes/class-gulo-admin.php:373
 msgid "Button Colors"
-msgstr "Schaltflächenfarben"
+msgstr "Colores del botón"
 
 #: includes/class-gulo-admin.php:376
 msgid "Button Background"
-msgstr "Schaltflächenhintergrund"
+msgstr "Fondo del botón"
 
 #: includes/class-gulo-admin.php:385
 msgid "Button Text"
-msgstr "Schaltflächentext"
+msgstr "Texto del botón"
 
 #: includes/class-gulo-admin.php:402
 msgid "Links"
-msgstr "Links"
+msgstr "Enlaces"
 
 #: includes/class-gulo-admin.php:404
 msgid "Drag rows to reorder. Uncheck \"Active\" to hide a link without deleting it."
-msgstr "Zeilen zum Neuanordnen ziehen. „Aktiv" deaktivieren, um einen Link zu verbergen, ohne ihn zu löschen."
+msgstr "Arrastre las filas para reordenarlas. Desmarque \"Activo\" para ocultar un enlace sin eliminarlo."
 
 #: includes/class-gulo-admin.php:411
 msgid "Manage links"
-msgstr "Links verwalten"
+msgstr "Gestionar enlaces"
 
 #: includes/class-gulo-admin.php:418
 msgid "Add Link"
-msgstr "Link hinzufügen"
+msgstr "Agregar enlace"
 
 #: includes/class-gulo-admin.php:432
 msgid "Legal"
-msgstr "Rechtliches"
+msgstr "Legal"
 
 #: includes/class-gulo-admin.php:434
 msgid "Optional links shown in the page footer above \"Powered by\". Leave blank to hide."
-msgstr "Optionale Links im Seitenfooter über „Bereitgestellt von". Leer lassen, um sie auszublenden."
+msgstr "Enlances opcionales en el pie de página sobre \"Desarrollado por\". Déjelo en blanco para ocultar."
 
 #: includes/class-gulo-admin.php:439
 msgid "Imprint URL (Impressum)"
-msgstr "Impressum-URL"
+msgstr "URL del aviso legal (Impressum)"
 
 #: includes/class-gulo-admin.php:455
 msgid "Privacy Policy URL (Datenschutzerklärung)"
-msgstr "Datenschutzerklärung-URL"
+msgstr "URL de la política de privacidad"
 
 #: includes/class-gulo-admin.php:474
 msgid "SEO"
@@ -214,54 +214,54 @@ msgstr "SEO"
 
 #: includes/class-gulo-admin.php:477
 msgid "Search Engines"
-msgstr "Suchmaschinen"
+msgstr "Motores de búsqueda"
 
 #: includes/class-gulo-admin.php:486
 msgid "Exclude this page from search engines (noindex)"
-msgstr "Diese Seite von Suchmaschinen ausschließen (noindex)"
+msgstr "Excluir esta página de los motores de búsqueda (noindex)"
 
 #: includes/class-gulo-admin.php:489
 msgid "Adds a noindex tag to the page. Use this if you prefer the page not to appear in Google or Bing results."
-msgstr "Fügt der Seite ein noindex-Tag hinzu. Verwenden Sie dies, wenn die Seite nicht in Google- oder Bing-Ergebnissen erscheinen soll."
+msgstr "Agrega una etiqueta noindex a la página. Úselo si prefiere que la página no aparezca en los resultados de Google o Bing."
 
 #: includes/class-gulo-admin.php:496
 msgid "Save Settings"
-msgstr "Einstellungen speichern"
+msgstr "Guardar ajustes"
 
 #: includes/class-gulo-frontend.php:280
 msgid "Edit Gulo Link-in-Bio"
-msgstr "Gulo Link-in-Bio bearbeiten"
+msgstr "Editar Gulo Link-in-Bio"
 
 #: templates/display.php:24
 msgid "Skip to links"
-msgstr "Zu den Links springen"
+msgstr "Ir a los enlaces"
 
 #. translators: %s: profile name
 #: templates/display.php:39
 #, php-format
 msgid "Profile photo of %s"
-msgstr "Profilfoto von %s"
+msgstr "Foto de perfil de %s"
 
 #: templates/display.php:71
 msgid "Profile links"
-msgstr "Profillinks"
+msgstr "Enlaces del perfil"
 
 #. translators: %s: link title
 #: templates/display.php:93
 #, php-format
 msgid "%s (opens in new tab)"
-msgstr "%s (öffnet in neuem Tab)"
+msgstr "%s (abre en una pestaña nueva)"
 
 #: templates/display.php:135
 msgid "Imprint"
-msgstr "Impressum"
+msgstr "Aviso legal"
 
 #: templates/display.php:144
 msgid "Privacy Policy"
-msgstr "Datenschutzerklärung"
+msgstr "Política de privacidad"
 
 #. translators: %s: site name as a link
 #: templates/display.php:153
 #, php-format
 msgid "Powered by %s"
-msgstr "Bereitgestellt von %s"
+msgstr "Desarrollado por %s"

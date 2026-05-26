@@ -4,7 +4,7 @@
  *
  * WordPress functions are stubbed with Brain\Monkey — no WP environment needed.
  *
- * @package SimpleBioLinks
+ * @package GuloLinkInBio
  */
 
 use Brain\Monkey;

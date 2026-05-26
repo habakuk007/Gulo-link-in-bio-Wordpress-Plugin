@@ -6,7 +6,7 @@ description: 'WordPress.org readme.txt format rules: header fields, section stru
 # WordPress.org `readme.txt` Standards
 
 Rules for authoring and maintaining `readme.txt` in this plugin. The file controls the
-plugin's listing on `wordpress.org/plugins/simple-bio-links` and drives automatic updates.
+plugin's listing on `wordpress.org/plugins/gulo-link-in-bio` and drives automatic updates.
 Reference: [How Your readme.txt Works](https://developer.wordpress.org/plugins/wordpress-org/how-your-readme-txt-works/)
 
 ---
@@ -17,7 +17,7 @@ The header block is the first section of `readme.txt`. Every field has strict re
 
 ### `Stable tag` — CRITICAL
 
-- Must always equal **both** the `Version:` field in `simple-bio-links.php` **and** the
+- Must always equal **both** the `Version:` field in `gulo-link-in-bio.php` **and** the
   `GULOLI_VERSION` constant defined in the same file.
 - Numbers and periods only (SemVer: `MAJOR.MINOR.PATCH`). Never use `trunk`.
 - WordPress.org reads the `Stable tag` to determine which `/tags/` directory to serve.
@@ -53,7 +53,7 @@ The header block is the first section of `readme.txt`. Every field has strict re
 ### `Requires at least` and `Requires PHP`
 
 - Since WordPress 5.8 these values are parsed from the plugin's main PHP file header, not from `readme.txt`.
-- Keep both files in sync, but treat `simple-bio-links.php` as the authoritative source.
+- Keep both files in sync, but treat `gulo-link-in-bio.php` as the authoritative source.
 - Format: numbers only — `6.0`, `7.4`. No "WP" or "PHP" prefix.
 
 ---
@@ -161,12 +161,12 @@ Follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) conventions for 
 
 Follow these steps in order every time the version number changes:
 
-1. Update `Version:` in the plugin header inside `simple-bio-links.php`.
-2. Update `define( 'GULOLI_VERSION', '...' )` in `simple-bio-links.php` to the same value.
+1. Update `Version:` in the plugin header inside `gulo-link-in-bio.php`.
+2. Update `define( 'GULOLI_VERSION', '...' )` in `gulo-link-in-bio.php` to the same value.
 3. Update `Stable tag:` in `readme.txt` to the same value.
 4. Add a new `= X.Y.Z =` entry at the top of `== Changelog ==` derived from `git log`.
 5. Add or update the `== Upgrade Notice ==` entry if the release contains breaking changes.
-6. Run `composer run package` to build `simple-bio-links-{version}.zip`.
+6. Run `composer run package` to build `gulo-link-in-bio.zip`.
 7. Commit with message `chore: release X.Y.Z` and tag the commit `X.Y.Z`.
 
 ---

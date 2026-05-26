@@ -7,7 +7,7 @@
  *
  * NOTE: Deactivation does NOT run this file. This only runs on hard deletion.
  *
- * @package SimpleBioLinks
+ * @package GuloLinkInBio
  */
 
 // Bail if not called by WordPress during plugin deletion.

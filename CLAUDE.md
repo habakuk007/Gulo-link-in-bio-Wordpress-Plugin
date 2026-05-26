@@ -10,7 +10,7 @@ The result is displayed by creating a WordPress Page and selecting **Gulo Link-i
 ## File Map
 
 ```
-simple-bio-links.php                   Plugin header + bootstrap (constants, requires, hooks)
+gulo-link-in-bio.php                   Plugin header + bootstrap (constants, requires, hooks)
 uninstall.php                     Runs on plugin deletion: removes options + capability
 readme.txt                        WordPress.org directory listing (required for submission)
 includes/class-guloli-plugin.php     Singleton boot class; activate/deactivate statics
@@ -56,7 +56,7 @@ Settings keys in `GULOLI_Settings`:
 ## Coding Rules
 
 - **Prefix**: classes `GULO_`, options `gulo_`, JS globals `guloAdmin.*`
-- **Text domain**: `simple-bio-links` in every i18n call
+- **Text domain**: `gulo-link-in-bio` in every i18n call
 - **Capability**: `guloli_manage_settings` for all permission checks in this plugin — never `manage_options`
 - **Escape outputs**: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`
 - **Sanitize inputs**: `sanitize_text_field()`, `sanitize_hex_color()`, `esc_url_raw()`

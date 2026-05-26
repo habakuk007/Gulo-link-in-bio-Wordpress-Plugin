@@ -2,7 +2,7 @@
 /**
  * Frontend — page template serving, asset enqueueing, and SEO meta output.
  *
- * @package SimpleBioLinks
+ * @package GuloLinkInBio
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -277,8 +277,8 @@ class GULOLI_Frontend {
 		$wp_admin_bar->add_node(
 			array(
 				'id'    => 'lib-settings',
-				'title' => __( 'Edit Gulo Link-in-Bio', 'simple-bio-links' ),
-				'href'  => admin_url( 'admin.php?page=simple-bio-links' ),
+				'title' => __( 'Edit Gulo Link-in-Bio', 'gulo-link-in-bio' ),
+				'href'  => admin_url( 'admin.php?page=gulo-link-in-bio' ),
 			)
 		);
 	}

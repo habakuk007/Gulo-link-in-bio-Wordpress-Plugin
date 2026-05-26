@@ -4,7 +4,7 @@
  *
  * No WordPress environment is required — Brain\Monkey stubs all WP functions.
  *
- * @package SimpleBioLinks
+ * @package GuloLinkInBio
  */
 
 // Satisfy the ABSPATH guard in every plugin file.

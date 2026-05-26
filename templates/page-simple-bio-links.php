@@ -5,7 +5,7 @@
  * Selected from the Page Attributes panel in the Block Editor or Classic Editor.
  * Bypasses the active theme entirely and renders the Gulo Link-in-Bio profile page.
  *
- * @package SimpleBioLinks
+ * @package GuloLinkInBio
  */
 
 defined( 'ABSPATH' ) || exit;

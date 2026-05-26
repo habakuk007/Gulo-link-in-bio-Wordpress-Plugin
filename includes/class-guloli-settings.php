@@ -2,7 +2,7 @@
 /**
  * Settings helper — reads, sanitizes, and provides defaults.
  *
- * @package SimpleBioLinks
+ * @package GuloLinkInBio
  */
 
 defined( 'ABSPATH' ) || exit;
