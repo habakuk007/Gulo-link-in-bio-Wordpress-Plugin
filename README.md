@@ -62,7 +62,7 @@ so your link-in-bio page looks the same regardless of which theme is installed.
 
 ## Access Control
 
-The plugin registers a custom WordPress capability: `gulo_manage_settings`.
+The plugin registers a custom WordPress capability: `guloli_manage_settings`.
 
 | Role | Access |
 |------|--------|
@@ -84,13 +84,13 @@ Settings and links are stored as WordPress options and can be set via `update_op
 
 ```php
 // Override settings programmatically
-update_option( 'gulo_settings', array_merge(
-    get_option( 'gulo_settings', array() ),
+update_option( 'guloli_settings', array_merge(
+    get_option( 'guloli_settings', array() ),
     array( 'profile_name' => 'My Brand' )
 ) );
 ```
 
-### Available settings keys (`gulo_settings`)
+### Available settings keys (`guloli_settings`)
 
 | Key | Type | Description |
 |-----|------|-------------|
@@ -108,7 +108,7 @@ update_option( 'gulo_settings', array_merge(
 | `page_id` | int | WordPress page ID that shows the template |
 | `seo_noindex` | `1` \| `''` | Whether to add `noindex` to the page |
 
-### Links option (`gulo_links`)
+### Links option (`guloli_links`)
 
 Stored as a JSON string. Each item: `{"title": "...", "url": "...", "active": true}`.
 
@@ -120,7 +120,7 @@ Stored as a JSON string. Each item: `{"title": "...", "url": "...", "active": tr
 
 | Hook | When | Use |
 |------|------|-----|
-| `update_option_gulo_settings` | After settings save | Extend cache purging |
+| `update_option_guloli_settings` | After settings save | Extend cache purging |
 
 ### Filters (Yoast SEO integration)
 
@@ -149,15 +149,15 @@ PO files, run `composer run make:mo` to recompile them. Ensure the WordPress sit
 matches the locale (e.g., `de_DE`).
 
 **The settings page is not visible for an Editor.**
-The `gulo_manage_settings` capability must be present in the `editor` role. Deactivate and
+The `guloli_manage_settings` capability must be present in the `editor` role. Deactivate and
 reactivate the plugin to re-grant it. Verify with:
-`get_role('editor')->has_cap('gulo_manage_settings')` in a PHP snippet.
+`get_role('editor')->has_cap('guloli_manage_settings')` in a PHP snippet.
 
 **Changes to settings are not reflected on the frontend.**
 A caching plugin may be serving a stale page. Saving settings normally triggers automatic cache
 purging for WP Super Cache, WP Rocket, W3 Total Cache, WP Fastest Cache, LiteSpeed Cache, and
 Cache Enabler. If your caching plugin is not listed, purge it manually or hook into
-`update_option_gulo_settings`.
+`update_option_guloli_settings`.
 
 **Yoast SEO shows wrong title or OG tags for the Gulo Link-in-Bio page.**
 Ensure you are running version 1.0.0-alpha.7 or later. The plugin hooks into Yoast's own filters

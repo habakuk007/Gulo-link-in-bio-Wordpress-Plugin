@@ -2,7 +2,7 @@
 Contributors: habakuk
 Tags: link in bio, linktree, links, profile, social links
 Requires at least: 6.0
-Tested up to: 6.9
+Tested up to: 7.0
 Stable tag: 0.3.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
@@ -180,7 +180,7 @@ On [GitHub Issues](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plug
 * Added German (`de_DE`), French (`fr_FR`), Spanish (`es_ES`), and Ukrainian (`uk`) translations
 * Added Yoast SEO integration via `wpseo_title`, `wpseo_opengraph_type`, `wpseo_opengraph_title`, `wpseo_robots` filters
 * Added automatic page cache purging on settings save (6 caching plugins supported)
-* Added Editor role access to settings via `gulo_manage_settings` custom capability
+* Added Editor role access to settings via `guloli_manage_settings` custom capability
 * Added "Edit Gulo Link-in-Bio" admin bar shortcut for logged-in Editors and Administrators
 * Added `seo_noindex` option to exclude the page from search engines
 * Added Legal section for Imprint and Privacy Policy footer links
@@ -202,20 +202,5 @@ On [GitHub Issues](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plug
 
 == Upgrade Notice ==
 
-= 1.0.0-alpha.12 =
-The plugin has been renamed to "Gulo Link-in-Bio". No settings or data are affected — everything continues to work as before.
-
-= 1.0.0-alpha.11 =
-Maintenance release: WordPress.org compliance fixes and build tooling improvements. No functional changes.
-
-= 1.0.0-alpha.10 =
-Compliance and quality release. No functional changes for end users. Developers: unit tests can now be run locally without a WordPress environment via `composer run test:unit`.
-
-= 1.0.0-alpha.9 =
-Maintenance release: documentation and WordPress.org submission files only. No functional changes.
-
-= 1.0.0-alpha.8 =
-This release adds Editor access to the settings and moves the admin menu from Settings → Gulo Link-in-Bio to a top-level "Gulo Link-in-Bio" menu item. Bookmark updates may be needed. Cache is now purged automatically on save.
-
-= 1.0.0-alpha.7 =
-The shortcode `[link_in_bio]` has been replaced by a page template. After upgrading, open the previously used page, set its Template to "Gulo Link-in-Bio", and save. The shortcode will no longer render the profile.
+= 0.3.0 =
+Pre-Final Version, noch nicht stabil, bitte komplett deinstallieren und neu installieren.

@@ -39,3 +39,4 @@ phpunit.unit.xml    export-ignore
 phpunit.xml.dist    export-ignore
 tests/              export-ignore
 .wp-env.json        export-ignore
+README.md          export-ignore
