@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-26T21:57:56+00:00\n"
+"POT-Creation-Date: 2026-05-28T20:06:16+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: gulo-link-in-bio\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #. Description of the plugin
 #: gulo-link-in-bio.php:5
-msgid "A link-in-bio page for WordPress — a self-hosted alternative to Linktree. Configure your profile in the Gulo Link-in-Bio admin menu, then assign the page template to any Page."
+msgid "A self-hosted link-in-bio page for WordPress. Configure your profile in the admin menu, then assign the template to any Page."
 msgstr ""
 
 #. Author of the plugin
