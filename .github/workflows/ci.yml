@@ -124,6 +124,9 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
 
+      - name: Install Subversion for WP test bootstrap
+        run: sudo apt-get update && sudo apt-get install -y subversion
+
       - name: Install WordPress test suite
         run: |
           bash bin/install-wp-tests.sh wordpress_test wp_user wp_password 127.0.0.1 ${{ matrix.wp }}
