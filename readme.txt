@@ -3,7 +3,7 @@ Contributors: habakuk
 Tags: link in bio, linktree, links, profile, social links
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -117,92 +117,15 @@ On [GitHub Issues](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plug
 
 == Changelog ==
 
-= 0.3.0 =
-* Restored plugin slug to `gulo-link-in-bio` (main file renamed from `simple-bio-links.php`) — required by WordPress.org plugin review
-* Restored text domain to `gulo-link-in-bio` across all PHP files, templates, and language files (POT + 4 PO/MO)
-* Renamed language files from `simple-bio-links-*` to `gulo-link-in-bio-*`
-* Updated GitHub repository URLs to `Gulo-link-in-bio-Wordpress-Plugin`
-* Changed admin menu page slug to `gulo-link-in-bio`
-* Standardized `@package GuloLinkInBio` docblock across all PHP files
+= 0.3.1 =
+* Added WordPress.org packaging assets and compliance documentation for submission readiness.
+* Committed `package-lock.json` and `composer.lock`, and pinned PHPUnit for reproducible installs and stable CI.
+* Updated CI workflows with Subversion support before WP test bootstrap and refined deployment configuration.
+* Cleaned up plugin metadata for WordPress.org review and compatibility validation.
 
-= 0.2.0 =
-* Fixed plugin slug restored to `simple-bio-links` (main file renamed from `gulo-link-in-bio.php`) — required by WordPress.org plugin review
-* Fixed text domain: all `gulo-link-in-bio` references replaced with `simple-bio-links` across PHP files, templates, and language files (POT + 4 PO/MO)
-* Renamed PHP prefix from `GULO_` / `gulo_` to `GULOLI_` / `guloli_` to satisfy WordPress.org uniqueness requirement — affects class names (`GULOLI_Settings`, `GULOLI_Admin`, `GULOLI_Plugin`, `GULOLI_Frontend`), constants, option keys (`guloli_settings`, `guloli_links`), capability (`guloli_manage_settings`), template variables, asset handles, nonces, and settings group
-* Fixed `background_type` and `button_style` sanitization: now uses strict allowlist via `sanitize_key()` + `in_array()` instead of `sanitize_text_field()`
-* Updated all unit and integration tests to reflect renamed classes and constants
-* Updated GitHub Sponsors username in `FUNDING.yml`
-
-= 0.1.0 =
-* Version bump
-
-= 0.0.1 =
-* Initial WordPress.org submission release
-* Renamed plugin to "Gulo Link-in-Bio" — required by WordPress.org (name conflicts with existing plugins)
-* Changed text domain from `link-in-bio` to `simple-bio-links` to match the plugin slug
-* Renamed all language files accordingly (`simple-bio-links-*.po/mo/pot`)
-* Changed version format from `1.0.0-alpha.x` to numeric-only (`0.0.1`) as required by WordPress.org
-
-= 1.0.0-alpha.12 =
-* Renamed plugin from "Link in Bio" to "Gulo Link-in-Bio" — required by WordPress.org (name conflict with existing plugin)
-* All user-visible strings, admin menu, settings page, and documentation updated to "Gulo Link-in-Bio"
-* Slug, text domain, option keys, and capability name unchanged — no data migration needed
-
-= 1.0.0-alpha.11 =
-* Fixed removed `load_plugin_textdomain()` call — WordPress auto-loads translations since 4.6
-* Fixed "Tested up to" bumped to 6.9
-* Fixed short description trimmed to ≤150 characters (readme.txt validator)
-* Fixed excluded `phpunit.unit.xml` and `.wp-env.json` from release ZIP
-* Build release ZIP now named `simple-bio-links-{version}.zip` (includes version in filename)
-* Build replaced bash build script with PHP to avoid WSL conflicts on Windows
-
-= 1.0.0-alpha.10 =
-* Added `LICENSE` file (GPL-2.0-or-later)
-* Added "Buy me a coffee" donation link on the settings page
-* Added split PHPUnit test suite: unit tests (Brain\Monkey, no WP env) + integration tests
-* Added 32 unit tests for `GULO_Settings` covering all sanitize methods
-* Added `.wp-env.json` for Docker-based integration testing
-* Fixed `sanitize_links()` to guard against `null` input (PHP 8.5 deprecation)
-* Fixed WordPress.org plugin guidelines compliance: GPL headers, WP-bundled libs, dismissible notices, attribution, no trialware
-* Fixed trademark: replaced "Linktree-style" with "link-in-bio page" throughout; README and readme.txt retain a clear "alternative to Linktree" reference
-* Updated author URI, Plugin URI, and contributor username to correct values
-* Updated all translation files with corrected plugin description and repository URLs
-* Updated CI workflow with dedicated unit-test job (PHP 8.1–8.3, no database required)
-
-= 1.0.0-alpha.9 =
-* Added `uninstall.php` — removes plugin options and capability on plugin deletion
-* Added `readme.txt` for WordPress.org Plugin Directory submission
-* Added SVG plugin icon and `.wordpress-org/` artwork directory
-* Added automated WordPress.org SVN deploy workflow (`deploy.yml`)
-* Added `CONTRIBUTING.md` with full contribution and submission guidelines
-* Fixed plugin description header: updated admin menu location reference
-* Updated documentation: README, CLAUDE.md, Copilot instructions
-
-= 1.0.0-alpha.8 =
-* Added German (`de_DE`), French (`fr_FR`), Spanish (`es_ES`), and Ukrainian (`uk`) translations
-* Added Yoast SEO integration via `wpseo_title`, `wpseo_opengraph_type`, `wpseo_opengraph_title`, `wpseo_robots` filters
-* Added automatic page cache purging on settings save (6 caching plugins supported)
-* Added Editor role access to settings via `guloli_manage_settings` custom capability
-* Added "Edit Gulo Link-in-Bio" admin bar shortcut for logged-in Editors and Administrators
-* Added `seo_noindex` option to exclude the page from search engines
-* Added Legal section for Imprint and Privacy Policy footer links
-* Moved admin menu from Settings submenu to top-level (position 81) so Editors can access it
-* Version bump and release ZIP build via `composer run package`
-
-= 1.0.0-alpha.7 =
-* Converted from `[link_in_bio]` shortcode to a dedicated WordPress page template (`page-gulo-simple-bio-links.php`)
-* Eliminated theme dependency — the page is now a fully standalone HTML document
-* Added page selection dropdown in settings
-
-= 1.0.0-alpha.6 =
-* Initial pre-release
-* Profile section (name, bio, avatar image via WordPress Media Library)
-* Appearance section (gradient / solid background, button style, colors)
-* Links manager (repeater with drag-to-reorder, active toggle, URL validation)
-* Settings API integration with sanitize callbacks
-* WPCS-clean codebase, PHP 7.4 compatible
+See `changelog.txt` for older entries.
 
 == Upgrade Notice ==
 
 = 0.3.0 =
-Pre-Final Version, noch nicht stabil, bitte komplett deinstallieren und neu installieren.
+Pre-final version; not yet stable. Please uninstall completely and reinstall.

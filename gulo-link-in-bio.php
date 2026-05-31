@@ -3,7 +3,7 @@
  * Plugin Name:       Gulo Link-in-Bio
  * Plugin URI:        https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plugin
  * Description:       A self-hosted link-in-bio page for WordPress. Configure your profile in the admin menu, then assign the template to any Page.
- * Version:           0.3.0
+ * Version:           0.3.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Stefan Wagner
@@ -18,7 +18,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'GULOLI_VERSION', '0.3.0' );
+define( 'GULOLI_VERSION', '0.3.1' );
 define( 'GULOLI_PLUGIN_FILE', __FILE__ );
 define( 'GULOLI_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GULOLI_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
