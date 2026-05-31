@@ -22,7 +22,7 @@
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
     "wp-coding-standards/wpcs": "^3.0",
     "phpcompatibility/php-compatibility": "^9.0",
-    "phpunit/phpunit": "^10.0",
+    "phpunit/phpunit": "^9.6",
     "yoast/phpunit-polyfills": "^2.0",
     "brain/monkey": "^2.6",
     "wp-cli/wp-cli-bundle": "^2.0"
@@ -41,7 +41,10 @@
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
     },
-    "sort-packages": true
+    "sort-packages": true,
+    "platform": {
+      "php": "7.4"
+    }
   },
   "extra": {
     "wordpress-install-dir": "vendor/wordpress/wordpress"

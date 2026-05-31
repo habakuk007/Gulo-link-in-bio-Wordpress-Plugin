@@ -12,6 +12,9 @@ jobs:
   deploy:
     name: Deploy to WordPress.org SVN
     runs-on: ubuntu-latest
+    environment: Deploy
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout

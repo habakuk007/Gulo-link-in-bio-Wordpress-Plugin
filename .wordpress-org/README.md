@@ -13,8 +13,8 @@ automatically when a version tag is pushed.
 | File | Dimensions | Status |
 |------|-----------|--------|
 | `icon.svg` | Scalable (256×256 viewBox) | **Done** |
-| `icon-128x128.png` | 128 × 128 px | **Needs export** |
-| `icon-256x256.png` | 256 × 256 px | **Needs export** |
+| `icon-128x128.png` | 128 × 128 px | **Done** |
+| `icon-256x256.png` | 256 × 256 px | **Done** |
 
 ### How to export the PNG icons
 
@@ -79,11 +79,13 @@ File names must be lowercase and match the numbering in `readme.txt`.
 
 | File | Shows | Status |
 |------|-------|--------|
-| `screenshot-1.png` | Settings page — Profile and Page selection | **Needs capture** |
-| `screenshot-2.png` | Settings page — Appearance (colors, gradient, button style) | **Needs capture** |
-| `screenshot-3.png` | Settings page — Links manager (drag rows) | **Needs capture** |
-| `screenshot-4.png` | Live frontend profile page (desktop) | **Needs capture** |
-| `screenshot-5.png` | Live frontend profile page (mobile) | **Needs capture** |
+| `screenshot-1.png` | Settings page — Profile and Page selection | **Done** |
+| `screenshot-2.png` | Settings page — Appearance (colors, gradient, button style) | **Done** |
+| `screenshot-3.png` | Settings page — Links manager | **Done** |
+| `screenshot-4.png` | Settings page — Leagel and SEO | **Done** |
+| `screenshot-5.png` | Live frontend profile page (desktop) | **Done** |
+| `screenshot-6.png` | Live frontend profile page (mobile) - glass buttons | **Done** |
+| `screenshot-7.png` | Live frontend profile page (mobile) - solid buttons | **Done** |
 
 ### Screenshot requirements
 
