@@ -110,8 +110,10 @@ On [GitHub Issues](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plug
 1. The Gulo Link-in-Bio settings page — Profile and Page selection section.
 2. The Appearance settings — background type, gradient/solid color pickers, and button style.
 3. The Links manager — drag-to-reorder rows with active toggle and URL fields.
-4. The live frontend profile page as seen by a visitor (desktop view).
-5. The live frontend profile page on a mobile screen.
+4. The legal and SEO settings area.
+5. The live frontend profile page as seen by a visitor (desktop view, with solid buttons, imprint and privacy policy).
+6. The live frontend profile page on a mobile screen (glass buttons).
+7. The live frontend profile page on a mobile screen (solid buttons).
 
 == Changelog ==
 
