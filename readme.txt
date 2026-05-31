@@ -13,7 +13,9 @@ A link-in-bio page for WordPress — a self-hosted alternative to Linktree and s
 
 == Description ==
 
-**Gulo Link-in-Bio** turns a WordPress Page into a fully self-contained link-in-bio page — without touching your active theme. It is a self-hosted alternative to Linktree. Ideal for social media bios, creator profiles, and landing pages that collect all your important links in one place.
+**Gulo Link-in-Bio** turns a WordPress Page into a dedicated social landing page, without touching your active theme. It is a self-hosted alternative to Linktree and is ideal for social media bios, creator profiles, and landing pages that collect all your important links in one place.
+
+This plugin is 100% free and GPL licensed, with no Pro version, no ads, and no aggressive upsells.
 
 = How it works =
 
@@ -29,14 +31,14 @@ The plugin serves a standalone HTML page (bypasses the active theme entirely), s
 * **Unlimited links** — drag to reorder, toggle active/inactive without deleting
 * **Theming** — gradient or solid background, custom button colors (solid or glass/frosted style), custom text color
 * **SEO options** — optional noindex to keep the page out of search results
-* **Legal footer** — optional Imprint and Privacy Policy links (useful for GDPR / German Impressum requirements)
-* **Yoast SEO compatible** — integrates via Yoast's own filters to avoid duplicate meta tags
-* **Cache aware** — automatically purges the page cache on save (WP Super Cache, WP Rocket, W3 Total Cache, WP Fastest Cache, LiteSpeed Cache, Cache Enabler)
+* **Legal footer** — optional Imprint and Privacy Policy links for GDPR / Impressum compliance
+* **Works cleanly with Yoast SEO** — avoids duplicate meta tags
+* **Cache friendly** — automatically clears common cache plugins after saving settings
 * **Editor access** — Administrators and Editors can manage the settings via a custom capability
 * **Admin bar shortcut** — logged-in users with access see an "Edit Gulo Link-in-Bio" link directly on the frontend page
-* **Fully accessible** — WCAG 2.2 AA: skip link, semantic landmarks, visible focus, `prefers-reduced-motion`
-* **Translated** — ships with German (`de_DE`), French (`fr_FR`), Spanish (`es_ES`), and Ukrainian (`uk`) translations
-* **No tracking, no ads, no upsells** — 100% free and open source (GPL-2.0-or-later)
+* **Fully accessible** — WCAG 2.2 AA friendly with skip link, semantic landmarks, visible focus, and reduced-motion support
+* **Translated** — ships with German, French, Spanish, and Ukrainian translations
+* **No tracking, no ads, no Pro version** — fully free and open source (GPL-2.0-or-later)
 
 == Installation ==
 

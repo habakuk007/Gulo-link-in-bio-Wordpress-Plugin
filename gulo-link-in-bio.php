@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Gulo Link-in-Bio
  * Plugin URI:        https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plugin
- * Description:       A self-hosted link-in-bio page for WordPress. Configure your profile in the admin menu, then assign the template to any Page.
+ * Description:       Create a dedicated social landing page inside WordPress without changing your theme. Fully free and GPL licensed, with no Pro version or upsells.
  * Version:           0.3.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
