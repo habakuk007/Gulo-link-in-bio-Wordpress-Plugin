@@ -124,6 +124,7 @@ stored in `.github/instructions/` and apply automatically to GitHub Copilot. Whe
 follow the same rules:
 
 - **WordPress**: `.github/instructions/wordpress.instructions.md`
+- **WPCS/PHPCS**: `.github/instructions/wpcs.instructions.md`
 - **WordPress.org**: `.github/instructions/wordpress-org.instructions.md`
 - **Color/CSS**: `.github/instructions/html-css-style-color-guide.instructions.md`
 - **Accessibility**: `.github/instructions/a11y.instructions.md`
