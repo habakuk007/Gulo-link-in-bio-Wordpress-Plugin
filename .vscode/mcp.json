@@ -1,4 +1,12 @@
 {
+	"inputs": [
+		{
+			"type": "promptString",
+			"id": "wporg-api-password",
+			"description": "WordPress.org API password for the wporg MCP server",
+			"password": true
+		}
+	],
 	"servers": {
 		"wporg-mcp-server": {
 			"command": "npx",
@@ -9,7 +17,7 @@
 			"env": {
 				"WP_API_URL": "https://wordpress.org/wp-json/mcp/wporg",
 				"WP_API_USERNAME": "habakuk",
-				"WP_API_PASSWORD": "***REMOVED***"
+				"WP_API_PASSWORD": "${input:wporg-api-password}"
 			}
 		}
 	}
