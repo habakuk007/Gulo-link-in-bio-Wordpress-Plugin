@@ -64,7 +64,7 @@ beside each violation — required when writing inline suppressions.
 | PHP compatibility | `PHPCompatibility` — `testVersion 7.4-` (PHP 7.4 and above) |
 | Text domain | `gulo-link-in-bio` — any other value in `__()` / `_e()` etc. is an error |
 | Custom capability | `guloli_manage_settings` — registered so `WordPress.WP.Capabilities` does not flag it |
-| Global prefix | `guloli_` — all functions, classes, hooks, and globals must use this prefix |
+| Global prefix | `guloli_` (functions, hooks, global vars, constants) / `GULOLI_` (class names) — both accepted by `PrefixAllGlobals` via case-insensitive matching |
 | Line length | 200 characters (hard limit; `Generic.Files.LineLength`) |
 | **Excluded paths** | `vendor/*`, `node_modules/*`, `tests/bootstrap.php`, `bin/*`, `assets/js/*`, `assets/css/*` |
 
@@ -85,7 +85,7 @@ beside each violation — required when writing inline suppressions.
 | `WordPress.WP.I18n.NonSingularStringLiteralDomain` | Variable used as text domain | Hard-code `'gulo-link-in-bio'` — never use a variable |
 | `WordPress.WP.I18n.MismatchedTextDomain` | Wrong text domain string | Use `'gulo-link-in-bio'` in every i18n call |
 | `WordPress.DB.PreparedSQL.NotPrepared` | Raw SQL without `$wpdb->prepare()` | Use `$wpdb->prepare()` with `%s`/`%d`/`%f` placeholders |
-| `WordPress.NamingConventions.PrefixAllGlobals.*` | Function, class, or hook missing `guloli_` prefix | Rename to start with `guloli_` |
+| `WordPress.NamingConventions.PrefixAllGlobals.*` | Function, class, or hook missing the required prefix | Functions, hooks, global vars, constants: rename to start with `guloli_`; class names: use `GULOLI_` |
 | `WordPress.PHP.YodaConditions.NotYoda` | Non-Yoda comparison (`$x === 'foo'`) | Invert to `'foo' === $x` |
 | `Squiz.Commenting.FunctionComment.Missing` | Missing function DocBlock | Add `/** @param ... @return ... */` above the function |
 | `PHPCompatibility.FunctionUse.*` | PHP 8+ syntax used | Replace with PHP 7.4-compatible alternative |

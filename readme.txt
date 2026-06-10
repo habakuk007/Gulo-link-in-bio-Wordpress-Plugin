@@ -33,7 +33,7 @@ The plugin serves a standalone HTML page (bypasses the active theme entirely), s
 * **SEO options** — optional noindex to keep the page out of search results
 * **Legal footer** — optional Imprint and Privacy Policy links for GDPR / Impressum compliance
 * **Works cleanly with Yoast SEO** — avoids duplicate meta tags
-* **Cache friendly** — automatically clears common cache plugins after saving settings
+* **Cache friendly** — automatically clears WP Super Cache, WP Rocket, W3 Total Cache, WP Fastest Cache, LiteSpeed Cache, and Cache Enabler after saving settings
 * **Editor access** — Administrators and Editors can manage the settings via a custom capability
 * **Admin bar shortcut** — logged-in users with access see an "Edit Gulo Link-in-Bio" link directly on the frontend page
 * **Fully accessible** — WCAG 2.2 AA friendly with skip link, semantic landmarks, visible focus, and reduced-motion support

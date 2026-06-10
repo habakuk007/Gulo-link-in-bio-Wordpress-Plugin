@@ -44,7 +44,6 @@
 		<properties>
 			<property name="prefixes" type="array">
 				<element value="guloli_"/>
-				<element value="guloli_"/>
 			</property>
 		</properties>
 	</rule>

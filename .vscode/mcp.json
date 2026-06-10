@@ -2,6 +2,11 @@
 	"inputs": [
 		{
 			"type": "promptString",
+			"id": "wporg-api-username",
+			"description": "WordPress.org username for the wporg MCP server"
+		},
+		{
+			"type": "promptString",
 			"id": "wporg-api-password",
 			"description": "WordPress.org API password for the wporg MCP server",
 			"password": true
@@ -16,7 +21,7 @@
 			],
 			"env": {
 				"WP_API_URL": "https://wordpress.org/wp-json/mcp/wporg",
-				"WP_API_USERNAME": "habakuk",
+				"WP_API_USERNAME": "${input:wporg-api-username}",
 				"WP_API_PASSWORD": "${input:wporg-api-password}"
 			}
 		}
