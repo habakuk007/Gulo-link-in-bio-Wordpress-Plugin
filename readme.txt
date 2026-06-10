@@ -9,7 +9,7 @@ License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://trumpkin.de/donate
 
-A link-in-bio page for WordPress — a self-hosted Linktree alternative. Assign the template to any Page. No shortcodes, no page builders.
+A link-in-bio page for WordPress — a self-hosted alternative to Linktree and similar services. Assign the template to any Page. No shortcodes, no page builders.
 
 == Description ==
 
@@ -94,12 +94,9 @@ By default, yes. To exclude it, check **Exclude this page from search engines (n
 
 = How do I add a language not included in the plugin? =
 
-1. Run `composer run make:pot` to re-extract strings (requires WP-CLI).
-2. Copy `languages/gulo-link-in-bio.pot` to `languages/gulo-link-in-bio-{locale}.po`.
-3. Add translations in a PO editor (e.g. [Poedit](https://poedit.net/)).
-4. Run `composer run make:mo` to compile the MO binary.
+Visit [translate.wordpress.org/projects/wp-plugins/gulo-link-in-bio/](https://translate.wordpress.org/projects/wp-plugins/gulo-link-in-bio/), select your locale, and contribute translations. Once at least 90% of the strings are approved by a translation editor, a language pack is generated automatically and delivered to WordPress sites within 30 minutes — no action required from the plugin author.
 
-Or use a plugin like [Loco Translate](https://wordpress.org/plugins/loco-translate/) to translate strings directly in the WordPress admin.
+If you want to preview translations locally before they are approved, you can use a plugin like [Loco Translate](https://wordpress.org/plugins/loco-translate/).
 
 = Where can I report a bug or request a feature? =
 
