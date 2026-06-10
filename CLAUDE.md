@@ -17,7 +17,7 @@ includes/class-guloli-plugin.php     Singleton boot class; activate/deactivate s
 includes/class-guloli-settings.php   Settings helper: get(), get_links(), sanitize callbacks
 includes/class-guloli-admin.php      Admin menu, Settings API registration, page render
 includes/class-guloli-frontend.php   Page template registration + lazy asset enqueueing
-templates/page-gulo-simple-bio-links.php    Full HTML page (DOCTYPE → wp_footer); sets $GULOLI_Settings/$gulo_links
+templates/page-simple-bio-links.php         Full HTML page (DOCTYPE → wp_footer); sets $guloli_settings/$guloli_links
 templates/display.php             Accessible link-in-bio HTML partial (profile + nav + footer)
 assets/css/frontend.css           Link-in-bio CSS (custom properties for theming)
 assets/css/admin.css              Admin settings page styles
@@ -43,19 +43,19 @@ package.json                      JS dev dependencies (ESLint, Stylelint)
 
 ## Two WordPress Options
 
-| Option key     | Type          | Description                              |
-|----------------|---------------|------------------------------------------|
-| `GULOLI_Settings` | `array`       | Profile, colors, background              |
-| `gulo_links`    | `string` JSON | Array of `{title, url, active}` objects  |
+| Option key        | Type          | Description                              |
+|-------------------|---------------|------------------------------------------|
+| `guloli_settings` | `array`       | Profile, colors, background              |
+| `guloli_links`    | `string` JSON | Array of `{title, url, active}` objects  |
 
-Settings keys in `GULOLI_Settings`:
+Settings keys in `guloli_settings`:
 `profile_name`, `profile_bio`, `profile_image`, `background_type`, `background_color`,
 `gradient_start`, `gradient_end`, `button_style`, `button_bg_color`, `button_text_color`,
 `profile_text_color`, `page_id`, `seo_noindex`
 
 ## Coding Rules
 
-- **Prefix**: classes `GULO_`, options `gulo_`, JS globals `guloAdmin.*`
+- **Prefix**: classes `GULOLI_`, functions/hooks/globals/options `guloli_`; JS is wrapped in an IIFE — no globals exposed
 - **Text domain**: `gulo-link-in-bio` in every i18n call
 - **Capability**: `guloli_manage_settings` for all permission checks in this plugin — never `manage_options`
 - **Escape outputs**: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`
@@ -111,9 +111,9 @@ composer run make:mo
 
 ## What NOT to Change Without Asking
 
-- The option names `GULOLI_Settings` / `gulo_links` — changing them loses saved data
-- `GULOLI_Frontend::TEMPLATE_KEY = 'gulo-simple-bio-links-template'` — changing it breaks pages already assigned the template
-- The prefix `GULO_` / `gulo_` — collision-avoidance contract
+- The option names `guloli_settings` / `guloli_links` — changing them loses saved data
+- `templates/page-simple-bio-links.php` — the path is hardcoded in `GULOLI_Frontend::load_template()`; renaming the file breaks the template lookup
+- The prefixes `GULOLI_` (classes) / `guloli_` (functions, hooks, globals, options) — collision-avoidance contract
 - The `sanitize_*` callbacks in `GULOLI_Settings` — they protect data integrity
 - The capability slug `guloli_manage_settings` — it is stored in the WordPress roles table; renaming it silently locks out Editors
 
