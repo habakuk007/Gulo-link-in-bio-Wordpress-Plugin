@@ -1,17 +1,17 @@
 ---
-applyTo: 'languages/*de_DE*.po, languages/*de_AT*.po, languages/*de_CH*.po, languages/*de_DE_formal*.po'
-description: 'German WordPress translation rules — style guide, glossary, and terminology for de_DE, de_AT, de_CH, and de_DE_formal locales.'
+applyTo: 'languages/*-de.po, languages/*de_DE*.po, languages/*de_AT*.po, languages/*de_CH*.po, languages/*de_DE_formal*.po'
+description: 'German WordPress translation rules — style guide, glossary, and terminology for de, de_DE, de_AT, de_CH, and de_DE_formal locales.'
 ---
 
 # German WordPress Translation (Deutsch)
 
-Use these rules for all German locale translation files (`de_DE`, `de_AT`, `de_CH`, `de_DE_formal`). They are based on the official [German WordPress Style Guide](https://de.wordpress.org/team/handbook/polyglots-team/style-guide/) and the translate.wordpress.org glossaries.
+Use these rules for all German locale translation files (`de`, `de_DE`, `de_AT`, `de_CH`, `de_DE_formal`). They are based on the official [German WordPress Style Guide](https://de.wordpress.org/team/handbook/polyglots-team/style-guide/) and the translate.wordpress.org glossaries.
 
 ## Glossary
 
 Always look up a term in the official glossaries before choosing a German equivalent:
 
-- **Default (du-Form, `de_DE`)**: https://translate.wordpress.org/locale/de/default/glossary/
+- **Default (du-Form, `de` and `de_DE`)**: https://translate.wordpress.org/locale/de/default/glossary/
 - **Formal (Sie-Form, `de_DE_formal`)**: https://translate.wordpress.org/locale/de/formal/glossary/
 - **Reference article**: https://de.wordpress.org/team/handbook/polyglots-team/das-glossar/
 
@@ -19,7 +19,7 @@ A term present in the glossary must use the glossary translation — do not inve
 
 ## Tone & Formality
 
-- `de_DE`, `de_AT`, `de_CH` — informal **„du"** (lowercase, even mid-sentence)
+- `de`, `de_DE`, `de_AT`, `de_CH` — informal **„du"** (lowercase, even mid-sentence)
 - `de_DE_formal` — formal **„Sie"** (always capitalized)
 - Write for non-technical users; clarity over technical jargon
 - Avoid dialect, colloquialisms, idioms, and humour that does not translate

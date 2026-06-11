@@ -53,6 +53,17 @@ Settings keys in `guloli_settings`:
 `gradient_start`, `gradient_end`, `button_style`, `button_bg_color`, `button_text_color`,
 `profile_text_color`, `page_id`, `seo_noindex`
 
+## Translation Conventions
+
+The plugin ships translations in `languages/`. German has two locale variants:
+
+| Locale file | WordPress locale | Register form | Voice |
+|---|---|---|---|
+| `gulo-link-in-bio-de.po` | `de` | informal — **du / dein** | "Konfiguriere dein Profil …" |
+| `gulo-link-in-bio-de_DE_formal.po` | `de_DE_formal` | formal — **Sie / Ihr** | "Konfigurieren Sie Ihr Profil …" |
+
+When writing or reviewing German translations, use **du/dein** for the `de` file and **Sie/Ihr** for the `de_DE_formal` file. After editing any `.po` file, run `composer run make:mo` to recompile the `.mo` binaries.
+
 ## Coding Rules
 
 - **Prefix**: classes `GULOLI_`, functions/hooks/globals/options `guloli_`; JS is wrapped in an IIFE — no globals exposed
