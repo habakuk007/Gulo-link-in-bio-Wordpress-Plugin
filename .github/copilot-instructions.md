@@ -15,6 +15,7 @@ Additional domain-specific instructions are in `.github/instructions/`:
 | File | Applies to | Purpose |
 |------|-----------|---------|
 | `wordpress.instructions.md` | `**/*.php`, `**/*.js`, `**/*.css` | WordPress coding standards, security, i18n |
+| `wpcs.instructions.md` | `**/*.php` | WPCS/PHPCS reference: run checks, ruleset details, inline suppression |
 | `html-css-style-color-guide.instructions.md` | `**/*.css`, `**/*.html` | Color palette rules, 60-30-10 rule, gradients |
 | `a11y.instructions.md` | `**` | WCAG 2.2 AA accessibility, ARIA, skip links |
 | `readme-txt.instructions.md` | `readme.txt` | WordPress.org readme format, changelog from git log, version sync |
