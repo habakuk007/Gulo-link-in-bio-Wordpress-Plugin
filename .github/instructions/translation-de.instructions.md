@@ -118,6 +118,7 @@ Representative entries — consult the full glossaries linked above for the comp
 |---|---|---|
 | account | Konto | — |
 | activate / deactivate | aktivieren / deaktivieren | — |
+| button | Button | borrowed term — **never** "Schaltfläche" in UI labels; compounds: "Button-Stil", "Button-Farben" |
 | admin bar | Adminleiste | — |
 | Appearance | Design | UI menu item |
 | capability | Berechtigung | user-role context |
@@ -148,6 +149,7 @@ Representative entries — consult the full glossaries linked above for the comp
 | link | Link | not translated |
 | pattern | Vorlage | content-design context |
 | tag (taxonomy) | Schlagwort | — |
+| tagline | Untertitel | site/page tagline; **not** "Slogan" |
 | template | Vorlage | layout/functionality context |
 | update (noun/verb) | aktualisieren / Aktualisierung | — |
 | user | Benutzer | — |

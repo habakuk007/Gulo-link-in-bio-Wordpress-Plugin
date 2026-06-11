@@ -87,6 +87,37 @@ WordPress locale codes used in translation file names follow the pattern `{text-
 
 For a full list of supported locale codes see https://make.wordpress.org/polyglots/teams/.
 
+## Locale-Specific Style Notes
+
+Key rules that differ from English conventions or from each other — consult the full locale style guide for details.
+
+### es_ES (Spanish — Spain)
+
+- **Voice**: informal **tú** throughout — never formal *usted*; this applies to imperatives ("Configura tu perfil", not "Configure su perfil"), possessives ("tu", not "su"), and object pronouns ("úsalo", not "úselo")
+- **"add"**: always **añadir** — the glossary explicitly forbids *agregar*; check all derived forms (añade, añadir, añadido)
+- **"manage"**: **gestionar** — not *administrar*
+- **"settings"**: **ajustes** — not *configuración*
+- **"dashboard"**: **Escritorio** (capital E) — not *tablero* or *panel de control*
+- Quotation marks: use « » (guillemets) for inline quotations
+- Glossary: https://translate.wordpress.org/locale/es/default/glossary/
+
+### fr_FR (French — France)
+
+- **"template"** (page template): **gabarit** — not *modèle* (modern WP block-editor convention)
+- **"tagline"**: **Slogan** — not *accroche*
+- **"settings"**: **Paramètres** — not *réglages*
+- **"save"**: **Enregistrer** — not *sauvegarder*
+- **"footer"**: **pied de page** — not *footer*
+- Glossary: https://translate.wordpress.org/locale/fr/default/glossary/
+
+### uk (Ukrainian)
+
+- **"settings"**: **налаштування**
+- **"template"**: **шаблон**
+- **"plugin"**: **плагін**
+- **"theme"**: **тема**
+- Glossary: https://translate.wordpress.org/locale/uk/default/glossary/
+
 ## Compliance Checklist
 
 - [ ] All placeholder tokens are preserved and untranslated
