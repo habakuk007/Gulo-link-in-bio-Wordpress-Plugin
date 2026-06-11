@@ -31,7 +31,7 @@ msgstr ""
 #. Description of the plugin
 #: gulo-link-in-bio.php:5
 msgid "A self-hosted link-in-bio page for WordPress. Configure your profile in the admin menu, then assign the template to any Page."
-msgstr "Una página link-in-bio autoalojada para WordPress. Configure su perfil en el menú de administración y asigne la plantilla a cualquier página."
+msgstr "Una página link-in-bio autoalojada para WordPress. Configura tu perfil en el menú de administración y asigna la plantilla a cualquier página."
 
 #. Author of the plugin
 #: gulo-link-in-bio.php:9
@@ -65,11 +65,11 @@ msgstr "Ajustes"
 
 #: includes/class-guloli-admin.php:146
 msgid "You do not have permission to access this page."
-msgstr "No tiene permiso para acceder a esta página."
+msgstr "No tienes permiso para acceder a esta página."
 
 #: includes/class-guloli-admin.php:157
 msgid "Create any WordPress Page, then select it below — the plugin will serve the Gulo Link-in-Bio layout for that page automatically."
-msgstr "Cree cualquier página de WordPress y selecciónela a continuación: el plugin mostrará automáticamente el diseño de Gulo Link-in-Bio para esa página."
+msgstr "Crea cualquier página de WordPress y selecciónala a continuación: el plugin mostrará automáticamente el diseño de Gulo Link-in-Bio para esa página."
 
 #: includes/class-guloli-admin.php:165
 msgid "Gulo Link-in-Bio Page"
@@ -195,7 +195,7 @@ msgstr "Gestionar enlaces"
 
 #: includes/class-guloli-admin.php:418
 msgid "Add Link"
-msgstr "Agregar enlace"
+msgstr "Añadir enlace"
 
 #: includes/class-guloli-admin.php:432
 msgid "Legal"
@@ -203,7 +203,7 @@ msgstr "Legal"
 
 #: includes/class-guloli-admin.php:434
 msgid "Optional links shown in the page footer above \"Powered by\". Leave blank to hide."
-msgstr "Enlances opcionales en el pie de página sobre \"Desarrollado por\". Déjelo en blanco para ocultar."
+msgstr "Enlaces opcionales en el pie de página sobre \"Desarrollado por\". Déjalo en blanco para ocultar."
 
 #: includes/class-guloli-admin.php:439
 msgid "Imprint URL (Impressum)"
@@ -227,7 +227,7 @@ msgstr "Excluir esta página de los motores de búsqueda (noindex)"
 
 #: includes/class-guloli-admin.php:489
 msgid "Adds a noindex tag to the page. Use this if you prefer the page not to appear in Google or Bing results."
-msgstr "Agrega una etiqueta noindex a la página. Úselo si prefiere que la página no aparezca en los resultados de Google o Bing."
+msgstr "Añade una etiqueta noindex a la página. Úsalo si prefieres que la página no aparezca en los resultados de Google o Bing."
 
 #: includes/class-guloli-admin.php:496
 msgid "Save Settings"

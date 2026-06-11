@@ -31,7 +31,7 @@ msgstr ""
 #. Description of the plugin
 #: gulo-link-in-bio.php:5
 msgid "A self-hosted link-in-bio page for WordPress. Configure your profile in the admin menu, then assign the template to any Page."
-msgstr "Une page link-in-bio auto-hébergée pour WordPress. Configurez votre profil dans le menu d'administration, puis assignez le modèle à n'importe quelle page."
+msgstr "Une page link-in-bio auto-hébergée pour WordPress. Configurez votre profil dans le menu d'administration, puis assignez le gabarit à n'importe quelle page."
 
 #. Author of the plugin
 #: gulo-link-in-bio.php:9
@@ -98,7 +98,7 @@ msgstr "Nom"
 
 #: includes/class-guloli-admin.php:212
 msgid "Bio / Tagline"
-msgstr "Bio / Accroche"
+msgstr "Bio / Slogan"
 
 #: includes/class-guloli-admin.php:225
 msgid "Profile Image URL"
