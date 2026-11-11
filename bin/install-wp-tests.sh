@@ -21,7 +21,7 @@ set -ex
 # Using svn trunk for the tests with a released core breaks the bootstrap
 # whenever trunk gains classes that the release does not have yet.
 if [ "$WP_VERSION" = 'latest' ]; then
-	WP_VERSION=$(curl -s https://api.wordpress.org/core/version-check/1.7/ | grep -o '"current":"[^"]*"' | head -1 | cut -d'"' -f4)
+	WP_VERSION=$(curl -sS --fail --max-time 20 --retry 2 https://api.wordpress.org/core/version-check/1.7/ | grep -o '"current":"[^"]*"' | head -1 | cut -d'"' -f4)
 	if [ -z "$WP_VERSION" ]; then
 		echo "Could not determine the latest WordPress version." >&2
 		exit 1
