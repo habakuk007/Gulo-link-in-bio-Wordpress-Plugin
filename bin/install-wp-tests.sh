@@ -17,6 +17,17 @@ WP_CORE_DIR=${WP_CORE_DIR:-/tmp/wordpress}
 
 set -ex
 
+# Resolve 'latest' to a concrete release so the core and the test suite match.
+# Using svn trunk for the tests with a released core breaks the bootstrap
+# whenever trunk gains classes that the release does not have yet.
+if [ "$WP_VERSION" = 'latest' ]; then
+	WP_VERSION=$(curl -sS --fail --max-time 20 --retry 2 https://api.wordpress.org/core/version-check/1.7/ | grep -o '"current":"[^"]*"' | head -1 | cut -d'"' -f4)
+	if [ -z "$WP_VERSION" ]; then
+		echo "Could not determine the latest WordPress version." >&2
+		exit 1
+	fi
+fi
+
 install_wp() {
 	if [ -d "$WP_CORE_DIR" ]; then
 		return
