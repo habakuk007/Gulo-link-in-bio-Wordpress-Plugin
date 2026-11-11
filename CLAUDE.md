@@ -39,6 +39,8 @@ package.json                      JS dev dependencies (ESLint, Stylelint)
 .github/workflows/ci.yml          GitHub Actions: lint + test matrix
 .vscode/settings.json             VS Code editor settings
 .vscode/extensions.json           VS Code recommended extensions
+.agents/skills/gh-bot/            Open PRs / PR comments as bot identity habakuk-ai (see Skills)
+.claude/commands/gh-bot.md        /gh-bot slash command → .agents/skills/gh-bot/SKILL.md
 ```
 
 ## Two WordPress Options
@@ -119,6 +121,14 @@ composer run make:pot
 # Compile all PO files to MO binaries (requires WP-CLI)
 composer run make:mo
 ```
+
+## Skills
+
+| Command | Skill | Purpose |
+|---|---|---|
+| `/gh-bot` | [gh-bot/SKILL.md](.agents/skills/gh-bot/SKILL.md) | Open PRs and PR comments as bot identity `habakuk-ai`; commits and pushes stay `habakuk007`, so `habakuk007` can approve and merge |
+
+PRs are opened with `bash .agents/skills/gh-bot/gh-bot.sh pr <branch> "<title>" "<body>"` after a plain `git push`. Never approve or merge as the bot.
 
 ## What NOT to Change Without Asking
 
