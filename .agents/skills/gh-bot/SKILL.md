@@ -30,7 +30,9 @@ Never use the bot for pushes.
 - `bash .agents/skills/gh-bot/gh-bot.sh comment <pr-number> "<text>"` – comment on a PR
 - `bash .agents/skills/gh-bot/gh-bot.sh list` – list open PRs
 
-Release PRs `develop` → `main` are not covered by `pr`; ask the user how to open them.
+- `bash .agents/skills/gh-bot/gh-bot.sh release "<title>" "<body>"` – open the release PR `develop` → `main`
+
+The release PR is only opened when the user asks for a release. Merging it and pushing the version tag (which triggers the WordPress.org deploy) stay with the human.
 
 If a command fails with setup instructions, show them to the user **completely** and stop.
 If the output contains a WARNING, pass it on to the user and continue.

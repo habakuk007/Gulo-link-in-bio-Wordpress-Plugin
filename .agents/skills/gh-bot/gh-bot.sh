@@ -10,6 +10,7 @@
 # Usage:
 #   gh-bot.sh check
 #   gh-bot.sh pr <branch> "<title>" ["<body>"]   # hotfix/* -> main; else develop
+#   gh-bot.sh release "<title>" ["<body>"]       # release PR develop -> main
 #   gh-bot.sh comment <pr-number> "<text>"
 #   gh-bot.sh list
 
@@ -32,6 +33,7 @@ usage() {
 Usage:
   gh-bot.sh check                                verify the bot token
   gh-bot.sh pr <branch> "<title>" ["<body>"]     open a PR as the bot (hotfix/* -> main; else develop)
+  gh-bot.sh release "<title>" ["<body>"]         open the release PR develop -> main as the bot
   gh-bot.sh comment <pr-number> "<text>"         comment on a PR as the bot
   gh-bot.sh list                                 list open PRs
 EOF
@@ -80,6 +82,11 @@ cmd_pr() {
   bot_gh pr create --repo "$REPO" --head "$branch" --base "$base" --title "$title" --body "$body"
 }
 
+cmd_release() {
+  { [ $# -eq 1 ] || [ $# -eq 2 ]; } && [ -n "$1" ] || usage
+  bot_gh pr create --repo "$REPO" --head develop --base main --title "$1" --body "${2:-}"
+}
+
 cmd_comment() {
   [ $# -eq 2 ] && [ -n "$1" ] && [ -n "$2" ] || usage
   case "$1" in *[!0-9]*) usage ;; esac
@@ -95,6 +102,7 @@ sub="$1"; shift
 case "$sub" in
   check)   [ $# -eq 0 ] || usage; powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$GET_TOKEN" -Value Check | tr -d '\r'; exit "${PIPESTATUS[0]}" ;;
   pr)      preflight; cmd_pr "$@" ;;
+  release) preflight; cmd_release "$@" ;;
   comment) preflight; cmd_comment "$@" ;;
   list)    [ $# -eq 0 ] || usage; preflight; cmd_list ;;
   *)       usage ;;
