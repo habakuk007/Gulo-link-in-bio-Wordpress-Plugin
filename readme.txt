@@ -2,8 +2,8 @@
 Contributors: habakuk
 Tags: link in bio, linktree, links, profile, social links
 Requires at least: 6.0
-Tested up to: 7.0
-Stable tag: 0.3.1
+Tested up to: 7.1
+Stable tag: 0.3.2
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -115,6 +115,11 @@ On [GitHub Issues](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plug
 7. The live frontend profile page on a mobile screen (solid buttons).
 
 == Changelog ==
+
+= 0.3.2 =
+* Changed: Aligned the German (informal and formal), Spanish and French translations with the official WordPress.org glossaries.
+* Fixed: Continuous integration now tests against the matching WordPress release instead of unreleased trunk.
+* Changed: Updated development dependencies (Composer and npm); no change to plugin runtime code.
 
 = 0.3.1 =
 * Added WordPress.org packaging assets and compliance documentation for submission readiness.
