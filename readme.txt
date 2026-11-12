@@ -2,18 +2,20 @@
 Contributors: habakuk
 Tags: link in bio, linktree, links, profile, social links
 Requires at least: 6.0
-Tested up to: 7.0
-Stable tag: 0.3.1
+Tested up to: 7.1
+Stable tag: 0.3.2
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://trumpkin.de/donate
 
-A link-in-bio page for WordPress — a self-hosted Linktree alternative. Assign the template to any Page. No shortcodes, no page builders.
+A self-hosted link-in-bio page for WordPress. Alternative to Linktree — assign the template to any Page. No shortcodes, no page builders.
 
 == Description ==
 
-**Gulo Link-in-Bio** turns a WordPress Page into a fully self-contained link-in-bio page — without touching your active theme. It is a self-hosted alternative to Linktree. Ideal for social media bios, creator profiles, and landing pages that collect all your important links in one place.
+**Gulo Link-in-Bio** turns a WordPress Page into a dedicated social landing page, without touching your active theme. It is a self-hosted alternative to Linktree and is ideal for social media bios, creator profiles, and landing pages that collect all your important links in one place.
+
+This plugin is 100% free and GPL licensed, with no Pro version, no ads, and no aggressive upsells.
 
 = How it works =
 
@@ -29,14 +31,14 @@ The plugin serves a standalone HTML page (bypasses the active theme entirely), s
 * **Unlimited links** — drag to reorder, toggle active/inactive without deleting
 * **Theming** — gradient or solid background, custom button colors (solid or glass/frosted style), custom text color
 * **SEO options** — optional noindex to keep the page out of search results
-* **Legal footer** — optional Imprint and Privacy Policy links (useful for GDPR / German Impressum requirements)
-* **Yoast SEO compatible** — integrates via Yoast's own filters to avoid duplicate meta tags
-* **Cache aware** — automatically purges the page cache on save (WP Super Cache, WP Rocket, W3 Total Cache, WP Fastest Cache, LiteSpeed Cache, Cache Enabler)
+* **Legal footer** — optional Imprint and Privacy Policy links for GDPR / Impressum compliance
+* **Works cleanly with Yoast SEO** — avoids duplicate meta tags
+* **Cache friendly** — automatically clears WP Super Cache, WP Rocket, W3 Total Cache, WP Fastest Cache, LiteSpeed Cache, and Cache Enabler after saving settings
 * **Editor access** — Administrators and Editors can manage the settings via a custom capability
 * **Admin bar shortcut** — logged-in users with access see an "Edit Gulo Link-in-Bio" link directly on the frontend page
-* **Fully accessible** — WCAG 2.2 AA: skip link, semantic landmarks, visible focus, `prefers-reduced-motion`
-* **Translated** — ships with German (`de_DE`), French (`fr_FR`), Spanish (`es_ES`), and Ukrainian (`uk`) translations
-* **No tracking, no ads, no upsells** — 100% free and open source (GPL-2.0-or-later)
+* **Fully accessible** — WCAG 2.2 AA friendly with skip link, semantic landmarks, visible focus, and reduced-motion support
+* **Translated** — ships with German, French, Spanish, and Ukrainian translations
+* **No tracking, no ads, no Pro version** — fully free and open source (GPL-2.0-or-later)
 
 == Installation ==
 
@@ -94,12 +96,9 @@ By default, yes. To exclude it, check **Exclude this page from search engines (n
 
 = How do I add a language not included in the plugin? =
 
-1. Run `composer run make:pot` to re-extract strings (requires WP-CLI).
-2. Copy `languages/gulo-link-in-bio.pot` to `languages/gulo-link-in-bio-{locale}.po`.
-3. Add translations in a PO editor (e.g. [Poedit](https://poedit.net/)).
-4. Run `composer run make:mo` to compile the MO binary.
+Visit [translate.wordpress.org/projects/wp-plugins/gulo-link-in-bio/](https://translate.wordpress.org/projects/wp-plugins/gulo-link-in-bio/), select your locale, and contribute translations. Once at least 90% of the strings are approved by a translation editor, a language pack is generated automatically and delivered to WordPress sites within 30 minutes — no action required from the plugin author.
 
-Or use a plugin like [Loco Translate](https://wordpress.org/plugins/loco-translate/) to translate strings directly in the WordPress admin.
+If you want to preview translations locally before they are approved, you can use a plugin like [Loco Translate](https://wordpress.org/plugins/loco-translate/).
 
 = Where can I report a bug or request a feature? =
 
@@ -116,6 +115,11 @@ On [GitHub Issues](https://github.com/habakuk007/Gulo-link-in-bio-Wordpress-Plug
 7. The live frontend profile page on a mobile screen (solid buttons).
 
 == Changelog ==
+
+= 0.3.2 =
+* Changed: Aligned the German (informal and formal), Spanish and French translations with the official WordPress.org glossaries.
+* Fixed: Continuous integration now tests against the matching WordPress release instead of unreleased trunk.
+* Changed: Updated development dependencies (Composer and npm); no change to plugin runtime code.
 
 = 0.3.1 =
 * Added WordPress.org packaging assets and compliance documentation for submission readiness.
