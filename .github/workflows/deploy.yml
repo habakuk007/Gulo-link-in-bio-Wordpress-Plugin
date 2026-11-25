@@ -8,6 +8,10 @@ on:
       - '[0-9]+.[0-9]+.[0-9]+'
       - '[0-9]+.[0-9]+.[0-9]+-*'
 
+# The SVN credentials come from secrets; the GITHUB_TOKEN only has to check out the code.
+permissions:
+  contents: read
+
 jobs:
   deploy:
     name: Deploy to WordPress.org SVN

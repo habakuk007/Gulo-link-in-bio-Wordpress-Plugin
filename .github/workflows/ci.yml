@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+# Every job only checks out and tests; the token needs nothing but read access.
+permissions:
+  contents: read
+
 jobs:
   # ── PHP Lint & Code Standards ────────────────────────────────────
   php-lint:
@@ -142,8 +146,6 @@ jobs:
   ai-config-sync:
     name: AI config copies in sync
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     steps:
       - name: Checkout
@@ -159,8 +161,6 @@ jobs:
   cross-review-tests:
     name: Cross-review script tests
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     steps:
       - name: Checkout
