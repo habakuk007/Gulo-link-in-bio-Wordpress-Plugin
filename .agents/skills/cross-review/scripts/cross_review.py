@@ -388,9 +388,19 @@ def reviewer_command(tool, repo, tmp, pr_number, model=""):
     raise CrossReviewError("--tool must be opencode or claude")
 
 
+ANSI_RE = re.compile(r"\x1b\[[0-9;?]*[ -/]*[@-~]")
+# Lines the tool prints for its own tool calls ("* Grep ..."). The reviewer may search for the
+# fallback message itself (this script contains it), and that echo must not count.
+TOOL_ECHO_RE = re.compile(r"^\s*[\u2731\u2192\u2190\u2699\u2022*$]\s")
+
+
 def fell_back_to_default_agent(log):
-    """True when the tool ran the default agent instead of the reviewer (it could then edit files)."""
-    return FALLBACK_RE.search(log) is not None
+    """True when the tool ran the default agent instead of the reviewer (it could then edit files).
+    Only the tool's own messages count, not the echo of a reviewer tool call that mentions the text."""
+    for line in ANSI_RE.sub("", log).splitlines():
+        if FALLBACK_RE.search(line) and not TOOL_ECHO_RE.match(line):
+            return True
+    return False
 
 
 def kill_tree(process):
@@ -493,7 +503,7 @@ def reviewer_env(environ):
     return env
 
 
-def extract(output_path, diff_path=None):
+def extract(output_path, diff_path=None, allow_secret_like_text=False):
     problems = []
     raw = Path(output_path).read_text(encoding="utf-8", errors="replace") if Path(output_path).is_file() else ""
     text = review_text(raw) if raw else None
@@ -502,8 +512,10 @@ def extract(output_path, diff_path=None):
     diff_text = Path(diff_path).read_text(encoding="utf-8", errors="replace") if diff_path and Path(diff_path).is_file() else ""
     text = postable_review(text, diff_text)
     secrets = find_secrets(text)
-    if secrets:
-        problems.append("The review looks like it contains a secret (%s). Do not post it." % ", ".join(secrets))
+    if secrets and not allow_secret_like_text:
+        problems.append("The review looks like it contains a secret (%s). Do not post it; if it only quotes "
+                        "test data the user already confirmed for `prepare`, run `extract` again with "
+                        "--allow-secret-like-text after reading the text." % ", ".join(secrets))
     size = len(text.encode("utf-8"))
     if size > MAX_REVIEW_BYTES:
         problems.append("The review is %d bytes, above the limit of %d. Ask the user instead of cutting it." % (size, MAX_REVIEW_BYTES))
@@ -586,7 +598,7 @@ def execute(args):
     if args.action == "extract":
         require(args, "tmp", "tool")
         tmp = Path(args.tmp)
-        result = extract(tmp / ("review-%s.txt" % args.tool), tmp / "pr.diff")
+        result = extract(tmp / ("review-%s.txt" % args.tool), tmp / "pr.diff", args.allow_secret_like_text)
         postable = tmp / ("review-%s.md" % args.tool)
         if result["Ok"]:
             postable.write_text(result["Text"], encoding="utf-8", newline="\n")

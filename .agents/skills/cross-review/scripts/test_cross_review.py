@@ -138,6 +138,13 @@ class SecretTest(unittest.TestCase):
             result = cr.extract(out)
             self.assertEqual((result["Ok"], result["Text"]), (True, "## Review\nissue: x"))
 
+    def test_extract_allows_secret_like_text_only_when_told_to(self):
+        with tempfile.TemporaryDirectory() as d:
+            out = Path(d) / "review-claude.txt"
+            out.write_text('REVIEW_BEGIN\nfixture password = "hunter2hunter2" in the test\nREVIEW_END\n', encoding="utf-8")
+            self.assertFalse(cr.extract(out)["Ok"])
+            self.assertTrue(cr.extract(out, allow_secret_like_text=True)["Ok"])
+
     def test_extract_refuses_an_oversized_review(self):
         with tempfile.TemporaryDirectory() as d:
             out = Path(d) / "review-claude.txt"
@@ -185,6 +192,12 @@ class AgentFallbackTest(unittest.TestCase):
         self.assertTrue(cr.fell_back_to_default_agent("! " + log + "\n"))
         self.assertTrue(cr.fell_back_to_default_agent(log))
         self.assertTrue(cr.fell_back_to_default_agent('agent "x" not found. Falling back to default agent'))
+
+    def test_the_echo_of_a_reviewer_tool_call_is_not_a_fallback(self):
+        echo = "\x1b[0m\u2731 \x1b[0mGrep \"SECRET_PATTERNS|Falling back to default agent\" \x1b[90min cross_review.py\x1b[0m"
+        self.assertFalse(cr.fell_back_to_default_agent(echo))
+        self.assertFalse(cr.fell_back_to_default_agent("> cross-reviewer \u00b7 model\n" + echo + "\n"))
+        self.assertTrue(cr.fell_back_to_default_agent(echo + "\nagent \"x\" not found. Falling back to default agent\n"))
 
     def test_a_normal_log_is_not_a_fallback(self):
         self.assertFalse(cr.fell_back_to_default_agent("> cross-reviewer - model\nRead docs/x.md"))

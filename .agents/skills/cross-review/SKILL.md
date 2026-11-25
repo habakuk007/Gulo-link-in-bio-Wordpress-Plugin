@@ -88,7 +88,7 @@ Same-tool subagent: give it the contents of `prompt.md` and the files in `<Tmp>`
 
 ### 4. Validate
 
-`cross_review extract --tmp <Tmp> --tool <opencode|claude>` takes the text between the **last** pair of `REVIEW_BEGIN` and `REVIEW_END` lines, removes control characters, images, `@mentions` (GitHub would notify the mentioned user) and links the diff does not contain, and refuses a review that is missing, looks like it contains a secret or is above 20 KB. Done when `Ok` is true and the postable text is in `File`; on `Ok` false do not post, show the `Problems` to the user.
+`cross_review extract --tmp <Tmp> --tool <opencode|claude>` takes the text between the **last** pair of `REVIEW_BEGIN` and `REVIEW_END` lines, removes control characters, images, `@mentions` (GitHub would notify the mentioned user) and links the diff does not contain, and refuses a review that is missing, looks like it contains a secret or is above 20 KB. Done when `Ok` is true and the postable text is in `File`; on `Ok` false do not post, show the `Problems` to the user. If the refusal is only because the review quotes test data that the user already confirmed as false positives for `prepare`, read the text and run `extract` again with `--allow-secret-like-text`; say so in the posted comment.
 
 ### 5. Post
 
