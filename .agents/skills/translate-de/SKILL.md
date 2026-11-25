@@ -54,7 +54,7 @@ Project decisions that are not in the WordPress glossary (taken over from the ex
 
 | English (msgid) | German |
 |-----------------|--------|
-| Profile image | Profilbild (UI); the frontend `alt` text "Profile photo of %s" uses `Profilfoto von %s` |
+| Profile image / photo | Profilbild (always); the frontend `alt` "Profile photo of %s" is `Profilbild von %s` |
 | Bio / Tagline | Bio / Untertitel |
 | Background (type, color) | Hintergrund(-typ, -farbe) |
 | Gradient | Verlauf (`Verlaufsbeginn`, `Verlaufsende`) |
@@ -72,7 +72,7 @@ Project decisions that are not in the WordPress glossary (taken over from the ex
 | Powered by %s | Bereitgestellt von %s |
 | Buy me a coffee | du: `Kauf mir einen Kaffee` / Sie: `Kaufen Sie mir einen Kaffee` |
 
-The only strings that differ between the `de` and `de_DE_formal` files today are the two "Buy me a coffee" strings. Keep it that way unless a new string addresses the user directly. Open point: `Profilbild` (settings UI) vs. `Profilfoto` (frontend alt text) is inconsistent; the alt text must read "Profile photo of [Name]" in English, so decide once whether to unify.
+The only strings that differ between the `de` and `de_DE_formal` files today are the two "Buy me a coffee" strings. Keep it that way unless a new string addresses the user directly.
 
 Add new project terms here when they are decided.
 
