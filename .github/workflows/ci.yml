@@ -151,3 +151,23 @@ jobs:
 
       - name: .github/agents and .github/instructions match .agents/
         run: bash .agents/scripts/sync-github-copies.sh --check
+
+  # ── cross-review skill: tests of its helper script ───────────────
+  # Standard library only, needs no network and no AI tool.
+  cross-review-tests:
+    name: Cross-review script tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run the tests
+        run: python -m unittest discover -s .agents/skills/cross-review/scripts -v

@@ -31,6 +31,9 @@ composer run make:mo    # compile all languages/*.po to .mo
 
 # Check that the .github copies match .agents/
 bash .agents/scripts/sync-github-copies.sh --check
+
+# Tests of the cross-review helper script (Python 3.9+, standard library only)
+python -m unittest discover -s .agents/skills/cross-review/scripts
 ```
 
 No build system. Composer and npm are used for dev tooling only.
@@ -115,6 +118,7 @@ Each skill has a corresponding Claude Code slash command in `.claude/commands/`.
 | [translate-de/SKILL.md](.agents/skills/translate-de/SKILL.md) | `/translate-de` | German translation (du/Sie) per WordPress Polyglots Style Guide and Glossary |
 | [wp-release/SKILL.md](.agents/skills/wp-release/SKILL.md) | `/wp-release` | Plugin release workflow (version bump → release PR → tag → deploy) |
 | [grill-me/SKILL.md](.agents/skills/grill-me/SKILL.md) | `/grill-me` | Stress-test a plan through relentless questions |
+| [cross-review/SKILL.md](.agents/skills/cross-review/SKILL.md) | `/cross-review` | Opt-in second-AI review of a pull request: post as bot, evaluate, reply, fix valid findings (one round) |
 
 ## Available Instruction Files
 

@@ -46,7 +46,8 @@ opencode.json                     OpenCode config (reads AGENTS.md)
 .agents/                          SINGLE SOURCE OF TRUTH for AI config (see ai-tool-sync.instructions.md)
 .agents/instructions/             Instruction files (WP, WPCS, CSS, a11y, readme.txt, translations, AI sync)
 .agents/agents/                   Agent definitions (code-review, wp-security-review, refine-issue)
-.agents/skills/                   Skills (gh, gh-bot, php-lint, translate-de, wp-release, grill-me)
+.agents/skills/                   Skills (gh, gh-bot, php-lint, translate-de, wp-release, grill-me, cross-review)
+.claude/agents/ + .opencode/agents/  Read-only cross-reviewer agents used headless by cross-review
 .agents/scripts/sync-github-copies.sh  Refreshes/checks the .github copies
 .claude/commands/                 Slash commands, one per agent and skill
 ```
@@ -152,6 +153,7 @@ Definitions in `.agents/skills/`; each has a slash command in `.claude/commands/
 | `/translate-de` | [translate-de/SKILL.md](.agents/skills/translate-de/SKILL.md) | German translation (du/Sie) per Polyglots Style Guide and Glossary |
 | `/wp-release` | [wp-release/SKILL.md](.agents/skills/wp-release/SKILL.md) | Release workflow (version bump, release PR, tag, deploy) |
 | `/grill-me` | [grill-me/SKILL.md](.agents/skills/grill-me/SKILL.md) | Stress-test a plan through relentless questions |
+| `/cross-review` | [cross-review/SKILL.md](.agents/skills/cross-review/SKILL.md) | Opt-in second-AI review of a pull request: post as bot, evaluate, reply, fix valid findings (one round) |
 
 PRs are opened with `bash .agents/skills/gh-bot/gh-bot.sh pr <branch> "<title>" "<body>"` after a plain `git push`. Never approve or merge as the bot.
 

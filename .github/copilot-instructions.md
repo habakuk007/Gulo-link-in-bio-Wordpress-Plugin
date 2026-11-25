@@ -33,7 +33,7 @@ Domain instructions live in `.github/instructions/`. This folder is a **tracked 
 ## Agents and Skills
 
 Agents (`.github/agents/`, copy of `.agents/agents/`): `code-review`, `wp-security-review`, `refine-issue`.
-Skills (`.agents/skills/`): `gh`, `gh-bot`, `php-lint`, `translate-de`, `wp-release`, `grill-me`.
+Skills (`.agents/skills/`): `gh`, `gh-bot`, `php-lint`, `translate-de`, `wp-release`, `grill-me`, `cross-review`.
 
 ## Plugin Architecture
 
