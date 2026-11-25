@@ -82,25 +82,29 @@ ps_args() {
 }
 
 # Runs gh as the bot: the token lives only in the environment of this single
-# call. WSL does not propagate GH_TOKEN to the Windows gh.exe (it then falls
-# back to the keyring/credential-manager login), so gh is run through
-# powershell.exe, which honors GH_TOKEN. Works under WSL and Git Bash alike.
+# call, never on a command line (other local processes can read command lines).
+# WSL does not propagate GH_TOKEN to the Windows gh.exe unless it is listed in
+# WSLENV (gh then falls back to the keyring/credential-manager login), so gh is
+# run through powershell.exe with GH_TOKEN exported via WSLENV. Git Bash passes
+# the environment on by itself. Only the non-secret gh arguments are placed in
+# the -Command string.
 bot_gh() {
   local token rc cmd
   token="$(get_value Token)" || return 1
   [ -n "$token" ] || { echo "ERROR: empty bot token" >&2; return 1; }
-  cmd=""
-  cmd+="\$env:GH_TOKEN = $(ps_dquote "$token");"
-  cmd+=" if (Test-Path Env:GITHUB_TOKEN) { Remove-Item Env:GITHUB_TOKEN };"
+  cmd="if (Test-Path Env:GITHUB_TOKEN) { Remove-Item Env:GITHUB_TOKEN };"
   cmd+=" gh$(ps_args "$@")"
   rc=0
-  powershell.exe -NoProfile -Command "$cmd" || rc=$?
+  GH_TOKEN="$token" WSLENV="GH_TOKEN${WSLENV:+:$WSLENV}" powershell.exe -NoProfile -Command "$cmd" || rc=$?
   unset token
   return $rc
 }
 
 cmd_pr() {
-  [ -n "$1" ] && [ -n "$2" ] || usage
+  [ $# -ge 2 ] && [ $# -le 4 ] && [ -n "$1" ] && [ -n "$2" ] || usage
+  # `--body-file` needs its path (exactly 4 args); a 4th arg without it is an error.
+  if [ $# -eq 4 ] && [ "$3" != "--body-file" ]; then usage; fi
+  if [ $# -eq 3 ] && [ "$3" = "--body-file" ]; then usage; fi
   local branch="$1" title="$2" base
   case "$branch" in
     hotfix/*|develop) base="main" ;;  # develop -> main is the release PR

@@ -37,7 +37,7 @@ package.json                      JS dev dependencies (ESLint, Stylelint)
 .github/copilot-instructions.md   GitHub Copilot project overview
 .github/instructions/             TRACKED COPY of .agents/instructions/ - never edit directly
 .github/agents/                   TRACKED COPY of .agents/agents/ - never edit directly
-.github/workflows/ci.yml          GitHub Actions: lint + test matrix + ai-config-sync check
+.github/workflows/ci.yml          GitHub Actions: lint + test matrix + ai-config-sync + cross-review-tests
 AGENTS.md                         Project guide for all AI agents (tables + MCP servers)
 opencode.json                     OpenCode config (reads AGENTS.md)
 .mcp.json / .vscode/mcp.json      MCP server definitions (Claude Code / VS Code)

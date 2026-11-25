@@ -149,6 +149,6 @@ All instructions live in `.agents/instructions/` (source of truth).
 | microsoft-docs | http | `https://learn.microsoft.com/api/mcp` |
 | wporg-mcp-server | stdio | `npx @automattic/mcp-wordpress-remote@latest` (VS Code only) |
 
-Config: `.mcp.json` (Claude Code) · `.vscode/mcp.json` (VS Code)
+Config: `.mcp.json` (Claude Code) · `.vscode/mcp.json` (VS Code). The GitHub server is named `github-mcp` in `.mcp.json` and `github` in `.vscode/mcp.json` on purpose (VS Code signs in to GitHub itself).
 
 github-mcp in Claude Code needs the environment variable `GITHUB_PERSONAL_ACCESS_TOKEN`; without it the server fails to connect. VS Code signs in to GitHub itself.

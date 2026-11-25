@@ -76,6 +76,8 @@ If the output contains a WARNING, pass it on to the user and continue.
 3. `GH_TOKEN` / `GITHUB_TOKEN` must **not** be set in the Windows or Claude environment,
    otherwise plain `gh` and `git push` also run as the bot. `check` warns about this.
 
+The script hands the bot token to `gh` through the environment of that single `powershell.exe` call (`GH_TOKEN`, exported to Windows via `WSLENV` under WSL), never as part of a command line, because command lines are readable by other local processes.
+
 ## Never
 
 - print, store or ask for a token (the user runs `set-token.ps1` in their own terminal),

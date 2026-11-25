@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The mechanical steps of the skill 'cross-review' (issue #154).
+"""The mechanical steps of the skill 'cross-review' (issue #22).
 
 The skill decides and talks to the pull request (post, evaluate, reply, fix); this
 script does the steps that must not vary between runs. Every action prints one JSON
@@ -364,13 +364,13 @@ def prepare(repo, destination, pr_number, repo_name, tool, issue_id="", title=""
 def reviewer_command(tool, repo, tmp, pr_number, model=""):
     """Exact command of a reviewer. Claude Code gets a hard tool allowlist (no shell, no edit,
     no MCP) and denies instead of asking; OpenCode gets the cross-reviewer agent and the files
-    attached. Returns (arguments, stdin file or None)."""
+    attached (OpenCode runs in the repository because the process cwd is set; `--dir` was removed in OpenCode 2.x). Returns (arguments, stdin file or None)."""
     check_arguments(pr_number=pr_number)
     if model and not MODEL_RE.match(model):
         raise CrossReviewError("The model key has characters that are not allowed: %r" % model)
     tmp = Path(tmp)
     if tool == "opencode":
-        args = ["opencode", "run", "--dir", str(repo), "--agent", AGENTS["opencode"], "--title", "Review PR %s" % pr_number]
+        args = ["opencode", "run", "--agent", AGENTS["opencode"], "--title", "Review PR %s" % pr_number]
         if model:
             args += ["-m", model]
         attach = ["prompt.md", "pr.diff", "commits.txt", "context.md"]
