@@ -22,7 +22,7 @@ Review PHP code changes in the Gulo Link-in-Bio plugin for correctness, security
 - **Code quality**: Identify dead code, PHP notices (undefined variables, deprecated functions), and logic errors
 - **i18n**: Verify user-visible strings use `__()` / `_e()` with text domain `gulo-link-in-bio`
 
-- **WordPress.org review readiness**: Check against §8 "Common review rejections" in `.agents/instructions/wordpress-org.instructions.md` (ABSPATH guard, prefixes ≥ 4 characters, escaping functions, literal i18n strings, no remote assets, no compliance claims in `readme.txt`)
+- **WordPress.org review readiness**: Check against the section "Common review rejections" in `.agents/instructions/wordpress-org.instructions.md` (ABSPATH guard, prefixes ≥ 4 characters, escaping functions, literal i18n strings, no remote assets, no compliance claims in `readme.txt`)
 - **Accessibility**: Skip link stays the first focusable element, `:focus-visible` styles, `prefers-reduced-motion`, external links announce "(opens in new tab)" (see CLAUDE.md "Accessibility Requirements")
 
 ## Automated PR feedback (when reviewing a pull request)

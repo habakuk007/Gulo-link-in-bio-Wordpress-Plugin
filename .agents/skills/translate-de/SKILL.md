@@ -54,7 +54,25 @@ Project decisions that are not in the WordPress glossary (taken over from the ex
 
 | English (msgid) | German |
 |-----------------|--------|
-| link-in-bio page | (check the existing `.po` for the established wording) |
+| Profile image | Profilbild (UI); the frontend `alt` text "Profile photo of %s" uses `Profilfoto von %s` |
+| Bio / Tagline | Bio / Untertitel |
+| Background (type, color) | Hintergrund(-typ, -farbe) |
+| Gradient | Verlauf (`Verlaufsbeginn`, `Verlaufsende`) |
+| Solid color | Volltonfarbe |
+| Button style / colors / text | Button-Stil / Button-Farben / Button-Text (compound with hyphen, `Button` stays) |
+| Solid (button style) | Ausgefüllt |
+| Glass (frosted) | Glas (mattiert) |
+| Link(s) | Link(s) (not `Verknüpfung`); "Add Link" = `Link hinzufügen` |
+| Imprint | Impressum |
+| Privacy Policy | Datenschutzerklärung |
+| Appearance | Erscheinungsbild |
+| Search Engines | Suchmaschinen |
+| (opens in new tab) | (öffnet in neuem Tab) — required accessibility announcement, keep it in every external-link label |
+| Skip to links | Zu den Links springen |
+| Powered by %s | Bereitgestellt von %s |
+| Buy me a coffee | du: `Kauf mir einen Kaffee` / Sie: `Kaufen Sie mir einen Kaffee` |
+
+The only strings that differ between the `de` and `de_DE_formal` files today are the two "Buy me a coffee" strings. Keep it that way unless a new string addresses the user directly. Open point: `Profilbild` (settings UI) vs. `Profilfoto` (frontend alt text) is inconsistent; the alt text must read "Profile photo of [Name]" in English, so decide once whether to unify.
 
 Add new project terms here when they are decided.
 
