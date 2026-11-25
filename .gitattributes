@@ -30,6 +30,8 @@
 .wordpress-org/     export-ignore
 bin/                export-ignore
 CLAUDE.md           export-ignore
+AGENTS.md           export-ignore
+opencode.json       export-ignore
 CONTRIBUTING.md     export-ignore
 composer.json       export-ignore
 composer.lock       export-ignore

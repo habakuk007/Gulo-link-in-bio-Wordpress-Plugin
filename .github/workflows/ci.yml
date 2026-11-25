@@ -137,3 +137,17 @@ jobs:
         run: composer run test
         env:
           WP_TESTS_DIR: /tmp/wordpress-tests-lib
+
+  # ── AI tool config copies ────────────────────────────────────────
+  ai-config-sync:
+    name: AI config copies in sync
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: .github/agents and .github/instructions match .agents/
+        run: bash .agents/scripts/sync-github-copies.sh --check

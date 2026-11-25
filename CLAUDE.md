@@ -35,12 +35,20 @@ package.json                      JS dev dependencies (ESLint, Stylelint)
 .editorconfig                     Editor settings (tabs, UTF-8, LF)
 .gitignore                        Ignored paths
 .github/copilot-instructions.md   GitHub Copilot project overview
-.github/instructions/             Copilot domain instruction files (WP, CSS, a11y, readme.txt)
-.github/workflows/ci.yml          GitHub Actions: lint + test matrix
+.github/instructions/             TRACKED COPY of .agents/instructions/ - never edit directly
+.github/agents/                   TRACKED COPY of .agents/agents/ - never edit directly
+.github/workflows/ci.yml          GitHub Actions: lint + test matrix + ai-config-sync check
+AGENTS.md                         Project guide for all AI agents (tables + MCP servers)
+opencode.json                     OpenCode config (reads AGENTS.md)
+.mcp.json / .vscode/mcp.json      MCP server definitions (Claude Code / VS Code)
 .vscode/settings.json             VS Code editor settings
 .vscode/extensions.json           VS Code recommended extensions
-.agents/skills/gh-bot/            Open PRs / PR comments as bot identity habakuk-ai (see Skills)
-.claude/commands/gh-bot.md        /gh-bot slash command → .agents/skills/gh-bot/SKILL.md
+.agents/                          SINGLE SOURCE OF TRUTH for AI config (see ai-tool-sync.instructions.md)
+.agents/instructions/             Instruction files (WP, WPCS, CSS, a11y, readme.txt, translations, AI sync)
+.agents/agents/                   Agent definitions (code-review, wp-security-review, refine-issue)
+.agents/skills/                   Skills (gh, gh-bot, php-lint, translate-de, wp-release, grill-me)
+.agents/scripts/sync-github-copies.sh  Refreshes/checks the .github copies
+.claude/commands/                 Slash commands, one per agent and skill
 ```
 
 ## Two WordPress Options
@@ -122,13 +130,34 @@ composer run make:pot
 composer run make:mo
 ```
 
+## Agents
+
+Definitions in `.agents/agents/`; each has a slash command in `.claude/commands/`.
+
+| Agent | Command | Purpose |
+|---|---|---|
+| [code-review](.agents/agents/code-review.agent.md) | `/code-review` | WPCS compliance, security, backwards-compat review |
+| [wp-security-review](.agents/agents/wp-security-review.agent.md) | `/wp-security-review` | XSS, CSRF, SQLi, privilege escalation audit |
+| [refine-issue](.agents/agents/refine-issue.agent.md) | `/refine-issue` | Add acceptance criteria and technical notes to a GitHub issue |
+
 ## Skills
+
+Definitions in `.agents/skills/`; each has a slash command in `.claude/commands/`.
 
 | Command | Skill | Purpose |
 |---|---|---|
+| `/gh` | [gh/SKILL.md](.agents/skills/gh/SKILL.md) | GitHub CLI: issues, PRs, releases, labels |
 | `/gh-bot` | [gh-bot/SKILL.md](.agents/skills/gh-bot/SKILL.md) | Open PRs and PR comments as bot identity `habakuk-ai`; commits and pushes stay `habakuk007`, so `habakuk007` can approve and merge |
+| `/php-lint` | [php-lint/SKILL.md](.agents/skills/php-lint/SKILL.md) | PHPCS/PHPCBF for WordPress Coding Standard |
+| `/translate-de` | [translate-de/SKILL.md](.agents/skills/translate-de/SKILL.md) | German translation (du/Sie) per Polyglots Style Guide and Glossary |
+| `/wp-release` | [wp-release/SKILL.md](.agents/skills/wp-release/SKILL.md) | Release workflow (version bump, release PR, tag, deploy) |
+| `/grill-me` | [grill-me/SKILL.md](.agents/skills/grill-me/SKILL.md) | Stress-test a plan through relentless questions |
 
 PRs are opened with `bash .agents/skills/gh-bot/gh-bot.sh pr <branch> "<title>" "<body>"` after a plain `git push`. Never approve or merge as the bot.
+
+## AI Config Sync
+
+`.agents/` is the single source of truth. Edit instructions and agents **only** there, then run `bash .agents/scripts/sync-github-copies.sh` to refresh `.github/instructions/` and `.github/agents/` (Copilot reads them there). CI job `ai-config-sync` fails if the copies differ. When adding or removing an instruction, agent, skill or MCP server, update the tables in `CLAUDE.md`, `AGENTS.md` and `.github/copilot-instructions.md` - see `.agents/instructions/ai-tool-sync.instructions.md`.
 
 ## What NOT to Change Without Asking
 
@@ -140,13 +169,14 @@ PRs are opened with `bash .agents/skills/gh-bot/gh-bot.sh pr <branch> "<title>" 
 
 ## Instruction Files Referenced
 
-Domain instructions from [awesome-copilot](https://awesome-copilot.github.com/instructions/) are
-stored in `.github/instructions/` and apply automatically to GitHub Copilot. When working here,
-follow the same rules:
+Domain instructions (from [awesome-copilot](https://awesome-copilot.github.com/instructions/) and project-specific ones)
+live in `.agents/instructions/` (`.github/instructions/` is a tracked copy for Copilot). When working here, follow them:
 
-- **WordPress**: `.github/instructions/wordpress.instructions.md`
-- **WPCS/PHPCS**: `.github/instructions/wpcs.instructions.md`
-- **WordPress.org**: `.github/instructions/wordpress-org.instructions.md`
-- **Color/CSS**: `.github/instructions/html-css-style-color-guide.instructions.md`
-- **Accessibility**: `.github/instructions/a11y.instructions.md`
-- **readme.txt / changelog.txt**: `.github/instructions/readme-txt.instructions.md`
+- **WordPress**: `.agents/instructions/wordpress.instructions.md`
+- **WPCS/PHPCS**: `.agents/instructions/wpcs.instructions.md`
+- **WordPress.org**: `.agents/instructions/wordpress-org.instructions.md`
+- **Color/CSS**: `.agents/instructions/html-css-style-color-guide.instructions.md`
+- **Accessibility**: `.agents/instructions/a11y.instructions.md`
+- **readme.txt / changelog.txt**: `.agents/instructions/readme-txt.instructions.md`
+- **Translations**: `.agents/instructions/translation-general.instructions.md`, `translation-de.instructions.md`
+- **AI config files**: `.agents/instructions/ai-tool-sync.instructions.md`, `agents.instructions.md`, `agent-skills.instructions.md`
