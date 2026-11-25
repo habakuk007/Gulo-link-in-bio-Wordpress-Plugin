@@ -253,7 +253,7 @@ msgstr "Zu den Links springen"
 #: templates/display.php:39
 #, php-format
 msgid "Profile photo of %s"
-msgstr "Profilfoto von %s"
+msgstr "Profilbild von %s"
 
 #: templates/display.php:71
 msgid "Profile links"
