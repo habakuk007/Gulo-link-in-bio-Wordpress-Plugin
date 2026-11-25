@@ -43,3 +43,7 @@ clover.xml
 .playwright-mcp/
 *.png
 *.jpg
+
+# Temporary comment bodies of the gh-bot / cross-review skills, and Python caches
+.gh-bot-comment-*.md
+__pycache__/

@@ -1,43 +1,31 @@
 {
-	"mcpServers": {
-		"playwright-mcp": {
-			"type": "stdio",
-			"command": "cmd",
-			"args": [
-				"/c",
-				"npx",
-				"@playwright/mcp@latest"
-			]
-		},
-		"markitdown": {
-			"type": "stdio",
-			"command": "uvx",
-			"args": [
-				"markitdown-mcp@0.0.1a4"
-			]
-		},
-		"context7": {
-			"type": "stdio",
-			"command": "cmd",
-			"args": [
-				"/c",
-				"npx",
-				"@upstash/context7-mcp@1.0.31"
-			],
-			"env": {
-				"CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
-			}
-		},
-		"github-mcp": {
-			"type": "http",
-			"url": "https://api.githubcopilot.com/mcp/",
-			"headers": {
-				"Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
-			}
-		},
-		"microsoft-docs": {
-			"type": "http",
-			"url": "https://learn.microsoft.com/api/mcp"
-		}
-	}
+  "mcpServers": {
+    "playwright-mcp": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "@playwright/mcp@latest"
+      ]
+    },
+    "markitdown": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "markitdown-mcp@0.0.1a4"
+      ]
+    },
+    "github-mcp": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+    "microsoft-docs": {
+      "type": "http",
+      "url": "https://learn.microsoft.com/api/mcp"
+    }
+  }
 }

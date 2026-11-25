@@ -1,0 +1,51 @@
+{
+	"inputs": [
+		{
+			"type": "promptString",
+			"id": "wporg-api-username",
+			"description": "WordPress.org username for the wporg MCP server"
+		},
+		{
+			"type": "promptString",
+			"id": "wporg-api-password",
+			"description": "WordPress.org API password for the wporg MCP server",
+			"password": true
+		}
+	],
+	"servers": {
+		"playwright-mcp": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"@playwright/mcp@latest"
+			]
+		},
+		"markitdown": {
+			"type": "stdio",
+			"command": "uvx",
+			"args": [
+				"markitdown-mcp@0.0.1a4"
+			]
+		},
+		"github": {
+			"type": "http",
+			"url": "https://api.githubcopilot.com/mcp"
+		},
+		"microsoft-docs": {
+			"type": "http",
+			"url": "https://learn.microsoft.com/api/mcp"
+		},
+		"wporg-mcp-server": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"@automattic/mcp-wordpress-remote@latest"
+			],
+			"env": {
+				"WP_API_URL": "https://wordpress.org/wp-json/mcp/wporg",
+				"WP_API_USERNAME": "${input:wporg-api-username}",
+				"WP_API_PASSWORD": "${input:wporg-api-password}"
+			}
+		}
+	}
+}

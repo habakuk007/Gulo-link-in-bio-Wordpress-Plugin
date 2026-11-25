@@ -17,7 +17,7 @@ includes/class-guloli-plugin.php     Singleton boot class; activate/deactivate s
 includes/class-guloli-settings.php   Settings helper: get(), get_links(), sanitize callbacks
 includes/class-guloli-admin.php      Admin menu, Settings API registration, page render
 includes/class-guloli-frontend.php   Page template registration + lazy asset enqueueing
-templates/page-gulo-simple-bio-links.php    Full HTML page (DOCTYPE → wp_footer); sets $GULOLI_Settings/$gulo_links
+templates/page-simple-bio-links.php         Full HTML page (DOCTYPE → wp_footer); sets $guloli_settings/$guloli_links
 templates/display.php             Accessible link-in-bio HTML partial (profile + nav + footer)
 assets/css/frontend.css           Link-in-bio CSS (custom properties for theming)
 assets/css/admin.css              Admin settings page styles
@@ -35,27 +35,49 @@ package.json                      JS dev dependencies (ESLint, Stylelint)
 .editorconfig                     Editor settings (tabs, UTF-8, LF)
 .gitignore                        Ignored paths
 .github/copilot-instructions.md   GitHub Copilot project overview
-.github/instructions/             Copilot domain instruction files (WP, CSS, a11y, readme.txt)
-.github/workflows/ci.yml          GitHub Actions: lint + test matrix
+.github/instructions/             TRACKED COPY of .agents/instructions/ - never edit directly
+.github/agents/                   TRACKED COPY of .agents/agents/ - never edit directly
+.github/workflows/ci.yml          GitHub Actions: lint + test matrix + ai-config-sync + cross-review-tests
+AGENTS.md                         Project guide for all AI agents (tables + MCP servers)
+opencode.json                     OpenCode config (reads AGENTS.md)
+.mcp.json / .vscode/mcp.json      MCP server definitions (Claude Code / VS Code)
 .vscode/settings.json             VS Code editor settings
 .vscode/extensions.json           VS Code recommended extensions
+.agents/                          SINGLE SOURCE OF TRUTH for AI config (see ai-tool-sync.instructions.md)
+.agents/instructions/             Instruction files (WP, WPCS, CSS, a11y, readme.txt, translations, AI sync)
+.agents/agents/                   Agent definitions (code-review, wp-security-review, refine-issue)
+.agents/skills/                   Skills (gh, gh-bot, php-lint, translate-de, wp-release, grill-me, cross-review)
+.claude/agents/ + .opencode/agents/  Read-only cross-reviewer agents used headless by cross-review
+.agents/scripts/sync-github-copies.sh  Refreshes/checks the .github copies
+.claude/commands/                 Slash commands, one per agent and skill
 ```
 
 ## Two WordPress Options
 
-| Option key     | Type          | Description                              |
-|----------------|---------------|------------------------------------------|
-| `GULOLI_Settings` | `array`       | Profile, colors, background              |
-| `gulo_links`    | `string` JSON | Array of `{title, url, active}` objects  |
+| Option key        | Type          | Description                              |
+|-------------------|---------------|------------------------------------------|
+| `guloli_settings` | `array`       | Profile, colors, background              |
+| `guloli_links`    | `string` JSON | Array of `{title, url, active}` objects  |
 
-Settings keys in `GULOLI_Settings`:
+Settings keys in `guloli_settings`:
 `profile_name`, `profile_bio`, `profile_image`, `background_type`, `background_color`,
 `gradient_start`, `gradient_end`, `button_style`, `button_bg_color`, `button_text_color`,
 `profile_text_color`, `page_id`, `seo_noindex`
 
+## Translation Conventions
+
+The plugin ships translations in `languages/`. German has two locale variants:
+
+| Locale file | WordPress locale | Register form | Voice |
+|---|---|---|---|
+| `gulo-link-in-bio-de.po` | `de` | informal — **du / dein** | "Konfiguriere dein Profil …" |
+| `gulo-link-in-bio-de_DE_formal.po` | `de_DE_formal` | formal — **Sie / Ihr** | "Konfigurieren Sie Ihr Profil …" |
+
+When writing or reviewing German translations, use **du/dein** for the `de` file and **Sie/Ihr** for the `de_DE_formal` file. After editing any `.po` file, run `composer run make:mo` to recompile the `.mo` binaries.
+
 ## Coding Rules
 
-- **Prefix**: classes `GULO_`, options `gulo_`, JS globals `guloAdmin.*`
+- **Prefix**: classes `GULOLI_`, functions/hooks/globals/options `guloli_`; JS is wrapped in an IIFE — no globals exposed
 - **Text domain**: `gulo-link-in-bio` in every i18n call
 - **Capability**: `guloli_manage_settings` for all permission checks in this plugin — never `manage_options`
 - **Escape outputs**: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`
@@ -109,22 +131,54 @@ composer run make:pot
 composer run make:mo
 ```
 
+## Agents
+
+Definitions in `.agents/agents/`; each has a slash command in `.claude/commands/`.
+
+| Agent | Command | Purpose |
+|---|---|---|
+| [code-review](.agents/agents/code-review.agent.md) | `/code-review` | WPCS compliance, security, backwards-compat review |
+| [wp-security-review](.agents/agents/wp-security-review.agent.md) | `/wp-security-review` | XSS, CSRF, SQLi, privilege escalation audit |
+| [refine-issue](.agents/agents/refine-issue.agent.md) | `/refine-issue` | Add acceptance criteria and technical notes to a GitHub issue |
+
+## Skills
+
+Definitions in `.agents/skills/`; each has a slash command in `.claude/commands/`.
+
+| Command | Skill | Purpose |
+|---|---|---|
+| `/gh` | [gh/SKILL.md](.agents/skills/gh/SKILL.md) | GitHub CLI: issues, PRs, releases, labels |
+| `/gh-bot` | [gh-bot/SKILL.md](.agents/skills/gh-bot/SKILL.md) | Open PRs and PR comments as bot identity `habakuk-ai`; commits and pushes stay `habakuk007`, so `habakuk007` can approve and merge |
+| `/php-lint` | [php-lint/SKILL.md](.agents/skills/php-lint/SKILL.md) | PHPCS/PHPCBF for WordPress Coding Standard |
+| `/translate-de` | [translate-de/SKILL.md](.agents/skills/translate-de/SKILL.md) | German translation (du/Sie) per Polyglots Style Guide and Glossary |
+| `/wp-release` | [wp-release/SKILL.md](.agents/skills/wp-release/SKILL.md) | Release workflow (version bump, release PR, tag, deploy) |
+| `/grill-me` | [grill-me/SKILL.md](.agents/skills/grill-me/SKILL.md) | Stress-test a plan through relentless questions |
+| `/cross-review` | [cross-review/SKILL.md](.agents/skills/cross-review/SKILL.md) | Opt-in second-AI review of a pull request: post as bot, evaluate, reply, fix valid findings (one round) |
+
+PRs are opened with `bash .agents/skills/gh-bot/gh-bot.sh pr <branch> "<title>" "<body>"` after a plain `git push`. Never approve or merge as the bot.
+
+## AI Config Sync
+
+`.agents/` is the single source of truth. Edit instructions and agents **only** there, then run `bash .agents/scripts/sync-github-copies.sh` to refresh `.github/instructions/` and `.github/agents/` (Copilot reads them there). CI job `ai-config-sync` fails if the copies differ. When adding or removing an instruction, agent, skill or MCP server, update the tables in `CLAUDE.md`, `AGENTS.md` and `.github/copilot-instructions.md` - see `.agents/instructions/ai-tool-sync.instructions.md`.
+
 ## What NOT to Change Without Asking
 
-- The option names `GULOLI_Settings` / `gulo_links` — changing them loses saved data
-- `GULOLI_Frontend::TEMPLATE_KEY = 'gulo-simple-bio-links-template'` — changing it breaks pages already assigned the template
-- The prefix `GULO_` / `gulo_` — collision-avoidance contract
+- The option names `guloli_settings` / `guloli_links` — changing them loses saved data
+- `templates/page-simple-bio-links.php` — the path is hardcoded in `GULOLI_Frontend::load_template()`; renaming the file breaks the template lookup
+- The prefixes `GULOLI_` (classes) / `guloli_` (functions, hooks, globals, options) — collision-avoidance contract
 - The `sanitize_*` callbacks in `GULOLI_Settings` — they protect data integrity
 - The capability slug `guloli_manage_settings` — it is stored in the WordPress roles table; renaming it silently locks out Editors
 
 ## Instruction Files Referenced
 
-Domain instructions from [awesome-copilot](https://awesome-copilot.github.com/instructions/) are
-stored in `.github/instructions/` and apply automatically to GitHub Copilot. When working here,
-follow the same rules:
+Domain instructions (from [awesome-copilot](https://awesome-copilot.github.com/instructions/) and project-specific ones)
+live in `.agents/instructions/` (`.github/instructions/` is a tracked copy for Copilot). When working here, follow them:
 
-- **WordPress**: `.github/instructions/wordpress.instructions.md`
-- **WordPress.org**: `.github/instructions/wordpress-org.instructions.md`
-- **Color/CSS**: `.github/instructions/html-css-style-color-guide.instructions.md`
-- **Accessibility**: `.github/instructions/a11y.instructions.md`
-- **readme.txt / changelog.txt**: `.github/instructions/readme-txt.instructions.md`
+- **WordPress**: `.agents/instructions/wordpress.instructions.md`
+- **WPCS/PHPCS**: `.agents/instructions/wpcs.instructions.md`
+- **WordPress.org**: `.agents/instructions/wordpress-org.instructions.md`
+- **Color/CSS**: `.agents/instructions/html-css-style-color-guide.instructions.md`
+- **Accessibility**: `.agents/instructions/a11y.instructions.md`
+- **readme.txt / changelog.txt**: `.agents/instructions/readme-txt.instructions.md`
+- **Translations**: `.agents/instructions/translation-general.instructions.md`, `translation-de.instructions.md`
+- **AI config files**: `.agents/instructions/ai-tool-sync.instructions.md`, `agents.instructions.md`, `agent-skills.instructions.md`

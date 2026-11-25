@@ -105,3 +105,31 @@ description: 'WordPress.org plugin directory and submission compliance rules for
 - [ ] Readme content is non-spammy and tag usage is appropriate.
 - [ ] Default WP libraries are used instead of duplicated bundles.
 - [ ] Plugin naming respects trademarks and project ownership.
+
+## Common review rejections (checklist before every release)
+
+Source: [Common Issues](https://developer.wordpress.org/plugins/wordpress-org/common-issues/). The reviewers' most frequent grounds are unescaped output, unsanitized input and form handling without a nonce.
+
+- **Input/output:** sanitize and validate input, escape late on output. Never process whole `$_POST`/`$_GET`/`$_REQUEST`; read single keys. `esc_url_raw()` sanitizes, `esc_url()` escapes. `__()`/`_e()` do **not** escape — use `esc_html__()`, `esc_attr__()`, `esc_html_e()`. Use `wp_kses_post()`/`wp_kses()` for HTML, `wp_json_encode()` for JSON, `$wpdb->prepare()` for SQL.
+- **Direct access:** `if ( ! defined( 'ABSPATH' ) ) { exit; }` in every PHP file that executes code (`includes/*.php`, `templates/*.php`; `uninstall.php` checks `WP_UNINSTALL_PLUGIN`).
+- **Prefixes:** prefix functions, classes, constants, options, globals. **Two- or three-letter prefixes are not accepted**, and `wp_`, `__` and a bare `_` are forbidden. This plugin uses `GULOLI_` / `guloli_` (do not shorten it).
+- **i18n:** text, context and domain must be literal strings; the text domain must equal the slug (`gulo-link-in-bio`).
+- **Assets:** enqueue with `wp_enqueue_script()`/`wp_enqueue_style()` (and the inline variants); no remote JS/CSS/images (exceptions: GPL-compatible font CDNs, service APIs, oEmbed). Do not ship libraries WordPress already bundles (jQuery, …).
+- **Plugin standards:** main file named after the slug (`gulo-link-in-bio.php`) with complete headers; `readme.txt` complete and valid; GPL-compatible license in header **and** readme, identical; `Stable tag` equals `Version` (and `GULOLI_VERSION`); no update checkers or phone-home code; no dev folders (tests, node tooling, `.agents/`, AI config files) in the release — controlled by `export-ignore` in `.gitattributes`; source or a public link for minified files.
+- **External services:** the plugin makes no remote requests. If one is ever added, document it in `readme.txt` (what it does, link, terms and privacy links).
+- **Test with `WP_DEBUG` on** and run `wp plugin check gulo-link-in-bio`. WP-CLI runs only the static checks by default; add `--require=./wp-content/plugins/plugin-check/cli.php` to include the runtime checks. To silence a known false positive use `--ignore-codes=<code>` or a `.pcpignore` file (Plugin Check 2.2.0+), or report it at github.com/WordPress/plugin-check. Passing the "Plugin repo" category is what the review expects; the other categories are best practice. Plugin Check uses its own ruleset, so a `phpcs.xml` exclusion does not silence it — use an inline `// phpcs:disable <Sniff> -- <reason>`.
+- **Developer account:** enable two-factor authentication on your wordpress.org account and use a unique password for SVN (see the [Security Handbook](https://developer.wordpress.org/apis/security/)).
+
+## Automated security review and compliance claims
+
+- **Automated security review (since June 2026, [page](https://developer.wordpress.org/plugins/wordpress-org/automated-security-review/)):** every release has a cooldown in which AI models and Jetpack Scan analyse the diff. If the highest risk score reaches the blocking threshold, that version is **withheld from the update API** and all committers get an email with file and line. Only that version is affected; older versions keep serving. Fix the issue and publish a **new** version (fixing is usually faster than appealing; false positives: reply to the email). Consequence for releases: run `/wp-security-review` before tagging, and do not assume a pushed tag has reached users.
+- **Compliance disclaimers ([page](https://developer.wordpress.org/plugins/wordpress-org/compliance-disclaimers/), guideline 9):** never claim that the plugin creates, provides or guarantees legal compliance (GDPR, ADA, cookie law). Say it "helps" or "assists". This applies to `readme.txt`, descriptions, assets and the plugin name.
+
+## Plugin assets (banner, icon, screenshots)
+
+Source: [Plugin Assets](https://developer.wordpress.org/plugins/wordpress-org/plugin-assets/).
+
+- They live in the **root-level `assets/` folder of the SVN repo** (next to `trunk/` and `tags/`), never in `trunk/assets`. In this repo they are kept in `.wordpress-org/` and published there by the deploy workflow (`ASSETS_DIR`). The plugin's own `assets/` folder is the plugin's CSS/JS and is something else.
+- Banner `banner-772x250.(png|jpg)` (+ `banner-1544x500` for retina, only in addition to the small one); icon `icon-128x128` / `icon-256x256` or `icon.svg` (with a PNG fallback); screenshots `screenshot-1.png` … in lower case, matching the `== Screenshots ==` list. Limits: banner 4 MB, icon 1 MB, screenshot 10 MB. No official logos you do not own.
+- If images download instead of displaying: `svn propset svn:mime-type image/png *.png` (only affects new files unless re-run).
+- Changes appear after minutes, up to about 6 hours.
